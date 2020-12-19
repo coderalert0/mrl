@@ -8,7 +8,7 @@ class AddColumnsToUsers < ActiveRecord::Migration[6.1]
     add_column :users, :step_1_fail, :boolean
     add_column :users, :step_2ck_fail, :boolean
     add_column :users, :step_2cs_fail, :boolean
-    add_column :users, :us_clinical_experience, :boolean, null: false
+    add_column :users, :us_clinical_experience, :boolean
     add_column :users, :years_since_graduation, :integer, null: false
     add_column :users, :visa, :integer, null: false
     add_column :users, :admin, :integer

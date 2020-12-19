@@ -80,14 +80,15 @@ ActiveRecord::Schema.define(version: 2020_12_19_171427) do
     t.string "last_name"
     t.integer "img_type", null: false
     t.integer "step_1_score", null: false
-    t.boolean "step_1_fail"
     t.integer "step_2ck_score"
+    t.boolean "step_1_fail"
     t.boolean "step_2ck_fail"
-    t.boolean "us_clinical_experience", null: false
+    t.boolean "step_2cs_fail"
+    t.boolean "us_clinical_experience"
     t.integer "years_since_graduation", null: false
     t.integer "visa", null: false
     t.integer "admin"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email"], name: "index_users_on_email"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

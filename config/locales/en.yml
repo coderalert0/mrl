@@ -30,4 +30,15 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: 'Hello world'
+  registration:
+    next: 'Next'
+  img_types:
+    us_medical_graduate: 'US Medical Graduate'
+    non_caribbean_img: 'Non-Caribbean IMG'
+    caribbean_img: 'Caribbean IMG'
+  visas:
+    no: 'Not required'
+    j1: 'J1'
+    h1: 'H1'
+    j1_and_h1: 'J1 and H1'
