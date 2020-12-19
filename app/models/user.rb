@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable
 
-  validates_presence_of :first_name, :last_name
-  validates :email, presence: true, email: true
+  validates_presence_of :first_name, :last_name, :step_1_score, :img_type,
+                        :us_clinical_experience, :years_since_graduation
 end
