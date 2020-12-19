@@ -10,10 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_19_090258) do
+ActiveRecord::Schema.define(version: 2020_12_19_171427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "program_users", force: :cascade do |t|
+    t.bigint "program_id", null: false
+    t.bigint "user_id", null: false
+    t.boolean "bookmark"
+    t.string "note"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["program_id"], name: "index_program_users_on_program_id"
+    t.index ["user_id"], name: "index_program_users_on_user_id"
+  end
+
+  create_table "programs", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "accreditation_id", null: false
+    t.string "address"
+    t.string "city"
+    t.string "state"
+    t.string "zip_code"
+    t.string "program_director_name"
+    t.string "phone"
+    t.string "email"
+    t.boolean "non_caribbean_img_friendly"
+    t.boolean "caribbean_img_friendly"
+    t.boolean "j1_visa"
+    t.boolean "h1_visa"
+    t.boolean "us_clinical_experience"
+    t.integer "minimum_step_1_score"
+    t.integer "minimum_step_2ck_score"
+    t.string "step_1_notes"
+    t.string "step_2ck_notes"
+    t.boolean "step_1_failure"
+    t.boolean "step_2ck_failure"
+    t.boolean "step_2cs_failure"
+    t.integer "years_since_graduation"
+    t.string "notes"
+    t.string "website"
+    t.integer "active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "specialties", force: :cascade do |t|
     t.string "name", null: false
@@ -35,6 +76,17 @@ ActiveRecord::Schema.define(version: 2020_12_19_090258) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "img_type", null: false
+    t.integer "step_1_score", null: false
+    t.boolean "step_1_fail"
+    t.integer "step_2ck_score"
+    t.boolean "step_2ck_fail"
+    t.boolean "us_clinical_experience", null: false
+    t.integer "years_since_graduation", null: false
+    t.integer "visa", null: false
+    t.integer "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
