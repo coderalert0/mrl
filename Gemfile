@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+gem 'amazing_print'
 gem 'bootstrap'
 gem 'bootstrap_form', '~> 4.5'
 gem 'cancancan'
@@ -33,6 +34,7 @@ gem 'draper'
 gem 'fullcalendar-rails'
 gem 'paper_trail'
 gem 'rubocop'
+gem 'watir'
 gem 'wicked'
 
 # Reduces boot times through caching; required in config/boot.rb

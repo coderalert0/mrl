@@ -2,8 +2,16 @@ FROM ruby:2.7
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg -o /root/yarn-pubkey.gpg && apt-key add /root/yarn-pubkey.gpg
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
-RUN apt-get update -qq && apt-get install -y nodejs yarn postgresql-client vim
+RUN apt-get update -qq && apt-get install -y nodejs yarn postgresql-client vim chromium=83.0.4103.116-1~deb10u3
 RUN yarn install --check-files
+
+RUN wget -N http://chromedriver.storage.googleapis.com/83.0.4103.39/chromedriver_linux64.zip -P ~/
+RUN unzip ~/chromedriver_linux64.zip -d ~/
+RUN rm ~/chromedriver_linux64.zip
+RUN mv -f ~/chromedriver /usr/local/bin/chromedriver
+RUN chown root:root /usr/local/bin/chromedriver
+RUN chmod 0755 /usr/local/bin/chromedriver
+ENV PATH="/usr/local/bin/chromedriver:${PATH}"
 
 WORKDIR /mrl
 COPY Gemfile /mrl/Gemfile
