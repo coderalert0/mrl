@@ -1,0 +1,5 @@
+<h3><%= @speciality.name %></h3>
+
+<% @programs.each do |program| %>
+  <%= link_to program.name, speciality_program_path(@speciality, program) %><br/>
+<% end %>

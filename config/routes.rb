@@ -5,5 +5,9 @@ Rails.application.routes.draw do
 
   root 'dashboard#show'
 
+  resources :specialities do
+    resources :programs
+  end
+
   resources :registration
 end

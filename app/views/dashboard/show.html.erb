@@ -1,1 +1,20 @@
 Welcome <%= current_user.first_name %>!
+
+<div>
+  Your Stats<br/>
+  Step 1: <%= current_user.step_1_score %><br/>
+  Step 2: <%= current_user.step_2ck_score %><br/>
+  IMG Type: <%= t(current_user.img_type, scope: :img_types) %><br/>
+  Step 1 Fail: <%= current_user.step_1_fail %><br/>
+  Step 2CK Fail: <%= current_user.step_2ck_fail %><br/>
+  Step 2CS Fail: <%= current_user.step_2cs_fail %><br/>
+  US Clinical Experience: <%= current_user.us_clinical_experience %><br/>
+  Years Since Graduation: <%= current_user.years_since_graduation %><br/>
+  Visa: <%= current_user.visa %><br/>
+</div>
+
+
+
+<% @specialities.each do |speciality| %>
+  <br/><%= link_to speciality.name, speciality_programs_path(speciality) %>
+<% end %>
