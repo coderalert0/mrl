@@ -2,10 +2,11 @@ FROM ruby:2.7
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg -o /root/yarn-pubkey.gpg && apt-key add /root/yarn-pubkey.gpg
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
-RUN apt-get update -qq && apt-get install -y nodejs yarn postgresql-client vim chromium=83.0.4103.116-1~deb10u3
+RUN apt-get update -qq && apt-get install -y nodejs yarn postgresql-client vim chromium=87.0.4280.141-0.1~deb10u1 
 RUN yarn install --check-files
+RUN yarn add bootstrap jquery popper.js
 
-RUN wget -N http://chromedriver.storage.googleapis.com/83.0.4103.39/chromedriver_linux64.zip -P ~/
+RUN wget -N http://chromedriver.storage.googleapis.com/87.0.4280.88/chromedriver_linux64.zip -P ~/
 RUN unzip ~/chromedriver_linux64.zip -d ~/
 RUN rm ~/chromedriver_linux64.zip
 RUN mv -f ~/chromedriver /usr/local/bin/chromedriver

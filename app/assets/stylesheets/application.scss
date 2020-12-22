@@ -1,3 +1,8 @@
-@import "bootstrap";
 @import "rails_bootstrap_forms";
-@import "style";
+@import 'spec/settings/index';
+@import 'spec/tools/index';
+@import 'spec/index';
+@import 'vendor/index';
+@import 'custom';
+@import 'font-awesome';
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";

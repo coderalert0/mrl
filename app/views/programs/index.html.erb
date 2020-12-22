@@ -1,6 +1,31 @@
-<h3><%= @speciality.name %></h3>
+<h3><%= @speciality.name %> (<%= @programs.count %> Matches)</h3>
 
-<% @programs.each do |program| %>
-  <%= program.send(current_user.img_type) %>
-  <%= link_to program.name, speciality_program_path(@speciality, program) %><br/>
-<% end %>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Match Score™</th>
+      <th scope="col">Program Name</th>
+      <th scope="col">ACGME Program Code</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <% @programs.each do |program| %>
+    <tr>
+      <td>
+        <%= program.send(current_user.img_type) %>
+      </td>
+      <td><%= link_to program.name, speciality_program_path(@speciality, program) %></td>
+      <td><%= program.acgme_program_code %></td>
+      <td>
+        <span class="icon-holder">
+          <i class="c-orange-500 ti-bookmark"></i>
+        </span>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

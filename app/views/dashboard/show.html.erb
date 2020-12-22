@@ -13,8 +13,24 @@ Welcome <%= current_user.first_name %>!
   Visa: <%= current_user.visa %><br/>
 </div>
 
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Speciality</th>
+    <th scope="col">Number of Matching Programs</th>
+    <th scope="col">List Status</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @specialities.each do |speciality| %>
+      <tr>
+        <td>
+          <%= link_to speciality.name, speciality_programs_path(speciality) %>
+        </td>
+        <td><%= @matching_program_count %></td>
+        <td>Active</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-
-<% @specialities.each do |speciality| %>
-  <br/><%= link_to speciality.name, speciality_programs_path(speciality) %>
-<% end %>

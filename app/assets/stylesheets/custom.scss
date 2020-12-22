@@ -1,0 +1,95 @@
+//.btn-primary{
+//  background-color: #2196f3;
+//  border-color: #2196f3;
+//}
+//
+
+@font-face {
+  font-family: 'SFPro';
+  src: asset-url('sfpro/sfpro.ttf')
+}
+
+label + span {
+  font-family: 'SFPro';
+  font-size: 16px;
+  color: #5b6878;
+  font-weight: bolder;
+}
+
+.profile-section {
+  font-family: 'SFPro';
+  font-size: 16px;
+  color: $md-blue-600;
+  font-weight: bolder;
+}
+
+label{
+  font-size: 14px;
+  color: #8e9aa8;
+  font-family: 'SFPro';
+  padding-bottom: 0px;
+}
+
+
+//
+//label.required:after {
+//  content: " *";
+//  color: red;
+//}
+//
+//.w-60 {
+//  width: 60% !important;
+//}
+//
+//.vertical-divider {
+//  border-right: 1px solid #ced4da;
+//  height: 335px;
+//}
+//
+//.schedule-container{
+//  height: 430px;
+//}
+//
+//.fc-title{
+//  color: black;
+//}
+//
+//.fc-time{
+//  color: $grey-700;
+//}
+//
+//#overlay {
+//  background: #ffffff;
+//  color: #666666;
+//  position: fixed;
+//  height: 100%;
+//  width: 100%;
+//  z-index: 5000;
+//  top: 0;
+//  left: 0;
+//  float: left;
+//  text-align: center;
+//  padding-top: 25%;
+//  opacity: .80;
+//}
+//button {
+//  cursor: pointer;
+//}
+//.spinner {
+//  margin: 0 auto;
+//  height: 64px;
+//  width: 64px;
+//  animation: rotate 0.8s infinite linear;
+//  background-color: transparent;
+//  border: 5px solid #007bff;
+//  border-right-color: transparent;
+//  border-radius: 50%;
+//}
+//@keyframes rotate {
+//  0% {
+//    transform: rotate(0deg);
+//  }
+//  100% {
+//    transform: rotate(360deg);
+//  }
+//}

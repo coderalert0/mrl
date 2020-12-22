@@ -31,6 +31,14 @@
 
 en:
   hello: 'Hello world'
+  header:
+    welcome: 'Welcome! %{name}'
+  sidebar:
+    my_custom_lists: 'My Custom Lists'
+    fee_calculator: 'Fee Calculator'
+    contact_us: 'Contact Us'
+  footer:
+    copyright: Copyright MyResidencyList.com 2021
   registration:
     next: 'Next'
   img_types:
