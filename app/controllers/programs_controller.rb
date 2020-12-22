@@ -5,6 +5,12 @@ class ProgramsController < ApplicationController
   def show; end
 
   def index
-    @programs = Program.where(speciality: @speciality)
+    @programs = Program
+                .where(speciality: @speciality)
+                .where('minimum_step_1_score <= ?', current_user.step_1_score.to_s)
+                .where('minimum_step_2_score <= ?', current_user.step_2ck_score.to_s)
+                .where("#{current_user.img_type} > ?", 0)
+                .where("#{current_user.visa} = ?", 'Yes')
+                .order("#{current_user.img_type} DESC")
   end
 end

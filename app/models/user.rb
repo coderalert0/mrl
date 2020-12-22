@@ -10,15 +10,15 @@ class User < ApplicationRecord
   validates_inclusion_of :us_clinical_experience, in: [true, false]
   validates_uniqueness_of :email, conditions: -> { where.not(email: '') }
 
-  enum img_type: { us_medical_graduate: 0,
-                   non_caribbean_img: 1,
-                   caribbean_img: 2,
-                   do: 3 }
+  enum img_type: { us_md_graduates: 0,
+                   non_us_citizen_international_medical_graduates: 1,
+                   us_citizen_international_medical_graduates: 2,
+                   us_do_graduates: 3 }
 
   enum visa: { no: 0,
-               j1: 1,
-               h1: 2,
-               f1: 3,
+               j_1_sponsorship_through_ecfmg: 1,
+               h1_b: 2,
+               f_1: 3,
                j1_and_h1: 4 }
 
   protected

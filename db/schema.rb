@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_19_171427) do
+ActiveRecord::Schema.define(version: 2020_12_22_132317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,17 +36,17 @@ ActiveRecord::Schema.define(version: 2020_12_19_171427) do
     t.string "program_coordinator"
     t.string "program_coordinator_email"
     t.string "program_director"
-    t.string "minimum_step_1_score"
+    t.integer "minimum_step_1_score"
     t.string "step_2_required"
-    t.string "minimum_step_2_score"
+    t.integer "minimum_step_2_score"
     t.string "j_1_sponsorship_through_ecfmg"
     t.string "h1_b"
     t.string "f_1"
     t.string "must_pass_step_2_cs_first_attempt"
-    t.string "us_md_graduates"
-    t.string "us_do_graduates"
-    t.string "non_us_citizen_international_medical_graduates"
-    t.string "us_citizen_international_medical_graduates"
+    t.integer "us_md_graduates"
+    t.integer "us_do_graduates"
+    t.integer "non_us_citizen_international_medical_graduates"
+    t.integer "us_citizen_international_medical_graduates"
     t.boolean "us_clinical_experience"
     t.integer "years_since_graduation"
     t.string "notes"
