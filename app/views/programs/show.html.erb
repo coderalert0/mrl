@@ -81,3 +81,13 @@
     <hr/>
   </div>
 </div>
+
+<%= bootstrap_form_for @form, :url => speciality_program_note_url(@speciality, @program), :method => :post do |f| %>
+  <div class="field">
+    <%= f.text_area :note %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Add Note' %>
+  </div>
+<% end %>

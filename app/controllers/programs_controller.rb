@@ -1,8 +1,11 @@
 class ProgramsController < ApplicationController
   load_and_authorize_resource :speciality
   load_and_authorize_resource :program, through: :speciality
+  before_action :find_or_initialize_program_user, only: :show
 
-  def show; end
+  def show
+    @form = CreateProgramNoteForm.new program_user: @program_user
+  end
 
   def index
     @matching_programs = @programs.where('minimum_step_1_score <= ?', current_user.step_1_score.to_s)
@@ -26,6 +29,12 @@ class ProgramsController < ApplicationController
       20 * bookmark_count
     elsif bookmark_count >= 31
       26 * bookmark_count
+    else
+      0
     end
+  end
+
+  def find_or_initialize_program_user
+    @program_user = ProgramUser.find_or_initialize_by(program: @program, user: current_user)
   end
 end

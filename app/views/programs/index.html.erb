@@ -1,14 +1,15 @@
-<h3><%= @speciality.name %> (<%= @programs.count %> Matches)</h3>
+<h3><%= @speciality.name %> (<%= @matching_programs.count %> Matches)</h3>
 
-Fees based on number of program bookmarked: <%= number_to_currency @fee %>
+ERAS Fees based on programs bookmarked: <%= number_to_currency @fee %>
 
 <table class="table">
   <thead>
     <tr>
       <th scope="col">Match Score™</th>
       <th scope="col">Program Name</th>
+      <th scope="col">Location</th>
       <th scope="col">ACGME Program Code</th>
-      <th scope="col"></th>
+      <th scope="col">Bookmark</th>
     </tr>
   </thead>
   <tbody>
@@ -19,6 +20,7 @@ Fees based on number of program bookmarked: <%= number_to_currency @fee %>
         <%= program.send(current_user.img_type) %>
       </td>
       <td><%= link_to program.name, speciality_program_path(@speciality, program) %></td>
+      <td><%= program.address.split[-3..-2].join(' ') %></td>
       <td><%= program.acgme_program_code %></td>
       <td>
         <span class="icon-holder">
