@@ -1,16 +1,31 @@
 class ProgramsController < ApplicationController
   load_and_authorize_resource :speciality
-  load_and_authorize_resource :program
+  load_and_authorize_resource :program, through: :speciality
 
   def show; end
 
   def index
-    @programs = Program
-                .where(speciality: @speciality)
-                .where('minimum_step_1_score <= ?', current_user.step_1_score.to_s)
-                .where('minimum_step_2_score <= ?', current_user.step_2ck_score || 300)
-                .where("#{current_user.img_type} > ?", 0)
-                .where("#{current_user.visa} = ?", 'Yes')
-                .order("#{current_user.img_type} DESC")
+    @matching_programs = @programs.where('minimum_step_1_score <= ?', current_user.step_1_score.to_s)
+                                  .where('minimum_step_2_score <= ?', current_user.step_2ck_score || 300)
+                                  .where("#{current_user.img_type} > ?", 0)
+                                  .where("#{current_user.visa} = ?", 'Yes')
+                                  .order("#{current_user.img_type} DESC")
+
+    bookmark_count = ProgramUser.where(program: @matching_programs, user: current_user, bookmark: true).count
+    @fee = calculate_fee(bookmark_count)
+  end
+
+  private
+
+  def calculate_fee(bookmark_count)
+    if bookmark_count.between?(1, 10)
+      99
+    elsif bookmark_count.between?(11, 20)
+      16 * bookmark_count
+    elsif bookmark_count.between?(21, 30)
+      20 * bookmark_count
+    elsif bookmark_count >= 31
+      26 * bookmark_count
+    end
   end
 end

@@ -25,8 +25,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
-gem 'amazing_print'
 gem 'bootstrap_form', '~> 4.5'
+gem 'bootstrap-icons-helper'
 gem 'cancancan'
 gem 'devise'
 gem 'draper'

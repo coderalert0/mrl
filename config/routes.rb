@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root 'dashboard#show'
 
   resources :specialities do
-    resources :programs
+    resources :programs do
+      resource :bookmark
+    end
   end
 
   resources :registration

@@ -1,6 +1,6 @@
 <h3><%= @speciality.name %> (<%= @programs.count %> Matches)</h3>
 
-
+Fees based on number of program bookmarked: <%= number_to_currency @fee %>
 
 <table class="table">
   <thead>
@@ -13,7 +13,7 @@
   </thead>
   <tbody>
 
-  <% @programs.each do |program| %>
+  <% @matching_programs.each do |program| %>
     <tr>
       <td>
         <%= program.send(current_user.img_type) %>
@@ -22,7 +22,13 @@
       <td><%= program.acgme_program_code %></td>
       <td>
         <span class="icon-holder">
-          <i class="c-orange-500 ti-bookmark"></i>
+          <%= link_to speciality_program_bookmark_url(@speciality, program), method: :post do %>
+            <% if program.bookmarked?(current_user) %>
+              <%= bootstrap_icon "bookmark-check-fill", fill: "green" %>
+            <% else %>
+              <%= bootstrap_icon "bookmark", fill: "gray" %>
+            <% end %>
+          <% end %>
         </span>
       </td>
     </tr>
