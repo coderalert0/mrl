@@ -3351,7 +3351,7 @@ License - nucleoapp.com/license/
   .main-panel > .content {
     padding: 0 30px 30px;
     min-height: calc(100vh - px);
-    margin-top: 30px; }
+    margin-top: 15px; }
   .main-panel > .navbar {
     margin-bottom: 0; }
   .main-panel .header {
@@ -3634,16 +3634,15 @@ License - nucleoapp.com/license/
   transform: translate3d(0, 470px, 0) !important; }
 
 .card {
-  border-radius: 0px;
-  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
   background-color: #FFFFFF;
   color: #252422;
   margin-bottom: 20px;
   position: relative;
-  border: 0 none;
+  border: 1 none;
   transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease; }
   .card .card-body {
-    padding: 15px 15px 10px 15px; }
+    padding: 8px 15px; }
     .card .card-body.table-full-width {
       padding-left: 0;
       padding-right: 0; }
@@ -3690,7 +3689,7 @@ License - nucleoapp.com/license/
     font-weight: 500;
     padding-bottom: 15px; }
   .card label {
-    font-size: 0.8571em;
+    font-size: 16px;
     margin-bottom: 5px;
     color: #9A9A9A; }
   .card .card-footer {
@@ -4242,5 +4241,6 @@ License - nucleoapp.com/license/
 .table > tbody > tr:first-child > td {
   border: none;
 }
+
 
 /*# sourceMappingURL=paper-dashboard.css.map */

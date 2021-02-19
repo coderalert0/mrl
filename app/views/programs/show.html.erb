@@ -3,6 +3,7 @@
     <div class="card ">
       <div class="card-header ">
         <h4 class="card-title font-weight-bold"><%= @program.name %></h4>
+        <%= simple_format(@program.address.split("\n", 2)[1]) %>
       </div>
       <div class="card-body ">
         <div class="row">
@@ -14,7 +15,10 @@
                   <%= t(:program_id) %>:
                 </td>
                 <td>
-                  <%= @program.acgme_program_code %>
+                  <div id="textToCopy" class="d-inline-block">
+                    <%= @program.acgme_program_code %>
+                  </div>
+                  <div onclick="copyClipboard()" class="text-primary d-inline-block">[Copy]</div>
                 </td>
               </tr>
               <tr>
@@ -94,31 +98,38 @@
   </div>
 
   <div class="col-md-4">
+    <div class="text-center mb-4">
+      <%= link_to speciality_program_bookmark_url(@speciality, @program), class: 'text-decoration-none', method: :post do %>
+        <% if @program.bookmarked?(current_user) %>
+          <button type="button" class="btn btn-lg btn-danger btn-block">Unbookmark Program</button>
+        <% else %>
+          <button type="button" class="btn btn-lg btn-success btn-block">Bookmark Program</button>
+        <% end %>
+    <% end %>
+    </div>
+
     <div class="card">
       <div class="card-header ">
         <h5 class="card-title">Contact Details</h5>
       </div>
       <div class="card-body ">
-        <label><i class="ti-email"></i> <%= t(:email) %>: </label>
+        <label><%= t(:email) %>: </label>
         <span><%= @program.email %></span><br/>
 
         <label><%= t(:program_coordinator) %>: </label>
         <span><%= @program.program_coordinator %></span><br/>
 
-        <label><i class="ti-email"></i> <%= t(:program_coordinator_email) %>: </label>
+        <label><%= t(:program_coordinator_email) %>: </label>
         <span><%= @program.program_coordinator_email %></span><br/>
 
         <label><%= t(:program_director) %>: </label>
         <span><%= @program.program_director %></span><br/>
 
-        <label><i class="ti-mobile"></i> <%= t(:phone) %>: </label>
-        <span><%= @program.phone %></span><br/>
+        <label><%= t(:phone) %>: </label>
+        <span><%= @program.phone %></span><br/><br/>
 
-        <label><i class="ti-mouse-alt"></i> <%= t(:website) %>: </label>
-        <%= link_to(@program.website, @program.website, target: :_blank) %><br/>
-
-        <label><%= t(:Address) %>:</label>
-        <%= simple_format(@program.address) %></span>
+        <label><%= t(:website) %>:</label>
+        <%= link_to(@program.website, @program.website, target: :_blank) %>
       </div>
     </div>
   </div>
