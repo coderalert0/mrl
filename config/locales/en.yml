@@ -30,7 +30,11 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: 'Hello world'
+  program_id: 'Program ID'
+  step_1: 'Step 1'
+  minimum_step_2_ck: 'Minimum Step 2CK'
+  minimum_step_2_cs: 'Minimum Step 2CS'
+  require_step_2_cs_pass?: 'Requires Step 2CS Pass?'
   header:
     welcome: 'Welcome! %{name}'
   sidebar:

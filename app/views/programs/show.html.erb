@@ -1,93 +1,156 @@
 <div class="row">
   <div class="col-md-8">
-    <h2><%= @program.name %></h2>
-
-    <% if can? :edit, @program %>
-      <%= link_to '', class: 'btn btn-light border' do %>
-        <i class="ti-pencil"> </i><%= t(:edit) %>
-      <% end %>
-    <% end %>
-
-    <div class="font-weight-bold mb-3"><%= 'Details' %>:</div>
-
-    <label><%= t(:match_score) %>: </label>
-    <%= @program.send(current_user.img_type) %><br/>
-
-    <label><%= t(:program_id) %>:</label>
-    <span><%= @program.acgme_program_code %></span><br/>
-
-    <label><%= t(:Address) %>:</label>
-    <%= simple_format(@program.address) %></span>
-
-
-    <div class="profile-section">USMLE Score Requirements</div>
-    <label><%= t(:minimum_step_1_score) %>:</label>
-    <span><%= @program.minimum_step_1_score %></span><br/>
-
-    <label><%= t(:step_2_required) %>: </label>
-    <span><%= @program.step_2_required %></span><br/>
-
-    <label><%= t(:minimum_step_2_score) %>: </label>
-    <span><%= @program.minimum_step_2_score %></span><br/>
-
-    <label><%= t(:must_pass_step_2_cs_first_attempt) %>: </label>
-    <span><%= @program.must_pass_step_2_cs_first_attempt %></span><br/>
-
-    <div class="profile-section">Other Criteria</div>
-
-    <label><%= t(current_user.img_type.to_s) %>: </label>
-    <span><%= @program.send(current_user.img_type.to_s) %></span><br/>
-
-    <label><%= t(:us_clinical_experience) %>: </label>
-    <span><%= @program.us_clinical_experience %></span><br/>
-
-    <label><%= t(:years_since_graduation) %>: </label>
-    <span><%= @program.years_since_graduation %></span><br/>
-
-    <div class="profile-section">Visa Types Sponsored</div>
-
-    <label><%= t(:j_1_sponsorship_through_ecfmg) %>: </label>
-    <span><%= @program.j_1_sponsorship_through_ecfmg %></span><br/>
-
-    <label><%= t(:h1_b) %>: </label>
-    <span><%= @program.h1_b %></span><br/>
-
-    <label><%= t(:f_1) %>: </label>
-    <span><%= @program.f_1 %></span><br/>
-
-    <label><%= t(:notes) %>: </label>
-    <span><%= @program.notes %></span><br/>
+    <div class="card ">
+      <div class="card-header ">
+        <h4 class="card-title font-weight-bold"><%= @program.name %></h4>
+      </div>
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <tbody>
+              <tr>
+                <td class="font-weight-bold">
+                  <%= t(:program_id) %>:
+                </td>
+                <td>
+                  <%= @program.acgme_program_code %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-atom text-warning mr-2"></i>
+                  Your Match Score
+                </td>
+                <td>
+                  <%= @program.send(current_user.img_type) %>%
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-chart-bar-32 text-success mr-2"></i>
+                  <%= t(:minimum_step_1) %>
+                </td>
+                <td>
+                  <%= @program.minimum_step_1_score %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-chart-bar-32 text-danger mr-2"></i>
+                  <%= t(:minimum_step_2_ck) %>
+                </td>
+                <td>
+                  <%= @program.minimum_step_2_score %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-chart-bar-32 text-info mr-2"></i>
+                  <%= t(:require_step_2_cs_pass?) %>
+                </td>
+                <td>
+                  <%= @program.must_pass_step_2_cs_first_attempt %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-badge text-success mr-2"></i>
+                  US Clinical Experience
+                </td>
+                <td>
+                  Required
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-hat-3 text-danger mr-2"></i>
+                  Years Since Graduation
+                </td>
+                <td>
+                  <%= @program.years_since_graduation %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-world-2 text-info mr-2"></i>
+                  Visa Types Sponsored
+                </td>
+                <td>
+                  J1, H1B, F1
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <div class="stats text-right">
+          <i class="fa fa-history"></i> Updated <%= @program.updated_at.strftime("%B %d, %Y") %>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="col-md-4">
-    <label><i class="ti-email"></i> <%= t(:email) %>: </label>
-    <span><%= @program.email %></span><br/>
+    <div class="card">
+      <div class="card-header ">
+        <h5 class="card-title">Contact Details</h5>
+      </div>
+      <div class="card-body ">
+        <label><i class="ti-email"></i> <%= t(:email) %>: </label>
+        <span><%= @program.email %></span><br/>
 
-    <label><%= t(:program_coordinator) %>: </label>
-    <span><%= @program.program_coordinator %></span><br/>
+        <label><%= t(:program_coordinator) %>: </label>
+        <span><%= @program.program_coordinator %></span><br/>
 
-    <label><i class="ti-email"></i> <%= t(:program_coordinator_email) %>: </label>
-    <span><%= @program.program_coordinator_email %></span><br/>
+        <label><i class="ti-email"></i> <%= t(:program_coordinator_email) %>: </label>
+        <span><%= @program.program_coordinator_email %></span><br/>
 
-    <label><%= t(:program_director) %>: </label>
-    <span><%= @program.program_director %></span><br/>
+        <label><%= t(:program_director) %>: </label>
+        <span><%= @program.program_director %></span><br/>
 
-    <label><i class="ti-mobile"></i> <%= t(:phone) %>: </label>
-    <span><%= @program.phone %></span><br/>
+        <label><i class="ti-mobile"></i> <%= t(:phone) %>: </label>
+        <span><%= @program.phone %></span><br/>
 
-    <label><i class="ti-mouse-alt"></i> <%= t(:website) %>: </label>
-    <%= link_to(@program.website, @program.website, target: :_blank) %><br/>
+        <label><i class="ti-mouse-alt"></i> <%= t(:website) %>: </label>
+        <%= link_to(@program.website, @program.website, target: :_blank) %><br/>
 
-    <hr/>
+        <label><%= t(:Address) %>:</label>
+        <%= simple_format(@program.address) %></span>
+      </div>
+    </div>
   </div>
 </div>
 
-<%= bootstrap_form_for @form, :url => speciality_program_note_url(@speciality, @program), :method => :post do |f| %>
-  <div class="field">
-    <%= f.text_area :note %>
-  </div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="card ">
+      <div class="card-header ">
+        <h5 class="card-title">Notes</h5>
+      </div>
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-md-12">
+            <% if can? :edit, @program %>
+              <%= link_to '', class: 'btn btn-light border' do %>
+                <i class="ti-pencil"> </i><%= t(:edit) %>
+              <% end %>
+            <% end %>
 
-  <div class="actions">
-    <%= f.submit 'Add Note' %>
+            <%= bootstrap_form_for @form, :url => speciality_program_note_url(@speciality, @program), control_col: 'col-md-12', :method => :post do |f| %>
+              <div class="field">
+                <%= f.text_area :note, hide_label: true, rows: 5 %>
+              </div>
+
+              <div class="actions text-right">
+                <%= f.submit 'Save', class: 'btn btn-primary' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>

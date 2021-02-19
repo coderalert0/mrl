@@ -1,36 +1,229 @@
-Welcome <%= current_user.first_name %>!
+<div class="row">
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-atom text-warning"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category">Your Step 1 Score</p>
+              <p class="card-title">
+                <%= current_user.step_1_score %>
+              <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <div class="stats">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-chart-bar-32 text-success"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category">
+                Your Step 2CK Score
+              </p>
+              <p class="card-title">
+                <%= current_user.step_2ck_score %>
+              <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-chart-bar-32 text-danger"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category">
+                Step 2CS
+              </p>
+              <p class="card-title">
+                <%= current_user.step_2cs_fail %>
+              <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-chart-bar-32 text-primary"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category">
+                Applicant Type
+              </p>
+              <p class="card-title">
+                <%= t(current_user.img_type, scope: :img_types)  %>
+              <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <div class="stats">
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div>
-  Your Stats<br/>
-  Step 1: <%= current_user.step_1_score %><br/>
-  Step 2: <%= current_user.step_2ck_score %><br/>
-  IMG Type: <%= t(current_user.img_type, scope: :img_types) %><br/>
-  Step 1 Fail: <%= current_user.step_1_fail %><br/>
-  Step 2CK Fail: <%= current_user.step_2ck_fail %><br/>
-  Step 2CS Fail: <%= current_user.step_2cs_fail %><br/>
-  US Clinical Experience: <%= current_user.us_clinical_experience %><br/>
-  Years Since Graduation: <%= current_user.years_since_graduation %><br/>
-  Visa: <%= current_user.visa %><br/>
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-chart-bar-32 text-primary"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category">
+                US Clinical Experience
+              </p>
+              <p class="card-title">
+                <%= current_user.us_clinical_experience  %>
+              <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <div class="stats">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-chart-bar-32 text-primary"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category">
+                Years Since Graduation
+              </p>
+              <p class="card-title">
+                <%= current_user.years_since_graduation  %>
+              <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <div class="stats">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-chart-bar-32 text-primary"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category">
+                Visa
+              </p>
+              <p class="card-title">
+                <%= current_user.visa  %>
+              <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <div class="stats">
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<table class="table">
-  <thead>
-  <tr>
-    <th scope="col">Speciality</th>
-    <th scope="col">Number of Matching Programs</th>
-    <th scope="col">List Status</th>
-  </tr>
-  </thead>
-  <tbody>
-    <% @specialities.each do |speciality| %>
-      <tr>
-        <td>
-          <%= link_to speciality.name, speciality_programs_path(speciality) %>
-        </td>
-        <td><%= @matching_program_count %></td>
-        <td>Active</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<div class="row">
+  <div class="col-lg-12 col-md-6 col-sm-6">
+    <div class="card">
+      <div class="card-body ">
+
+        Welcome <%= current_user.first_name %>!
+
+        <div>
+          Your Stats<br/>
+          Step 1 Fail: <%= current_user.step_1_fail %><br/>
+          Step 2CK Fail: <%= current_user.step_2ck_fail %><br/>
+          Step 2CS Fail: <%= current_user.step_2cs_fail %><br/>
+        </div>
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Speciality</th>
+            <th scope="col">Number of Matching Programs</th>
+            <th scope="col">List Status</th>
+          </tr>
+          </thead>
+          <tbody>
+            <% @specialities.each do |speciality| %>
+              <tr>
+                <td>
+                  <%= link_to speciality.name, speciality_programs_path(speciality) %>
+                </td>
+                <td><%= @matching_program_count %></td>
+                <td>Active</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
