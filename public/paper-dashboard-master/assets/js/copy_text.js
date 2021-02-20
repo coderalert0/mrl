@@ -7,6 +7,9 @@ function copyClipboard() {
         range.moveToElementText(elm);
         range.select();
         document.execCommand("Copy");
+
+        var div = document.getElementById('js-placeholder');
+        div.innerHTML = '<p class="alert alert-success">Program ID copied to clipboard</p>';
     }
     else if(window.getSelection) {
         // other browsers
@@ -17,5 +20,8 @@ function copyClipboard() {
         selection.removeAllRanges();
         selection.addRange(range);
         document.execCommand("Copy");
+
+        var div = document.getElementById('js-placeholder');
+        div.innerHTML = '<p class="alert alert-success">Program ID copied to clipboard</p>';
     }
 }
