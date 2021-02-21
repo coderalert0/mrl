@@ -12,4 +12,6 @@ class ProgramDecorator < Draper::Decorator
     end
     output.map { |visa_type| I18n.t(visa_type, scope: :visa_types) }.join(', ')
   end
+
+  def match_score_display; end
 end

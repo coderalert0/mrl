@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-5 col-md-4">
             <div class="icon-big text-center icon-warning">
-              <i class="nc-icon nc-atom text-warning"></i>
+              <i class="nc-icon nc-chart-bar-32 text-warning"></i>
             </div>
           </div>
           <div class="col-7 col-md-8">
@@ -55,7 +55,7 @@
         <div class="row">
           <div class="col-5 col-md-4">
             <div class="icon-big text-center icon-warning">
-              <i class="nc-icon nc-chart-bar-32 text-danger"></i>
+              <i class="nc-icon nc-chart-bar-32 text-primary"></i>
             </div>
           </div>
           <div class="col-7 col-md-8">
@@ -80,7 +80,7 @@
         <div class="row">
           <div class="col-5 col-md-4">
             <div class="icon-big text-center icon-warning">
-              <i class="nc-icon nc-chart-bar-32 text-primary"></i>
+              <i class="nc-icon nc-chart-bar-32 text-danger"></i>
             </div>
           </div>
           <div class="col-7 col-md-8">
@@ -108,7 +108,7 @@
         <div class="row">
           <div class="col-5 col-md-4">
             <div class="icon-big text-center icon-warning">
-              <i class="nc-icon nc-chart-bar-32 text-primary"></i>
+              <i class="nc-icon nc-badge text-primary"></i>
             </div>
           </div>
           <div class="col-7 col-md-8">
@@ -117,7 +117,7 @@
                 US Clinical Experience
               </p>
               <p class="card-title">
-                <%= current_user.us_clinical_experience  %>
+                <%= current_user.decorate.us_clinical_experience_display  %>
               <p>
             </div>
           </div>
@@ -136,7 +136,7 @@
         <div class="row">
           <div class="col-5 col-md-4">
             <div class="icon-big text-center icon-warning">
-              <i class="nc-icon nc-chart-bar-32 text-primary"></i>
+              <i class="nc-icon nc-hat-3 text-primary"></i>
             </div>
           </div>
           <div class="col-7 col-md-8">
@@ -164,7 +164,7 @@
         <div class="row">
           <div class="col-5 col-md-4">
             <div class="icon-big text-center icon-warning">
-              <i class="nc-icon nc-chart-bar-32 text-primary"></i>
+              <i class="nc-icon nc-world-2 text-primary"></i>
             </div>
           </div>
           <div class="col-7 col-md-8">
@@ -173,7 +173,7 @@
                 Visa
               </p>
               <p class="card-title">
-                <%= current_user.visa  %>
+                <%= t(current_user.visa, scope: :visa_types)  %>
               <p>
             </div>
           </div>
