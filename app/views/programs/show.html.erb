@@ -28,6 +28,16 @@
               </tr>
               <tr>
                 <td>
+                  <i class="nc-icon nc-sound-wave text-danger mr-2"></i>
+                  Speciality
+                </td>
+                <td>
+                  <%= @program.speciality.name %>
+                </td>
+              </tr>
+              <tr>
+              <tr>
+                <td>
                   <i class="nc-icon nc-atom text-warning mr-2"></i>
                   Your Match Score
                 </td>
@@ -115,7 +125,7 @@
     <div class="text-center mb-4">
       <%= link_to speciality_program_bookmark_url(@speciality, @program), class: 'text-decoration-none', method: :post do %>
         <% if @program.bookmarked?(current_user) %>
-          <button type="button" class="btn btn-lg btn-danger btn-block">Unbookmark Program</button>
+          <button type="button" class="btn btn-lg btn-danger btn-block">Remove Program</button>
         <% else %>
           <button type="button" class="btn btn-lg btn-info btn-block">Bookmark Program</button>
         <% end %>

@@ -43,7 +43,7 @@
         <li>
           <a href="./user.html">
             <i class="nc-icon nc-single-02"></i>
-            <p>Settings</p>
+            <p>Edit Profile</p>
           </a>
         </li>
         <li>
@@ -64,7 +64,7 @@
   <div class="main-panel">
     <div class="content">
       <div class="text-right mb-4 font-weight-bold">
-<!--        Welcome Dr. <%#= current_user.last_name %>-->
+        Welcome Dr. <%= current_user.last_name %>
       </div>
 
       <% if notice %>
@@ -102,16 +102,8 @@
 <script src="/paper-dashboard-master/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <script src="/paper-dashboard-master/assets/js/copy_text.js"></script>
 
-<!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-<!-- Chart JS -->
-<script src="/paper-dashboard-master/assets/js/plugins/chartjs.min.js"></script>
 <!--  Notifications Plugin    -->
 <script src="/paper-dashboard-master/assets/js/plugins/bootstrap-notify.js"></script>
-<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="/paper-dashboard-master/assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-<script src="/paper-dashboard-master/assets/demo/demo.js"></script>
-
 </body>
 
 </html>
