@@ -5,7 +5,10 @@
     <div class="card ">
       <div class="card-header ">
         <h4 class="card-title font-weight-bold"><%= @program.name %></h4>
-        <%= simple_format(@program.address.split("\n", 2)[1]) %>
+        <%= link_to "https://www.google.com/maps?q=#{@program.address.gsub("\n", ' ')}", class: 'text-decoration-none', target: '_blank' do %>
+          <%= image_tag('google_maps.png', width: 20) %>
+        <% end %>
+        <%= simple_format(@program.address.split("\n", 2)[1], { class: 'd-inline-flex ml-2' }) %>
       </div>
       <div class="card-body ">
         <div class="row">
