@@ -5,6 +5,7 @@ class ProgramsController < ApplicationController
 
   def show
     @form = CreateProgramNoteForm.new program_user: @program_user
+    @program = @program.decorate
   end
 
   def index

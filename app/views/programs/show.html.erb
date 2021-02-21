@@ -43,6 +43,15 @@
               </tr>
               <tr>
                 <td>
+                  <i class="nc-icon nc-chart-bar-32 text-info mr-2"></i>
+                  Requires Step 2CK Completion?
+                </td>
+                <td>
+                  <%= @program.step_2_required %>
+                </td>
+              </tr>
+              <tr>
+                <td>
                   <i class="nc-icon nc-chart-bar-32 text-danger mr-2"></i>
                   <%= t(:minimum_step_2_ck) %>
                 </td>
@@ -52,7 +61,7 @@
               </tr>
               <tr>
                 <td>
-                  <i class="nc-icon nc-chart-bar-32 text-info mr-2"></i>
+                  <i class="nc-icon nc-chart-bar-32 text-warning mr-2"></i>
                   <%= t(:require_step_2_cs_pass?) %>
                 </td>
                 <td>
@@ -62,16 +71,16 @@
               <tr>
                 <td>
                   <i class="nc-icon nc-badge text-success mr-2"></i>
-                  US Clinical Experience
+                  Requires US Clinical Experience?
                 </td>
                 <td>
-                  Required
+                  <%= @program.us_clinical_experience_display %>
                 </td>
               </tr>
               <tr>
                 <td>
                   <i class="nc-icon nc-hat-3 text-danger mr-2"></i>
-                  Years Since Graduation
+                  Maximum Years Since Graduation
                 </td>
                 <td>
                   <%= @program.years_since_graduation %>
@@ -83,7 +92,7 @@
                   Visa Types Sponsored
                 </td>
                 <td>
-                  J1, H1B, F1
+                  <%= @program.visa_types_sponsored_display %>
                 </td>
               </tr>
               </tbody>
