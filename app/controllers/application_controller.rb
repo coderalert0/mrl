@@ -9,8 +9,10 @@ class ApplicationController < ActionController::Base
   private
 
   def layout_by_resource
-    if devise_controller? || registration_controller?
+    if devise_controller?
       'devise'
+    elsif registration_controller?
+      'landing'
     else
       'application'
     end

@@ -1100,7 +1100,7 @@ fieldset[disabled]
 .form-group .input-group-append .input-group-text,
 .input-group .input-group-prepend .input-group-text,
 .input-group .input-group-append .input-group-text {
-  padding: 10px 0 10px 10px; }
+  padding: 10px 10px 10px 10px; }
 .form-group .input-group-prepend .input-group-text + .form-control,
 .form-group .input-group-prepend .input-group-text ~ .form-control,
 .form-group .input-group-append .input-group-text + .form-control,
@@ -1389,7 +1389,6 @@ h2, .h2 {
 
 h3, .h3 {
   font-size: 2em;
-  margin-bottom: 30px;
   line-height: 1.4em; }
 
 h4, .h4 {
@@ -4207,6 +4206,18 @@ License - nucleoapp.com/license/
 
 .table > tbody > tr:first-child > td {
   border: none;
+}
+
+@media all and (min-width: 992px) {
+  .sidebar .nav>li.active-pro {
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+  }
+}
+
+label{
+  text-transform: capitalize;
 }
 
 

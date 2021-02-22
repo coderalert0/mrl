@@ -1,33 +1,37 @@
-<%= bootstrap_form_for @form, :url => wizard_path, :method => :put do |f| %>
+<div class="col-md-5 mx-auto">
+  <%= bootstrap_form_for @form, :url => wizard_path, label_col: 'col-sm-4', :method => :put do |f| %>
 
-  <div class="field">
-    <%= f.select :img_type, options_for_select(User.img_types.keys.map { |p| [t(p, :scope => :img_types), p] }, :selected => @form.img_type), :include_blank => true, :label_class => 'required' %>
-  </div>
+    <div class="field">
+      <%= f.select :img_type,
+                   options_for_select(User.img_types.keys.map { |p| [t(p, scope: :img_types), p] },
+                                      selected: @form.img_type),
+                   include_blank: true,
+                   label_class: 'required',
+                   label: 'Applicant Type' %>
+    </div>
 
-  <div class="field">
-    <%= f.text_field :step_1_score, :label_class => 'required' %>
-  </div>
+    <div class="field">
+      <%= f.text_field :step_1_score, :label_class => 'required' %>
+    </div>
 
-  <div class="field">
-    <%= f.text_field :step_2ck_score %>
-  </div>
+    <div class="field">
+      <%= f.text_field :step_2ck_score, label: 'Step 2 CK Score' %>
+    </div>
 
-  <div class="field">
-    <%= f.select :us_clinical_experience, [['Yes', true], ['No', false]], :include_blank => true, :label_class => 'required' %>
-  </div>
+    <div class="field">
+      <%= f.select :us_clinical_experience, [['Yes', true], ['No', false]], :include_blank => true, :label_class => 'required' %>
+    </div>
 
-  <div class="field">
-    <%= f.select :visa, options_for_select(User.visas.keys.map { |p| [t(p, :scope => :visas), p] }, :selected => @form.visa), :include_blank => true, :label_class => 'required' %>
-  </div>
+    <div class="field">
+      <%= f.select :visa, options_for_select(User.visas.keys.map { |p| [t(p, :scope => :visas), p] }, :selected => @form.visa), :include_blank => true, :label_class => 'required' %>
+    </div>
 
-  <div class="field">
-    <%= f.select :years_since_graduation, options_for_select(0..10, :selected => @form.years_since_graduation), :include_blank => true, :label_class => 'required' %>
-  </div>
+    <div class="field">
+      <%= f.select :years_since_graduation, options_for_select(0..10, :selected => @form.years_since_graduation), :include_blank => true, :label_class => 'required' %>
+    </div>
 
-  <div class="actions text-right">
-    <%= wizard_next_button %>
-  </div>
-
-  <%= link_to "Log in", new_session_path(:user) %><br />
-
-<% end %>
+    <div class="actions text-right">
+      <%= wizard_next_button %>
+    </div>
+  <% end %>
+</div>

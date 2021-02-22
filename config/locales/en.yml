@@ -35,6 +35,7 @@ en:
   minimum_step_2_ck: 'Minimum Step 2CK'
   minimum_step_2_cs: 'Minimum Step 2CS'
   require_step_2_cs_pass?: 'Requires Step 2CS Pass?'
+  minimum_password_length_help_text: 'The minimum password length is %{length}'
   header:
     welcome: 'Welcome! %{name}'
   sidebar:
