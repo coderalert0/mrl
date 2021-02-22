@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root to: 'dashboard#show'
 
   resources :specialities do
+    resources :download_programs
     resources :programs do
       resource :bookmark
       resource :note

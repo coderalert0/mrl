@@ -1,18 +1,26 @@
 <div class="row">
   <div class="col-lg-12 col-md-6 col-sm-6">
     <div class="card">
-      <div class="card-header ">
-        <h4 class="card-title font-weight-bold"><%= @speciality.name %> (<%= @matching_programs.count %> Matches)</h4>
-        <p>
-          <i class="nc-icon nc-money-coins text-success mr-2"></i>
-          ERAS Application Fees: <%= number_to_currency @fee %>
-        </p>
+      <div class="card-header d-flex">
+        <div class="float-left">
+          <h4 class="card-title font-weight-bold"><%= @speciality.name %> (<%= @matching_programs.count %> Matches)</h4>
+          <p>
+            <i class="nc-icon nc-money-coins text-success mr-2"></i>
+            ERAS Application Fees: <%= number_to_currency @fee %>
+          </p>
+        </div>
+
+        <div class="ml-auto align-self-center">
+          <%= link_to speciality_download_programs_path(@speciality, format: 'csv') do %>
+            <button type="button" class="btn btn-success">Download CSV</button>
+          <% end %>
+        </div>
       </div>
 
       <div class="card-body ">
         <div class="row">
           <div class="col-md-12">
-            <table class="table">
+            <table class="table table-hover">
               <thead>
                 <tr>
                   <th scope="col">Match Score™</th>
@@ -32,11 +40,11 @@
                   <td><%= link_to program.name, speciality_program_path(@speciality, program) %></td>
                   <td><%= program.address.split[-3..-2].join(' ') %></td>
                   <td><%= program.acgme_program_code %></td>
-                  <td>
+                  <td class="text-center">
                     <span class="icon-holder">
                       <%= link_to speciality_program_bookmark_url(@speciality, program), method: :post do %>
                         <% if program.bookmarked?(current_user) %>
-                          <%= bootstrap_icon "bookmark-check-fill", fill: "green" %>
+                          <%= bootstrap_icon "bookmark-check-fill", fill: "#17a2b8" %>
                         <% else %>
                           <%= bootstrap_icon "bookmark", fill: "gray" %>
                         <% end %>
