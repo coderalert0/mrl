@@ -123,13 +123,19 @@
 
   <div class="col-md-4">
     <div class="text-center mb-4">
+      <% if current_user.admin? %>
+        <%= link_to edit_speciality_program_url(@speciality, @program), class: 'text-decoration-none' do %>
+          <button type="button" class="btn btn-lg btn-block">Edit Program</button>
+        <% end %>
+      <% end %>
+
       <%= link_to speciality_program_bookmark_url(@speciality, @program), class: 'text-decoration-none', method: :post do %>
         <% if @program.bookmarked?(current_user) %>
           <button type="button" class="btn btn-lg btn-danger btn-block">Remove Program</button>
         <% else %>
           <button type="button" class="btn btn-lg btn-info btn-block">Bookmark Program</button>
         <% end %>
-    <% end %>
+      <% end %>
     </div>
 
     <div class="card">

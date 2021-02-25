@@ -79,8 +79,8 @@ task scrape: :environment do
     puts program_hash
 
     # Create speciality
-    speciality = Speciality.find_or_create_by!(name: speciality_name) do |speciality|
-      speciality.active = true
+    speciality = Speciality.find_or_create_by!(name: speciality_name) do |s|
+      s.active = true
     end
 
     # Create or update program

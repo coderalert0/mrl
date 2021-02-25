@@ -1,0 +1,117 @@
+<div id="js-placeholder"></div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-md-12">
+
+            <%= bootstrap_form_for @form, :url => speciality_program_url(@speciality, @program), method: :put do |f| %>
+              <div class="field">
+                <%= f.text_field :name %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :acgme_program_code %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :minimum_step_1_score %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :step_2_required %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :minimum_step_2_score %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :us_clinical_experience %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :years_since_graduation %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :j_1_sponsorship_through_ecfmg %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :h1_b %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :f_1 %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :must_pass_step_2_cs_first_attempt %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :website %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :phone %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :email %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :program_coordinator %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :program_coordinator_email %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :program_director %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :us_md_graduates %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :us_do_graduates %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :non_us_citizen_international_medical_graduates %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :us_citizen_international_medical_graduates %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :notes %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :speciality_id %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :active %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit 'Save', class: 'btn btn-info' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

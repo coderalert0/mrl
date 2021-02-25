@@ -6,7 +6,12 @@ class Ability
 
     return if user.nil?
 
-    can :read, Speciality
-    can :read, Program
+    if user.admin?
+      can :crud, Program
+      can :crud, Speciality
+    else
+      can :read, Speciality
+      can :read, Program
+    end
   end
 end
