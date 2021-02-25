@@ -9,11 +9,15 @@ class ProgramsController < ApplicationController
   end
 
   def index
-    @matching_programs = @programs.where('minimum_step_1_score <= ?', current_user.step_1_score.to_s)
-                                  .where('minimum_step_2_score <= ?', current_user.step_2ck_score || 300)
-                                  .where("#{current_user.img_type} > ?", 0)
-                                  .where("#{current_user.visa} = ?", 'Yes') # handle where user doesnt need visa
-                                  .order("#{current_user.img_type} DESC")
+    @matching_programs = if params['all'] == 'true'
+                           @programs.order(:name)
+                         else
+                           @programs.where('minimum_step_1_score <= ?', current_user.step_1_score.to_s)
+                                    .where('minimum_step_2_score <= ?', current_user.step_2ck_score || 300)
+                                    .where("#{current_user.img_type} > ?", 0)
+                                    .where("#{current_user.visa} = ?", 'Yes') # handle where user doesnt need visa
+                                    .order("#{current_user.img_type} DESC")
+                         end
 
     bookmark_count = ProgramUser.where(program: @matching_programs, user: current_user, bookmark: true).count
     @fee = calculate_fee(bookmark_count)
@@ -29,7 +33,7 @@ class ProgramsController < ApplicationController
 
     if @form.submit
       flash.notice = 'Program edited successfully'
-      redirect_to speciality_program_path(@speciality, @program)
+      redirect_to edit_speciality_program_path(@speciality, @program)
     else
       flash.alert = @form.display_errors
     end
