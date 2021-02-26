@@ -10,7 +10,6 @@ class UsersController < ApplicationController
       flash.notice = 'User profile edited successfully'
       redirect_to root_path
     else
-      flash.alert = @form.display_errors
       render 'edit'
     end
   end

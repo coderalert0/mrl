@@ -9,6 +9,8 @@ class ProgramsController < ApplicationController
   end
 
   def index
+    @programs = @programs.active.includes(:program_users)
+
     @matching_programs = if params['all'] == 'true'
                            @programs.order(:name)
                          else
@@ -34,7 +36,7 @@ class ProgramsController < ApplicationController
       flash.notice = 'Program edited successfully'
       redirect_to edit_speciality_program_path(@speciality, @program)
     else
-      flash.alert = @form.display_errors
+      render 'edit'
     end
   end
 

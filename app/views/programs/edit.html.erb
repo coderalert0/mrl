@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="field">
-                  <%= f.text_field :step_2_required %>
+                  <%= f.select :step_2_required, [['Yes'], ['No']], include_blank: true %>
                 </div>
 
                 <div class="field">
@@ -57,25 +57,25 @@
                 </div>
 
                 <div class="field">
-                  <%= f.text_field :us_clinical_experience %>
+                  <%= f.select :us_clinical_experience, [['Yes'], ['No']], include_blank: true %>
                 </div>
 
                 <div class="field">
-                  <%= f.text_field :years_since_graduation %>
+                  <%= f.select :years_since_graduation, options_for_select(0..10, :selected => @form.years_since_graduation), include_blank: true %>
                 </div>
               </div>
 
               <div id="js-program-visa" class="d-none">
                 <div class="field">
-                  <%= f.text_field :j_1_sponsorship_through_ecfmg %>
+                  <%= f.select :j_1_sponsorship_through_ecfmg, [['Yes'], ['No']], include_blank: true %>
                 </div>
 
                 <div class="field">
-                  <%= f.text_field :h1_b %>
+                  <%= f.select :h1_b, [['Yes'], ['No']], include_blank: true %>
                 </div>
 
                 <div class="field">
-                  <%= f.text_field :f_1 %>
+                  <%= f.select :f_1, [['Yes'], ['No']], include_blank: true %>
                 </div>
               </div>
 

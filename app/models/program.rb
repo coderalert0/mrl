@@ -2,11 +2,17 @@ require 'csv'
 
 class Program < ApplicationRecord
   belongs_to :speciality
+  has_many :program_users
+
+  scope :active, -> { where(active: 1) }
 
   validates_presence_of :acgme_program_code, :name
+  validates_inclusion_of :minimum_step_1_score, in: 1..300, message: 'Invalid score (Valid score is between 1 and 300)'
+  validates_inclusion_of :minimum_step_2_score, in: 1..300, allow_nil: true, message: 'Invalid score (Valid score is between 1 and 300)'
+
 
   def bookmarked?(user)
-    ProgramUser.where(program: self, user: user, bookmark: true).present?
+    program_users.select { |pu| pu.program == self && pu.user == user && pu.bookmark == true }.present?
   end
 
   def self.to_csv
