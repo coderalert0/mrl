@@ -25,7 +25,6 @@ class ProgramsController < ApplicationController
 
   def edit
     @form = EditProgramForm.new program: @program
-    @program = @program.decorate
   end
 
   def update

@@ -202,7 +202,7 @@
                 <td><%= @matching_program_count %></td>
                 <% if current_user.admin? %>
                   <td>
-                    <%= link_to '(See all)', speciality_programs_path(speciality, all: 'true') %>
+                    <%= link_to 'See all', speciality_programs_path(speciality, all: 'true') %>
                   </td>
                 <% end %>
               </tr>
