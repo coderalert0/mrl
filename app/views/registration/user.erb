@@ -9,8 +9,8 @@
 
     <%= f.password_field :password, autocomplete: "new-password", help: t(:minimum_password_length_help_text, length: User.password_length.min) %>
 
-    <div class="actions">
-      <%= wizard_next_button %>
+    <div class="actions text-center">
+      <%= wizard_show_matches_button %>
     </div>
   <% end %>
 </div>

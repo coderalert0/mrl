@@ -34,6 +34,7 @@ gem 'font-awesome-rails'
 gem 'fullcalendar-rails'
 gem 'paper_trail'
 gem 'rubocop'
+gem 'stripe'
 gem 'watir'
 gem 'wicked'
 

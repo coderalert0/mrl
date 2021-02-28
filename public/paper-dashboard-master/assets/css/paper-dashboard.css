@@ -4219,5 +4219,26 @@ label{
   text-transform: capitalize;
 }
 
+label.required:after {
+  content: " *";
+  color: red;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: #5bc0de;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: #5bc0de;
+}
 
 /*# sourceMappingURL=paper-dashboard.css.map */

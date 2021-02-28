@@ -6,7 +6,8 @@ class User < ApplicationRecord
 
   validates_presence_of :step_1_score, :img_type, :years_since_graduation, :visa
   validates_inclusion_of :step_1_score, in: 1..300, message: 'Invalid score (Valid score is between 1 and 300)'
-  validates_inclusion_of :step_2ck_score, in: 1..300, allow_nil: true, message: 'Invalid score (Valid score is between 1 and 300)'
+  validates_inclusion_of :step_2ck_score, in: 1..300, allow_nil: true,
+                                          message: 'Invalid score (Valid score is between 1 and 300)'
   validates_inclusion_of :us_clinical_experience, in: [true, false]
   validates_uniqueness_of :email, conditions: -> { where.not(email: '') }
 

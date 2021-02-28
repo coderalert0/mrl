@@ -1,5 +1,5 @@
 <div class="col-md-5 mx-auto">
-  <%= bootstrap_form_for @form, :url => wizard_path, label_col: 'col-sm-4', :method => :put do |f| %>
+  <%= bootstrap_form_for @form, :url => wizard_path, label_col: 'col-sm-5', :method => :put do |f| %>
 
     <div class="field">
       <%= f.select :img_type,
@@ -30,7 +30,7 @@
       <%= f.select :years_since_graduation, options_for_select(0..10, :selected => @form.years_since_graduation), :include_blank => true, :label_class => 'required' %>
     </div>
 
-    <div class="actions text-right">
+    <div class="actions text-center">
       <%= wizard_next_button %>
     </div>
   <% end %>

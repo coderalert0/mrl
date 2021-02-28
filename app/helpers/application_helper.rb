@@ -1,7 +1,11 @@
 module ApplicationHelper
   module BootstrapExtension
     def wizard_next_button
-      submit_tag I18n.t(:next, scope: :registration), class: 'btn btn-primary'
+      submit_tag 'View Program Matches', class: 'btn btn-lg btn-success'
+    end
+
+    def wizard_show_matches_button
+      submit_tag 'View Program Matches', class: 'btn btn-success'
     end
   end
 
