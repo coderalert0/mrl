@@ -3,18 +3,20 @@
     <div class="card">
       <div class="card-header d-flex">
         <div class="float-left">
-          <h4 class="card-title font-weight-bold"><%= @speciality.name %> (<%= @matching_programs.count %> Matches)</h4>
+          <h4 class="card-title font-weight-bold"><%= @speciality.name %> (<%= @matching_program_count %> Matches)</h4>
           <p>
             <i class="nc-icon nc-money-coins text-success mr-2"></i>
             ERAS Application Fees: <%= number_to_currency @fee %>
           </p>
         </div>
 
-        <div class="ml-auto align-self-center">
-          <%= link_to speciality_download_programs_path(@speciality, format: 'csv') do %>
-            <button type="button" class="btn btn-success">Download CSV</button>
-          <% end %>
-        </div>
+        <% if current_user.paid? %>
+          <div class="ml-auto align-self-center">
+            <%= link_to speciality_download_programs_path(@speciality, format: 'csv') do %>
+              <button type="button" class="btn btn-success">Download CSV</button>
+            <% end %>
+          </div>
+        <% end %>
       </div>
 
       <div class="card-body ">
@@ -55,6 +57,10 @@
               <% end %>
               </tbody>
             </table>
+
+            <%= link_to checkout_create_path, method: :post, remote: true do %>
+              <%= image_tag('upgrade.png') %>
+            <% end %>
           </div>
         </div>
       </div>

@@ -29,6 +29,8 @@ services:
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=password
       - DATABASE_NAME=mrl_development
+      - STRIPE_PUBLISHABLE_KEY=pk_test_51IQ028FJAisLx1OyxXeo2ABc7CrY4W5Ut6o11ltGdBcE5E50v5xPJemKRiLfcYdRqaC6vQIkH2ijP46UcjNsyvIN00t8hbka5L
+      - STRIPE_SECRET_KEY=sk_test_51IQ028FJAisLx1OyCWdKDIejr6YPJrn4T3TCanhDgMSGPl9LBMiQCkwbkQJ9lzIxZmQmjevtNyMctCIJdvvvXEF0002L9arxGC
     depends_on:
       - db
     tty: true

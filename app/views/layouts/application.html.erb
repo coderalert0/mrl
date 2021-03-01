@@ -20,74 +20,79 @@
   <link href="/paper-dashboard-master/assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
 </head>
 
-<body class="">
-<div class="wrapper ">
-  <div class="sidebar" data-background-color="brown" data-active-color="info">
+<body>
+  <div class="wrapper ">
+    <div class="sidebar" data-background-color="brown" data-active-color="info">
 
-    <div class="logo text-center">
-      <%= link_to root_path do %>
-        <%= image_tag('logo.png', width: 220) %>
-      <% end %>
-    </div>
-
-    <div class="sidebar-wrapper">
-      <ul class="nav">
-        <li class="active ">
-          <%= link_to root_path do %>
-            <i class="nc-icon nc-bank"></i>
-            <p>Dashboard</p>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to edit_user_path do %>
-            <i class="nc-icon nc-single-02"></i>
-            <p>Edit Profile</p>
-          <% end %>
-        </li>
-        <li>
-          <a href="./typography.html">
-            <i class="nc-icon nc-email-85"></i>
-            <p>Contact Us</p>
-          </a>
-        </li>
-        <li class="active-pro">
-          <%= link_to destroy_user_session_path, method: :delete do %>
-            <i class="nc-icon nc-button-power"></i>
-            <p>Logout</p>
-          <% end %>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="main-panel">
-    <div class="content">
-      <div class="text-right mb-4 font-weight-bold">
-        Welcome Dr. <%= current_user.last_name %>
+      <div class="logo text-center">
+        <%= link_to root_path do %>
+          <%= image_tag('logo.png', width: 220) %>
+        <% end %>
       </div>
 
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
-
-      <%= yield %>
-
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="active ">
+            <%= link_to root_path do %>
+              <i class="nc-icon nc-bank"></i>
+              <p>Dashboard</p>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to edit_user_path do %>
+              <i class="nc-icon nc-single-02"></i>
+              <p>Edit Profile</p>
+            <% end %>
+          </li>
+          <li>
+            <a href="./typography.html">
+              <i class="nc-icon nc-email-85"></i>
+              <p>Contact Us</p>
+            </a>
+          </li>
+          <li class="active-pro">
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="nc-icon nc-button-power"></i>
+              <p>Logout</p>
+            <% end %>
+          </li>
+        </ul>
+      </div>
     </div>
-    <footer class="footer footer-black  footer-white ">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="credits ml-auto">
-              <span class="copyright">
-                © 2021 MyResidencyList
-              </span>
+    <div class="main-panel">
+      <div class="content">
+        <div class="text-right mb-4 font-weight-bold">
+          Welcome Dr. <%= current_user.last_name %>
+        </div>
+
+        <% unless current_user.paid? %>
+          <%= link_to 'To see all matching programs please upgrade your account.', checkout_create_path, method: :post, class: 'alert alert-danger row', remote: true %>
+        <% end %>
+
+        <% if notice %>
+          <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+
+        <%= yield %>
+
+      </div>
+      <footer class="footer footer-black  footer-white ">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="credits ml-auto">
+                <span class="copyright">
+                  © 2021 MyResidencyList
+                </span>
+            </div>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
   </div>
-</div>
+
 <!--   Core JS Files   -->
 <script src="/paper-dashboard-master/assets/js/core/jquery.min.js"></script>
 <script src="/paper-dashboard-master/assets/js/core/popper.min.js"></script>
@@ -95,6 +100,7 @@
 <script src="/paper-dashboard-master/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <script src="/paper-dashboard-master/assets/js/copy_text.js"></script>
 <script src="/paper-dashboard-master/assets/js/program.js"></script>
+<script type="text/javascript" src="https://js.stripe.com/v3/"></script>
 
 
 <!--  Notifications Plugin    -->
