@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     get 'success', to: 'checkout#success', as: 'checkout_success'
   end
 
-  root to: 'dashboard#show'
+  authenticated :user do
+    root :to => "dashboard#show", as: :authenticated_root
+  end
+
+  root :to => 'registration#show', id: 'profile'
 
   resources :specialities do
     resources :download_programs

@@ -10,9 +10,9 @@ class Program < ApplicationRecord
   scope :active, -> { where(active: 1) }
 
   validates_presence_of :acgme_program_code, :name
-  validates_inclusion_of :minimum_step_1_score, in: 1..300, message: 'Invalid score (Valid score is between 1 and 300)'
+  validates_inclusion_of :minimum_step_1_score, in: 1..300, message: I18n.t(:invalid_score_error)
   validates_inclusion_of :minimum_step_2_score, in: 1..300, allow_nil: true,
-                                                message: 'Invalid score (Valid score is between 1 and 300)'
+                                                message: I18n.t(:invalid_score_error)
 
   def bookmarked?(user)
     program_users.select { |pu| pu.program == self && pu.user == user && pu.bookmark == true }.present?

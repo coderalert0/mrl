@@ -29,7 +29,7 @@
               <tr>
                 <td>
                   <i class="nc-icon nc-sound-wave text-danger mr-2"></i>
-                  Speciality
+                  <%= t(:speciality) %>
                 </td>
                 <td>
                   <%= @program.speciality.name %>
@@ -39,7 +39,7 @@
               <tr>
                 <td>
                   <i class="nc-icon nc-atom text-warning mr-2"></i>
-                  Your Match Score
+                  <%= t(:your_match_score) %>
                 </td>
                 <td>
                   <%= @program.send(current_user.img_type) %>%
@@ -57,7 +57,7 @@
               <tr>
                 <td>
                   <i class="nc-icon nc-chart-bar-32 text-info mr-2"></i>
-                  Requires Step 2CK Completion?
+                  <%= t(:requires_step_2_ck_completion?) %>
                 </td>
                 <td>
                   <%= @program.step_2_required %>
@@ -75,7 +75,7 @@
               <tr>
                 <td>
                   <i class="nc-icon nc-chart-bar-32 text-warning mr-2"></i>
-                  <%= t(:require_step_2_cs_pass?) %>
+                  <%= t(:require_step_2_cs_pass) %>
                 </td>
                 <td>
                   <%= @program.must_pass_step_2_cs_first_attempt %>
@@ -84,7 +84,7 @@
               <tr>
                 <td>
                   <i class="nc-icon nc-badge text-success mr-2"></i>
-                  Requires US Clinical Experience?
+                  <%= t(:requires_us_clinical_experience?) %>
                 </td>
                 <td>
                   <%= @program.us_clinical_experience_display %>
@@ -93,7 +93,7 @@
               <tr>
                 <td>
                   <i class="nc-icon nc-hat-3 text-danger mr-2"></i>
-                  Maximum Years Since Graduation
+                  <%= t(:maximum_years_since_graduation) %>
                 </td>
                 <td>
                   <%= @program.years_since_graduation %>
@@ -102,7 +102,7 @@
               <tr>
                 <td>
                   <i class="nc-icon nc-world-2 text-info mr-2"></i>
-                  Visa Types Sponsored
+                  <%= t(:visa_types_sponsored) %>
                 </td>
                 <td>
                   <%= @program.visa_types_sponsored_display %>
@@ -125,22 +125,22 @@
     <div class="text-center mb-4">
       <% if current_user.admin? %>
         <%= link_to edit_speciality_program_url(@speciality, @program), class: 'text-decoration-none' do %>
-          <button type="button" class="btn btn-lg btn-block">Edit Program</button>
+          <button type="button" class="btn btn-lg btn-block"><%= t(:edit_program) %></button>
         <% end %>
       <% end %>
 
       <%= link_to speciality_program_bookmark_url(@speciality, @program), class: 'text-decoration-none', method: :post do %>
         <% if @program.bookmarked?(current_user) %>
-          <button type="button" class="btn btn-lg btn-danger btn-block">Remove Program</button>
+          <button type="button" class="btn btn-lg btn-danger btn-block"><%= t(:remove_program) %></button>
         <% else %>
-          <button type="button" class="btn btn-lg btn-info btn-block">Bookmark Program</button>
+          <button type="button" class="btn btn-lg btn-info btn-block"><%= t(:bookmark_program) %></button>
         <% end %>
       <% end %>
     </div>
 
     <div class="card">
       <div class="card-header ">
-        <h5 class="card-title">Contact Details</h5>
+        <h5 class="card-title"><%= t(:contact_details) %></h5>
       </div>
       <div class="card-body ">
         <label><%= t(:email) %>: </label>
@@ -169,7 +169,7 @@
   <div class="col-md-8">
     <div class="card ">
       <div class="card-header ">
-        <h5 class="card-title">Notes</h5>
+        <h5 class="card-title"><%= t(:notes) %></h5>
       </div>
       <div class="card-body ">
         <div class="row">
@@ -186,7 +186,7 @@
               </div>
 
               <div class="actions text-right">
-                <%= f.submit 'Save', class: 'btn btn-info' %>
+                <%= f.submit t(:save), class: 'btn btn-info' %>
               </div>
             <% end %>
           </div>

@@ -3,17 +3,19 @@
     <div class="card">
       <div class="card-header d-flex">
         <div class="float-left">
-          <h4 class="card-title font-weight-bold"><%= @speciality.name %> (<%= @matching_program_count %> Matches)</h4>
+          <h4 class="card-title font-weight-bold">
+            <%= @speciality.name %> (<%= @matching_program_count %> Matches)
+          </h4>
           <p>
             <i class="nc-icon nc-money-coins text-success mr-2"></i>
-            ERAS Application Fees: <%= number_to_currency @fee %>
+            <%= t(:eras_application_fees) %> <%= number_to_currency @fee %>
           </p>
         </div>
 
         <% if current_user.paid? %>
           <div class="ml-auto align-self-center">
             <%= link_to speciality_download_programs_path(@speciality, format: 'csv') do %>
-              <button type="button" class="btn btn-success">Download CSV</button>
+              <button type="button" class="btn btn-success"><%= t(:download_csv) %></button>
             <% end %>
           </div>
         <% end %>
@@ -25,11 +27,11 @@
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">Match Score™</th>
-                  <th scope="col">Program Name</th>
-                  <th scope="col">Location</th>
-                  <th scope="col">Program Code</th>
-                  <th scope="col">Bookmark</th>
+                  <th scope="col"><%= t(:match_score) %></th>
+                  <th scope="col"><%= t(:program_name) %></th>
+                  <th scope="col"><%= t(:location) %></th>
+                  <th scope="col"><%= t(:program_code) %></th>
+                  <th scope="col"><%= t(:bookmark) %></th>
                 </tr>
               </thead>
               <tbody>
@@ -59,7 +61,7 @@
                     <tr>
                       <td colspan="5" class="text-center">
                         <%= link_to checkout_create_path, class: 'text-decoration-none', method: :post, remote: true do %>
-                          <h4 class="text-danger">To see all matching programs please upgrade your account</h4>
+                          <h4 class="text-danger"><%= t(:upgrade_message) %></h4>
                         <% end %>
                       </td>
                     </tr>
@@ -68,9 +70,9 @@
                       <td class="blurry-text">
                         50
                       </td>
-                      <td class="blurry-text"><%= link_to 'This is a sample program', checkout_create_path, method: :post, remote: true %></td>
-                      <td class="blurry-text">Bronx, NY</td>
-                      <td class="blurry-text">0402111056</td>
+                      <td class="blurry-text"><%= link_to 'The Program Name Has Been Hidden', checkout_create_path, method: :post, remote: true %></td>
+                      <td class="blurry-text">Hidden Location</td>
+                      <td class="blurry-text">HIDDEN</td>
                       <td class="text-center">
                         <span class="icon-holder">
                           <%= bootstrap_icon "bookmark", fill: "gray" %>
