@@ -39,5 +39,8 @@ class CheckoutController < ApplicationController
     end
   end
 
-  def cancel; end
+  def cancel
+    current_user.update(cancelled: true)
+    redirect_to root_path
+  end
 end
