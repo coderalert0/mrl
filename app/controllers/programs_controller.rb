@@ -1,6 +1,6 @@
 class ProgramsController < ApplicationController
   load_and_authorize_resource :speciality
-  load_and_authorize_resource :program, through: :speciality
+  load_and_authorize_resource :program, through: :speciality, find_by: :slug
   before_action :find_or_initialize_program_user, only: :show
 
   def show

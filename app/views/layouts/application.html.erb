@@ -39,9 +39,11 @@
             <% end %>
           </li>
           <li>
-            <%= link_to edit_user_path do %>
-              <i class="nc-icon nc-single-02"></i>
-              <p>Edit Profile</p>
+            <% unless current_user.paid? %>
+              <%= link_to edit_user_path do %>
+                <i class="nc-icon nc-single-02"></i>
+                <p>Edit Profile</p>
+              <% end %>
             <% end %>
           </li>
           <li>
@@ -66,7 +68,9 @@
         </div>
 
         <% unless current_user.paid? %>
-          <%= link_to 'To see all matching programs please upgrade your account.', checkout_create_path, method: :post, class: 'alert alert-danger row', remote: true %>
+          <p class="alert alert-danger">
+            <%= link_to 'To see all matching programs click here to upgrade your account', checkout_create_path, method: :post, remote: true %>
+          </p>
         <% end %>
 
         <% if notice %>

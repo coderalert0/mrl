@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   load_and_authorize_resource :speciality
-  load_and_authorize_resource :program
+  load_and_authorize_resource :program, find_by: :slug
 
   def create
     @form = create_form

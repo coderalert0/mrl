@@ -1,6 +1,6 @@
 class BookmarksController < ApplicationController
   load_and_authorize_resource :speciality
-  load_and_authorize_resource :program
+  load_and_authorize_resource :program, find_by: :slug
 
   def create
     program_user = ProgramUser.find_or_create_by(program: @program, user: current_user)

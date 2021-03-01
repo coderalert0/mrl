@@ -33,34 +33,54 @@
                 </tr>
               </thead>
               <tbody>
-
-              <% @matching_programs.each do |program| %>
-                <tr>
-                  <td>
-                    <%= program.send(current_user.img_type) %>
-                  </td>
-                  <td><%= link_to program.name, speciality_program_path(@speciality, program) %></td>
-                  <td><%= program.address.split[-3..-2].join(' ') %></td>
-                  <td><%= program.acgme_program_code %></td>
-                  <td class="text-center">
-                    <span class="icon-holder">
-                      <%= link_to speciality_program_bookmark_url(@speciality, program), method: :post do %>
-                        <% if program.bookmarked?(current_user) %>
-                          <%= bootstrap_icon "bookmark-check-fill", fill: "#17a2b8" %>
-                        <% else %>
-                          <%= bootstrap_icon "bookmark", fill: "gray" %>
+                <% @matching_programs.each do |program| %>
+                  <tr>
+                    <td>
+                      <%= program.send(current_user.img_type) %>
+                    </td>
+                    <td><%= link_to program.name, speciality_program_path(@speciality, program) %></td>
+                    <td><%= program.address.split[-3..-2].join(' ') %></td>
+                    <td><%= program.acgme_program_code %></td>
+                    <td class="text-center">
+                      <span class="icon-holder">
+                        <%= link_to speciality_program_bookmark_url(@speciality, program), method: :post do %>
+                          <% if program.bookmarked?(current_user) %>
+                            <%= bootstrap_icon "bookmark-check-fill", fill: "#17a2b8" %>
+                          <% else %>
+                            <%= bootstrap_icon "bookmark", fill: "gray" %>
+                          <% end %>
                         <% end %>
-                      <% end %>
-                    </span>
-                  </td>
-                </tr>
-              <% end %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+
+                <% unless current_user.paid? %>
+                    <tr>
+                      <td colspan="5" class="text-center">
+                        <%= link_to checkout_create_path, class: 'text-decoration-none', method: :post, remote: true do %>
+                          <h4 class="text-danger">To see all matching programs please upgrade your account</h4>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% (@matching_program_count - 5).times do %>
+                    <tr>
+                      <td class="blurry-text">
+                        50
+                      </td>
+                      <td class="blurry-text"><%= link_to 'This is a sample program', checkout_create_path, method: :post, remote: true %></td>
+                      <td class="blurry-text">Bronx, NY</td>
+                      <td class="blurry-text">0402111056</td>
+                      <td class="text-center">
+                        <span class="icon-holder">
+                          <%= bootstrap_icon "bookmark", fill: "gray" %>
+                        </span>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
               </tbody>
             </table>
-
-            <%= link_to checkout_create_path, method: :post, remote: true do %>
-              <%= image_tag('upgrade.png') %>
-            <% end %>
           </div>
         </div>
       </div>

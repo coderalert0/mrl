@@ -1,6 +1,9 @@
 require 'csv'
 
 class Program < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   belongs_to :speciality
   has_many :program_users
 

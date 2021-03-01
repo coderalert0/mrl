@@ -110,6 +110,8 @@ GEM
     ffi (1.14.0)
     font-awesome-rails (3.1.1.0)
       railties (>= 3.1)
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     fullcalendar-rails (3.9.0.0)
       jquery-rails (>= 4.0.5, < 5.0.0)
       jquery-ui-rails (>= 5.0.2)
@@ -292,6 +294,7 @@ DEPENDENCIES
   devise
   draper
   font-awesome-rails
+  friendly_id (~> 5.4.0)
   fullcalendar-rails
   jbuilder (~> 2.7)
   listen (~> 3.3)

@@ -1459,7 +1459,7 @@ a.text-warning:focus, a.text-warning:hover {
 
 .text-danger,
 a.text-danger:focus, a.text-danger:hover {
-  color: #ef8157 !important; }
+  color: #dc3545 !important; }
 
 .text-gray,
 a.text-gray:focus, a.text-gray:hover {
@@ -2376,10 +2376,13 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
   padding-top: .9rem;
   padding-bottom: .9rem;
   position: relative; }
+
 .alert.alert-success {
   background-color: #7ed6a5; }
 .alert.alert-danger {
   background-color: #dc3545; }
+.alert.alert-danger a {
+  color: #FFFFFF; }
 .alert.alert-warning {
   background-color: #fccf71; }
 .alert.alert-info {
@@ -4239,6 +4242,21 @@ label.required:after {
   content: '<';
   font-size: 55px;
   color: #5bc0de;
+}
+
+.blurry-text {
+  color: transparent;
+  text-shadow: 0 0 6px rgba(0,0,0,0.5);
+}
+
+.blurry-text a {
+  color: transparent;
+  text-shadow: 0 0 6px rgba(0,0,0,0.5);
+}
+
+.blurry-text:hover {
+  color: transparent;
+  text-shadow: 0 0 6px rgba(0,0,0,0.5);
 }
 
 /*# sourceMappingURL=paper-dashboard.css.map */

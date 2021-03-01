@@ -1,5 +1,6 @@
 class DownloadProgramsController < ApplicationController
   load_and_authorize_resource :speciality
+  before_action :authorize
 
   def index
     @programs = @speciality.programs.where('minimum_step_1_score <= ?', current_user.step_1_score.to_s)
@@ -12,5 +13,14 @@ class DownloadProgramsController < ApplicationController
       format.html
       format.csv { send_data @programs.to_csv, filename: "#{@speciality.name}-#{Date.today}.csv" }
     end
+  end
+
+  private
+
+  def authorize
+    return if current_user.paid?
+
+    flash[:alert] = 'You are not allowed to download the programs csv'
+    redirect_to speciality_programs_path(@speciality)
   end
 end
