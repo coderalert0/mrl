@@ -11,7 +11,7 @@ class DownloadProgramsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data @programs.to_csv, filename: "#{@speciality.name}-#{Date.today}.csv" }
+      format.csv { send_data @programs.to_csv(current_user), filename: "#{@speciality.name}-#{Date.today}.csv" }
     end
   end
 

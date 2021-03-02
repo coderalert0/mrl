@@ -30,6 +30,7 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  actions: 'Actions'
   applicant_type: 'Applicant Type'
   back: 'Back'
   bookmark: 'Bookmark'
@@ -51,7 +52,7 @@ en:
   notes: 'Notes'
   phone: 'Phone'
   program_code: 'Program Code'
-  program_id: 'Program ID'
+  program_id: 'ACGME Program ID'
   program_coordinator: 'Program Coordinator'
   program_coordinator_email: 'Program Coordinator Email'
   program_director: 'Program Director'

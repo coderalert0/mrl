@@ -27,11 +27,14 @@
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col"><%= t(:match_score) %></th>
-                  <th scope="col"><%= t(:program_name) %></th>
-                  <th scope="col"><%= t(:location) %></th>
-                  <th scope="col"><%= t(:program_code) %></th>
-                  <th scope="col"><%= t(:bookmark) %></th>
+                  <th><%= t(:match_score) %></th>
+                  <% if current_user.admin? %>
+                    <th><%= t(:actions) %></th>
+                  <% end %>
+                  <th><%= t(:program_name) %></th>
+                  <th><%= t(:location) %></th>
+                  <th><%= t(:program_code) %></th>
+                  <th><%= t(:bookmark) %></th>
                 </tr>
               </thead>
               <tbody>
@@ -40,6 +43,11 @@
                     <td>
                       <%= program.send(current_user.img_type) %>
                     </td>
+                    <% if current_user.admin? %>
+                      <td>
+                        <%= link_to t(:edit), edit_speciality_program_path(@speciality, program) %>
+                      </td>
+                    <% end %>
                     <td><%= link_to program.name, speciality_program_path(@speciality, program) %></td>
                     <td><%= program.address.split[-3..-2].join(' ') %></td>
                     <td><%= program.acgme_program_code %></td>

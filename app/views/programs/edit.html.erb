@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="field">
-                  <%= f.select :us_clinical_experience, [['Yes'], ['No']], include_blank: true %>
+                  <%= f.select :us_clinical_experience, [['Yes', true], ['No', false]], include_blank: true %>
                 </div>
 
                 <div class="field">
@@ -147,7 +147,7 @@
 
               <div class="actions">
                 <%= f.submit t(:save), class: 'btn btn-success' %>
-                <%= link_to t(:back), speciality_program_path(@speciality, @program), class: 'btn btn-info' %>
+                <%= link_to t(:back), speciality_programs_path(@speciality, all: true), class: 'btn btn-info' %>
               </div>
             <% end %>
           </div>

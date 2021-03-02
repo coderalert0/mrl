@@ -179,9 +179,10 @@
         <table class="table">
           <thead>
           <tr>
-            <th style="width: 94%"><%= t(:speciality) %></th>
+            <th style="width: 80%"><%= t(:speciality) %></th>
             <% if current_user.admin? %>
-              <th style="width: 6%"></th>
+              <th style="width: 10%"></th>
+              <th style="width: 10%"></th>
             <% end %>
           </tr>
           </thead>
@@ -192,6 +193,9 @@
                   <%= link_to speciality.name, speciality_programs_path(speciality) %>
                 </td>
                 <% if current_user.admin? %>
+                  <td>
+                    <%= link_to 'See all (IMG)', speciality_programs_path(speciality, img: 'true') %>
+                  </td>
                   <td>
                     <%= link_to 'See all', speciality_programs_path(speciality, all: 'true') %>
                   </td>
