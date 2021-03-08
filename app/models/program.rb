@@ -20,7 +20,7 @@ class Program < ApplicationRecord
 
   def self.to_csv(user)
     attributes = %w[acgme_program_code name minimum_step_1_score step_2_required minimum_step_2_score
-                    must_pass_step_2_cs_first_attempt j_1_sponsorship_through_ecfmg h1_b f_1 address
+                    must_pass_step_2_cs_first_attempt j_1_sponsorship_through_ecfmg h1_b address
                     website program_director email program_coordinator program_coordinator_email phone]
 
     CSV.generate(headers: true) do |csv|

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_01_212745) do
+ActiveRecord::Schema.define(version: 2021_03_08_052110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 2021_03_01_212745) do
     t.integer "minimum_step_2_score"
     t.string "j_1_sponsorship_through_ecfmg"
     t.string "h1_b"
-    t.string "f_1"
     t.string "must_pass_step_2_cs_first_attempt"
     t.integer "us_md_graduates"
     t.integer "us_do_graduates"

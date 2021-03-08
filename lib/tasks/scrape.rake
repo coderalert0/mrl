@@ -58,8 +58,6 @@ task scrape: :environment do
     # Extract F1
     th_element = browser.th(text: /F-1/)
 
-    program_hash['f_1'] = th_element.siblings[1].text if th_element.siblings[1].exists?
-
     # Extract Step CS pass criteria
     th_element = browser.th(text: /Must pass either the USMLE Step 2 CS/)
 

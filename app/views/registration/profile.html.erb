@@ -23,7 +23,7 @@
     </div>
 
     <div class="field">
-      <%= f.select :visa, options_for_select(User.visas.keys.map { |p| [t(p, :scope => :visas), p] }, :selected => @form.visa), :include_blank => true, :label_class => 'required' %>
+      <%= f.select :visa, options_for_select(User.visas.keys.map { |p| [t(p, scope: :visa_types), p] }, selected: @form.visa), include_blank: true, label: t(:visa_required), label_class: 'required' %>
     </div>
 
     <div class="field">

@@ -19,8 +19,7 @@ class User < ApplicationRecord
   enum visa: { no: 0,
                j_1_sponsorship_through_ecfmg: 1,
                h1_b: 2,
-               f_1: 3,
-               j1_and_h1: 4 }
+               j1_or_h1: 3 }
 
   protected
 
