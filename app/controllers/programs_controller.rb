@@ -43,7 +43,7 @@ class ProgramsController < ApplicationController
 
     if @form.submit
       flash.notice = 'Program edited successfully'
-      next_program = @program.speciality.programs.order(:name).where('name > ?', @program.name).first
+      next_program = @program.speciality.programs.where("#{current_user.img_type} > ?", 0).order(:name).where('name > ?', @program.name).first
       redirect_to edit_speciality_program_path(@speciality, next_program)
     else
       render 'edit'
