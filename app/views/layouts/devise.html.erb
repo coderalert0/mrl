@@ -59,13 +59,14 @@
         </div>
       </nav>
       <!-- End Navbar -->
-
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
+      <div class="col-md-4 mx-auto">
+        <% if notice %>
+          <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+      </div>
 
       <%= yield %>
 

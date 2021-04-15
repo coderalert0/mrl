@@ -6,8 +6,10 @@ class DownloadProgramsController < ApplicationController
     @programs = @speciality.programs.where('minimum_step_1_score <= ?', current_user.step_1_score.to_s)
                            .where('minimum_step_2_score <= ?', current_user.step_2ck_score || 300)
                            .where("#{current_user.img_type} > ?", 0)
-                           .where("#{current_user.visa} = ?", 'Yes') # handle situation where user doesnt need visa
+                           .where("#{current_user.visa} = ?", 'Yes')
                            .order("#{current_user.img_type} DESC")
+
+    # handle situation where user doesnt need visa
 
     respond_to do |format|
       format.html

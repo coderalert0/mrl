@@ -5,7 +5,8 @@ class CheckoutController < ApplicationController
       payment_method_types: ['card'],
       line_items: [{
         name: 'MyResidencyList',
-        description: 'Includes access to ALL 17 speciality lists, valid for all matches in the future. Programs database is updated every match season',
+        description: 'Includes access to ALL 7 speciality lists (FM, IM, Neurological Surgery, Neurology, Peds, Psych, IM/Peds), valid for all matches in the future.
+                      Programs database is updated every match season',
         amount: 9900,
         currency: 'usd',
         quantity: 1

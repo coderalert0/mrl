@@ -67,7 +67,7 @@
 
                 <% unless current_user.paid? %>
                     <tr>
-                      <td colspan="5" class="text-center">
+                      <td colspan="6" class="text-center">
                         <%= link_to checkout_create_path, class: 'text-decoration-none', method: :post, remote: true do %>
                           <h4 class="text-danger"><%= t(:upgrade_message) %></h4>
                         <% end %>
@@ -79,6 +79,7 @@
                         50
                       </td>
                       <td class="blurry-text"><%= link_to 'The Program Name Has Been Hidden', checkout_create_path, method: :post, remote: true %></td>
+                      <td class="blurry-text">Hidden Program</td>
                       <td class="blurry-text">Hidden Location</td>
                       <td class="blurry-text">HIDDEN</td>
                       <td class="text-center">

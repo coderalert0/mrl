@@ -24,10 +24,14 @@ class Program < ApplicationRecord
                     website program_director email program_coordinator program_coordinator_email phone]
 
     CSV.generate(headers: true) do |csv|
-      csv << ['Match Score'].concat(attributes.map { |attribute| attribute.humanize.titleize })
+      csv << ['Match Score'].concat(attributes.map { |attribute| attribute.humanize.titleize }).concat(['Bookmarked'])
 
-      all.find_each do |program|
-        csv << [program.send(user.img_type)].concat(attributes.map { |attr| program.send(attr) })
+      all.each do |program|
+        bookmarked = ProgramUser.where(program: program, user: user, bookmark: true).present?
+
+        csv << [program.send(user.img_type)]
+               .concat(attributes.map { |attr| program.send(attr) })
+               .concat([bookmarked ? 'Yes' : 'No'])
       end
     end
   end

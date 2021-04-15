@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :contact
   resources :registration
   resource :user
 end

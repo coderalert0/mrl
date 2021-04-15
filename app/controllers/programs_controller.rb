@@ -20,7 +20,8 @@ class ProgramsController < ApplicationController
                            @programs = @programs.where('minimum_step_1_score <= ?', current_user.step_1_score)
                                                 .where('minimum_step_2_score <= ?', current_user.step_2ck_score || 300)
                                                 .where("#{current_user.img_type} > ?", 0)
-                                                .where('years_since_graduation >= ? OR years_since_graduation IS NULL', current_user.years_since_graduation)
+                                                .where('years_since_graduation >= ? OR years_since_graduation IS NULL',
+                                                       current_user.years_since_graduation)
                                                 .where(us_clinical_experience: [current_user.us_clinical_experience,
                                                                                 nil])
 
@@ -43,7 +44,9 @@ class ProgramsController < ApplicationController
 
     if @form.submit
       flash.notice = 'Program edited successfully'
-      next_program = @program.speciality.programs.where("#{current_user.img_type} > ?", 0).order(:name).where('name > ?', @program.name).first
+      next_program = @program.speciality.programs.where("#{current_user.img_type} > ?", 0).order(:name).where(
+        'name > ?', @program.name
+      ).first
       redirect_to edit_speciality_program_path(@speciality, next_program)
     else
       render 'edit'

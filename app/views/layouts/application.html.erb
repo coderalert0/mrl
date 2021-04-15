@@ -32,7 +32,7 @@
 
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="active ">
+          <li>
             <%= link_to root_path do %>
               <i class="nc-icon nc-bank"></i>
               <p><%= t(:dashboard, scope: :sidebar) %></p>
@@ -47,10 +47,10 @@
             <% end %>
           </li>
           <li>
-            <a href="./typography.html">
+            <%= link_to contact_path do %>
               <i class="nc-icon nc-email-85"></i>
               <p><%= t(:contact_us, scope: :sidebar) %></p>
-            </a>
+            <% end %>
           </li>
           <li class="active-pro">
             <%= link_to destroy_user_session_path, method: :delete do %>

@@ -9,9 +9,9 @@ class Ability
 
     return if user.nil?
 
-    if user.admin?
-      can :crud, Program
-      can :crud, Speciality
-    end
+    return unless user.admin?
+
+    can :crud, Program
+    can :crud, Speciality
   end
 end
