@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery prepend: true, with: :exception
 
   before_action :set_paper_trail_whodunnit
+  before_action :authenticate_user
 
   private
 
@@ -19,5 +20,15 @@ class ApplicationController < ActionController::Base
 
   def registration_controller?
     controller_name == 'registration'
+  end
+
+  def session_controller?
+    controller_name == 'sessions'
+  end
+
+  def authenticate_user
+    return if registration_controller? || session_controller?
+
+    redirect_to new_user_session_path unless user_signed_in?
   end
 end

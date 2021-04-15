@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :redirect_paid_user
+
   def edit
     @form = EditUserForm.new user: current_user
   end
@@ -20,5 +22,9 @@ class UsersController < ApplicationController
   def edit_form(user)
     form_params = params.require(:edit_user_form).permit(EditUserForm.accessible_attributes)
     EditUserForm.new form_params.merge(user: user)
+  end
+
+  def redirect_paid_user
+    redirect_to root_path if current_user.paid
   end
 end
