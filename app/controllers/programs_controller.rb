@@ -1,4 +1,6 @@
 class ProgramsController < ApplicationController
+  include ProgramConcern
+
   load_and_authorize_resource :speciality
   load_and_authorize_resource :program, through: :speciality, find_by: :slug
   layout :resolve_layout
@@ -11,21 +13,12 @@ class ProgramsController < ApplicationController
 
   def index
     @programs = @programs.active.includes(:program_users)
-
     @matching_programs = if params['all'] == 'true'
                            @programs.order(:name)
                          elsif params['img'] == 'true'
                            @programs.where("#{current_user.img_type} > ?", 0).order(:name)
                          else
-                           @programs = @programs.where('minimum_step_1_score <= ?', current_user.step_1_score)
-                                                .where('minimum_step_2_score <= ?', current_user.step_2ck_score || 300)
-                                                .where("#{current_user.img_type} > ?", 0)
-                                                .where('years_since_graduation >= ? OR years_since_graduation IS NULL',
-                                                       current_user.years_since_graduation)
-                                                .where(us_clinical_experience: [current_user.us_clinical_experience,
-                                                                                nil])
-
-                           visa_query.order("#{current_user.img_type} DESC")
+                           matching_programs
                          end
 
     @matching_program_count = @matching_programs.count
@@ -75,17 +68,6 @@ class ProgramsController < ApplicationController
       26 * bookmark_count
     else
       0
-    end
-  end
-
-  def visa_query
-    case current_user.visa
-    when 'no'
-      @programs.where('')
-    when 'j1_or_h1'
-      @programs.where('j_1_sponsorship_through_ecfmg = ? OR h1_b = ?', 'Yes', 'Yes')
-    else
-      @programs.where("#{current_user.visa} = ?", 'Yes')
     end
   end
 
