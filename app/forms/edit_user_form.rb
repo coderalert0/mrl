@@ -1,9 +1,9 @@
 class EditUserForm < BaseForm
   nested_attributes :img_type, :step_1_score, :step_2ck_score, :step_1_fail, :step_2ck_fail,
-                    :step_2cs_fail, :us_clinical_experience, :years_since_graduation, :visa, to: :user
+                    :passed_step_2cs_first_attempt, :us_clinical_experience, :years_since_graduation, :visa, to: :user
 
   accessible_attr :img_type, :step_1_score, :step_2ck_score, :step_1_fail, :step_2ck_fail,
-                  :step_2cs_fail, :us_clinical_experience, :years_since_graduation, :visa
+                  :passed_step_2cs_first_attempt, :us_clinical_experience, :years_since_graduation, :visa
 
   validate :disable_if_paid
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_08_052110) do
+ActiveRecord::Schema.define(version: 2021_04_15_231751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_052110) do
     t.integer "step_2ck_score"
     t.boolean "step_1_fail"
     t.boolean "step_2ck_fail"
-    t.boolean "step_2cs_fail"
+    t.boolean "passed_step_2cs_first_attempt"
     t.boolean "us_clinical_experience"
     t.integer "years_since_graduation", null: false
     t.integer "visa", null: false

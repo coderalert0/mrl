@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates_inclusion_of :step_2ck_score, in: 1..300, allow_nil: true,
                                           message: I18n.t(:invalid_score_error)
   validates_inclusion_of :us_clinical_experience, in: [true, false]
+  validates_inclusion_of :passed_step_2cs_first_attempt, in: [true, false]
   validates_uniqueness_of :email, conditions: -> { where.not(email: '') }
 
   enum img_type: { us_md_graduates: 0,

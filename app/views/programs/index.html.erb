@@ -12,13 +12,17 @@
           </p>
         </div>
 
-        <% if current_user.paid? %>
-          <div class="ml-auto align-self-center">
+        <div class="ml-auto align-self-center">
+          <% if current_user.paid? %>
             <%= link_to speciality_download_programs_path(@speciality, format: 'csv') do %>
               <button type="button" class="btn btn-success"><%= t(:download_csv) %></button>
             <% end %>
-          </div>
-        <% end %>
+          <% else %>
+            <%= link_to checkout_create_path, method: :post, remote: true do %>
+              <button type="button" class="btn btn-success"><%= t(:download_csv) %></button>
+            <% end %>
+          <% end %>
+        </div>
       </div>
 
       <div class="card-body ">
@@ -79,7 +83,6 @@
                         50
                       </td>
                       <td class="blurry-text"><%= link_to 'The Program Name Has Been Hidden', checkout_create_path, method: :post, remote: true %></td>
-                      <td class="blurry-text">Hidden Program</td>
                       <td class="blurry-text">Hidden Location</td>
                       <td class="blurry-text">HIDDEN</td>
                       <td class="text-center">

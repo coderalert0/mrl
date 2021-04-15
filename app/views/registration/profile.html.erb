@@ -1,4 +1,4 @@
-<div class="col-md-5 mx-auto">
+<div class="col-md-6 mx-auto">
   <%= bootstrap_form_for @form, :url => wizard_path(:profile), label_col: 'col-sm-5', :method => :put do |f| %>
 
     <div class="field">
@@ -16,6 +16,10 @@
 
     <div class="field">
       <%= f.text_field :step_2ck_score, help: t(:valid_score_help_text), label: 'Step 2 CK Score' %>
+    </div>
+
+    <div class="field">
+      <%= f.select :passed_step_2cs_first_attempt, [['Yes', true], ['No', false]], :include_blank => true, label: t(:passed_step_2cs_first_attempt), :label_class => 'required' %>
     </div>
 
     <div class="field">

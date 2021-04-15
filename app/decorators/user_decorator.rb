@@ -5,7 +5,7 @@ class UserDecorator < Draper::Decorator
     us_clinical_experience ? 'Yes' : 'No'
   end
 
-  def step_2cs_fail_display
-    step_2cs_fail ? 'Yes' : 'No'
+  def passed_step_2cs_first_attempt_display
+    passed_step_2cs_first_attempt ? 'Yes' : 'No'
   end
 end

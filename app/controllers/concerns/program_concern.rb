@@ -10,17 +10,26 @@ module ProgramConcern
                          .where(us_clinical_experience: [current_user.us_clinical_experience,
                                                          nil])
 
-    visa_query.order("#{current_user.img_type} DESC")
+    visa_query
+    step_2_cs_query.order("#{current_user.img_type} DESC")
   end
 
   def visa_query
-    case current_user.visa
-    when 'no'
-      @programs.where('')
-    when 'j1_or_h1'
-      @programs.where('j_1_sponsorship_through_ecfmg = ? OR h1_b = ?', 'Yes', 'Yes')
+    @programs = case current_user.visa
+                when 'no'
+                  @programs.where('')
+                when 'j1_or_h1'
+                  @programs.where('j_1_sponsorship_through_ecfmg = ? OR h1_b = ?', 'Yes', 'Yes')
+                else
+                  @programs.where("#{current_user.visa} = ?", 'Yes')
+                end
+  end
+
+  def step_2_cs_query
+    if current_user.passed_step_2cs_first_attempt
+      @programs
     else
-      @programs.where("#{current_user.visa} = ?", 'Yes')
+      @programs.where('must_pass_step_2_cs_first_attempt = ?', 'No')
     end
   end
 end
