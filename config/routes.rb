@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   resource :contact
   resources :registration
   resource :user
+  resources :users
 end

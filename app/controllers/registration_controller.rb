@@ -40,7 +40,7 @@ class RegistrationController < ApplicationController
   end
 
   def sign_in_user
-    sign_in(user, bypass: true)
+    user.update(sign_in_count: 1, last_sign_in_at: DateTime.now) if sign_in(user, bypass: true)
     redirect_to root_path
   end
 

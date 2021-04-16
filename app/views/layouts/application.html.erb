@@ -46,6 +46,14 @@
               <% end %>
             <% end %>
           </li>
+          <% if current_user.admin? %>
+            <li>
+              <%= link_to users_path do %>
+                <i class="nc-icon nc-settings-gear-65"></i>
+                <p><%= t(:admin, scope: :sidebar) %></p>
+              <% end %>
+            </li>
+          <% end %>
           <li>
             <%= link_to contact_path do %>
               <i class="nc-icon nc-email-85"></i>
