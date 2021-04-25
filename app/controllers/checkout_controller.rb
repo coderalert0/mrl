@@ -7,7 +7,7 @@ class CheckoutController < ApplicationController
         name: 'MyResidencyList',
         description: 'Includes access to ALL 7 speciality lists (FM, IM, Neurological Surgery, Neurology, Peds, Psych, IM/Peds), valid for all matches in the future.
                       Programs database is updated every match season',
-        amount: 9900,
+        amount: current_user.non_caribbean_img? ? 9900 : 7900,
         currency: 'usd',
         quantity: 1
       }],

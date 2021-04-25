@@ -22,6 +22,10 @@ class User < ApplicationRecord
                h1_b: 2,
                j1_or_h1: 3 }
 
+  def non_caribbean_img?
+    img_type == 'non_us_citizen_international_medical_graduates'
+  end
+
   protected
 
   def password_required?
