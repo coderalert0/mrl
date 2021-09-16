@@ -71,6 +71,7 @@ en:
   speciality: 'Speciality'
   step_2_ck_score: 'Step 2 CK Score'
   passed_step_2cs_first_attempt: 'Passed Step 2 CS on First Attempt'
+  passed_step_2cs_first_attempt_help_text: 'Please select Yes if you have not attempted Step 2CS'
   website: 'Website'
   upgrade_message: 'To see all matching programs click here to upgrade your account'
   us_clinical_experience: 'US Clinical Experience'
