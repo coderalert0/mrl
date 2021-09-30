@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :redirect_paid_user, except: :index
 
   def index
-    @users = User.all.decorate.order(created_at: :desc)
+    @users = User.where.not(email: '').decorate.order(created_at: :desc)
   end
 
   def edit
