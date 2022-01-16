@@ -129,20 +129,26 @@
         <h5 class="card-title"><%= t(:contact_details) %></h5>
       </div>
       <div class="card-body ">
-        <label><%= t(:email) %>: </label>
-        <span><%= @program.email %></span><br/>
+        <% unless current_user.nil? %>
+          <label><%= t(:email) %>: </label>
+          <span><%= @program.email %></span><br/>
+        <% end %>
 
         <label><%= t(:program_coordinator) %>: </label>
         <span><%= @program.program_coordinator %></span><br/>
 
-        <label><%= t(:program_coordinator_email) %>: </label>
-        <span><%= @program.program_coordinator_email %></span><br/>
+        <% unless current_user.nil? %>
+          <label><%= t(:program_coordinator_email) %>: </label>
+          <span><%= @program.program_coordinator_email %></span><br/>
+        <% end %>
 
         <label><%= t(:program_director) %>: </label>
         <span><%= @program.program_director %></span><br/>
 
-        <label><%= t(:phone) %>: </label>
-        <span><%= @program.phone %></span><br/><br/>
+        <% unless current_user.nil? %>
+          <label><%= t(:phone) %>: </label>
+          <span><%= @program.phone %></span><br/><br/>
+        <% end %>
 
         <label><%= t(:website) %>:</label>
         <%= link_to(@program.website, @program.website, target: :_blank) %>

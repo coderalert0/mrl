@@ -1,7 +1,7 @@
 class Module
   def delegate_read_write(*fields)
     options = fields.extract_options!
-    delegate(*(fields.flat_map { |attr| [attr, "#{attr}=".to_sym] }), options)
+    delegate(*(fields.flat_map { |attr| [attr, "#{attr}=".to_sym] }), to: options[:to])
   end
 
   def validates_model(obj, options = {})

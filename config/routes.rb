@@ -27,4 +27,6 @@ Rails.application.routes.draw do
   resources :registration
   resource :user
   resources :users
+
+  get '/sitemap.xml', to: 'sitemap#show'
 end

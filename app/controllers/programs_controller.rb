@@ -5,10 +5,12 @@ class ProgramsController < ApplicationController
   load_and_authorize_resource :program, through: :speciality, find_by: :slug
   layout :resolve_layout
   before_action :find_or_initialize_program_user, only: :show
+  skip_before_action :authenticate_user, only: :show
 
   def show
     @form = CreateProgramNoteForm.new program_user: @program_user
     @program = @program.decorate
+    render layout: current_user.nil? ? 'program' : 'application'
   end
 
   def index

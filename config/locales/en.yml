@@ -92,7 +92,7 @@ en:
     logout: 'Logout'
     admin: 'Admin'
   footer:
-    copyright: © 2021 MyResidencyList
+    copyright: © %{year} MyResidencyList
   img_types:
     us_md_graduates: 'US Medical Graduate'
     us_citizen_international_medical_graduates: 'Caribbean IMG'
