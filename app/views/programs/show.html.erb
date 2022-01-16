@@ -36,17 +36,6 @@
                 </td>
               </tr>
               <tr>
-              <% unless current_user.nil? %>
-                <tr>
-                  <td>
-                    <i class="nc-icon nc-atom text-warning mr-2"></i>
-                    <%= t(:your_match_score) %>
-                  </td>
-                  <td>
-                    <%= @program.send(current_user.img_type) %>%
-                  </td>
-                </tr>
-              <% end %>
               <tr>
                 <td>
                   <i class="nc-icon nc-chart-bar-32 text-success mr-2"></i>
@@ -103,6 +92,38 @@
         </div>
       </div>
     </div>
+    <% unless current_user.nil? %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card ">
+            <div class="card-header ">
+              <h5 class="card-title"><%= t(:notes) %></h5>
+            </div>
+            <div class="card-body ">
+              <div class="row">
+                <div class="col-md-12">
+                  <% if can? :edit, @program %>
+                    <%= link_to '', class: 'btn btn-light border' do %>
+                      <i class="ti-pencil"> </i><%= t(:edit) %>
+                    <% end %>
+                  <% end %>
+
+                  <%= bootstrap_form_for @form, :url => speciality_program_note_url(@speciality, @program), control_col: 'col-md-12', :method => :post do |f| %>
+                    <div class="field">
+                      <%= f.text_area :note, hide_label: true, rows: 5 %>
+                    </div>
+
+                    <div class="actions text-right">
+                      <%= f.submit t(:save), class: 'btn btn-info' %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div class="col-md-4">
@@ -123,6 +144,32 @@
         <% end %>
       </div>
     <% end %>
+
+    <div class="card">
+      <div class="card-header ">
+        <h5 class="card-title"><%= t(:friendliness_score) %></h5>
+      </div>
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <tbody>
+              <% %i[us_md_graduates us_do_graduates non_us_citizen_international_medical_graduates us_citizen_international_medical_graduates].each do |attribute| %>
+                <tr>
+                  <td>
+                    <%= t(attribute, scope: :img_types) %>
+                  </td>
+                  <td>
+                    <%= @program.send("#{attribute}_friendliness_score") %>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="card">
       <div class="card-header ">
@@ -156,36 +203,3 @@
     </div>
   </div>
 </div>
-
-<% unless current_user.nil? %>
-  <div class="row">
-    <div class="col-md-8">
-      <div class="card ">
-        <div class="card-header ">
-          <h5 class="card-title"><%= t(:notes) %></h5>
-        </div>
-        <div class="card-body ">
-          <div class="row">
-            <div class="col-md-12">
-              <% if can? :edit, @program %>
-                <%= link_to '', class: 'btn btn-light border' do %>
-                  <i class="ti-pencil"> </i><%= t(:edit) %>
-                <% end %>
-              <% end %>
-
-              <%= bootstrap_form_for @form, :url => speciality_program_note_url(@speciality, @program), control_col: 'col-md-12', :method => :post do |f| %>
-                <div class="field">
-                  <%= f.text_area :note, hide_label: true, rows: 5 %>
-                </div>
-
-                <div class="actions text-right">
-                  <%= f.submit t(:save), class: 'btn btn-info' %>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>

@@ -45,6 +45,7 @@ en:
   eras_application_fees: 'ERAS Application Fees:'
   email: 'Email'
   email_help_text: 'We will not send you any marketing or unsolicited emails'
+  friendliness_score: 'Friendliness Score'
   full_name: 'Full Name'
   invalid_score_error: 'Invalid score (Valid score is between 1 and 300)'
   last_sign_in_at: 'Last Sign In At'
@@ -79,7 +80,6 @@ en:
   visa_required: 'Visa Required'
   visa_types_sponsored: 'Visa Types Sponsored'
   years_since_graduation: 'Years Since Graduation'
-  your_match_score: 'Your Match Score'
   your_step_1_score: 'Your Step 1 Score'
   your_step_2_ck_score: 'Your Step 2 CK Score'
 
