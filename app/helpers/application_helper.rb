@@ -1,11 +1,11 @@
 module ApplicationHelper
   module BootstrapExtension
     def wizard_next_button
-      submit_tag 'View Program Matches', class: 'btn btn-lg btn-success'
+      submit_tag 'View My Program Matches', class: 'btn btn-lg btn-success'
     end
 
     def wizard_show_matches_button
-      submit_tag 'View Program Matches', class: 'btn btn-success'
+      submit_tag 'View My Program Matches', class: 'btn btn-success'
     end
   end
 

@@ -1,7 +1,7 @@
 class ProgramsController < ApplicationController
   include ProgramConcern
 
-  load_and_authorize_resource :speciality
+  load_and_authorize_resource :speciality, find_by: :slug
   load_and_authorize_resource :program, through: :speciality, find_by: :slug
   layout :resolve_layout
   before_action :find_or_initialize_program_user, only: :show

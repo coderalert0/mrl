@@ -45,12 +45,15 @@ en:
   eras_application_fees: 'ERAS Application Fees:'
   email: 'Email'
   email_help_text: 'We will not send you any marketing or unsolicited emails'
-  friendliness_score: 'Friendliness Score'
+  friendliness_score: 'Program Friendliness Score'
   full_name: 'Full Name'
   invalid_score_error: 'Invalid score (Valid score is between 1 and 300)'
   last_sign_in_at: 'Last Sign In At'
   location: 'Location'
-  match_score: 'Match Score™'
+  friendliness_score_help_text_html: |
+    Based on the profiles of current and past residents</br>
+    (the higher the score, the more friendlier the program)
+  maximum_years_since_graduation: 'Maximum Years Since Graduation'
   minimum_password_length_help_text: 'The minimum password length is %{length}'
   minimum_step_1: 'Minimum Step 1'
   minimum_step_2_ck: 'Minimum Step 2 CK'
@@ -64,6 +67,7 @@ en:
   program_director: 'Program Director'
   program_name: 'Program Name'
   remove_program: 'Remove Program'
+  requires_us_clinical_experience: 'Requires US Clinical Experience?'
   requires_step_2_ck_completion: 'Requires Step 2 CK Completion?'
   require_step_2_cs_pass: 'Requires Step 2 CS Pass on First Attempt?'
   save: 'Save'

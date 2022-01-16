@@ -3,10 +3,17 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery prepend: true, with: :exception
 
+  before_action :redirect_from_heroku
   before_action :set_paper_trail_whodunnit
   before_action :authenticate_user
 
   private
+
+  def redirect_from_heroku
+    return unless request.host === 'myresidencylist.herokuapp.com'
+
+    redirect_to("#{request.protocol}www.myresidencylist.com#{request.fullpath}", status: 301)
+  end
 
   def layout_by_resource
     if devise_controller?

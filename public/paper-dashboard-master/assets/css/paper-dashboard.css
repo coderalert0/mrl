@@ -927,14 +927,12 @@ fieldset[disabled]
 
 .btn-lg {
   font-size: 1rem;
-  border-radius: 6px;
   padding: 15px 48px; }
 .btn-lg.btn-simple {
   padding: 14px 47px; }
 
 .btn-sm {
   font-size: 0.8571em;
-  border-radius: 3px;
   padding: 5px 15px; }
 .btn-sm.btn-simple {
   padding: 4px 14px; }
@@ -1402,7 +1400,7 @@ h4.title + .category, .h4 + .category,
   margin-top: -10px; }
 
 h5, .h5 {
-  font-size: 1.57em;
+  font-size: 1.1em;
   line-height: 1.4em;
   margin-bottom: 15px; }
 

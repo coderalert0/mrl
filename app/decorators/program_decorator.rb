@@ -22,8 +22,6 @@ class ProgramDecorator < Draper::Decorator
     end
   end
 
-  def match_score_display; end
-
   private
 
   def friendliness_score_class(img_type)

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>MyResidencyList</title>
+    <title>Is <%= @program.name.truncate(40, separator: ' ') %> IMG Friendly?</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -30,35 +30,6 @@
                 IMG Friendly Residency Programs List
               <% end %>
             </div>
-          </div>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <ul class="navbar-nav">
-              <li class="nav-item font-weight-bold">
-                <%= link_to root_path, class: 'nav-link text-primary' do %>
-                  <i class="nc-icon nc-circle-10"></i>
-                  View My Matches
-                <% end %>
-              </li>
-
-              <li class="nav-item">
-                <%= link_to 'http://blog.myresidencylist.com', class: 'nav-link', target: '_blank' do %>
-                  <i class="nc-icon nc-single-copy-04"></i> Blog
-                <% end %>
-
-              </li>
-              <li class="nav-item ">
-                <a href="/#faq" class="nav-link">
-                  <i class="nc-icon nc-book-bookmark"></i>
-                  FAQ
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/#contact" class="nav-link">
-                  <i class="nc-icon nc-email-85"></i>
-                  Contact Us
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
       </nav>
