@@ -75,6 +75,7 @@ en:
   submit: 'Submit'
   speciality: 'Speciality'
   step_2_ck_score: 'Step 2 CK Score'
+  top_feeder_medical_schools: 'Top Feeder Medical Schools'
   passed_step_2cs_first_attempt: 'Passed Step 2 CS on First Attempt'
   passed_step_2cs_first_attempt_help_text: 'Please select Yes if you have not attempted Step 2CS'
   website: 'Website'

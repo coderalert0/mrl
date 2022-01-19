@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_16_081013) do
+ActiveRecord::Schema.define(version: 2022_01_20_033731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,21 @@ ActiveRecord::Schema.define(version: 2022_01_16_081013) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "medical_school_programs", force: :cascade do |t|
+    t.bigint "program_id", null: false
+    t.bigint "medical_school_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["medical_school_id"], name: "index_medical_school_programs_on_medical_school_id"
+    t.index ["program_id"], name: "index_medical_school_programs_on_program_id"
+  end
+
+  create_table "medical_schools", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "program_users", force: :cascade do |t|
@@ -65,6 +80,8 @@ ActiveRecord::Schema.define(version: 2022_01_16_081013) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
+    t.boolean "feeder_schools"
+    t.string "doximity_url"
     t.index ["slug"], name: "index_programs_on_slug", unique: true
     t.index ["speciality_id"], name: "index_programs_on_speciality_id"
   end

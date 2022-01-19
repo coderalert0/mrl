@@ -22,6 +22,10 @@ class ProgramDecorator < Draper::Decorator
     end
   end
 
+  def has_friendliness_data?
+    (us_md_graduates + non_us_citizen_international_medical_graduates + us_citizen_international_medical_graduates + us_do_graduates).positive?
+  end
+
   private
 
   def friendliness_score_class(img_type)

@@ -8,13 +8,22 @@ task scrape: :environment do
 
   program_hash = {}
 
-  args = %w[headless no-sandbox]
-  browser = Watir::Browser.new :chrome, args: args
+  args = %w[--headless]
+  options = { args: args }
+  browser = Watir::Browser.new :firefox, options: options
 
   # Login
-  browser.goto('https://www.residencyexplorer.org/Saml/InitiateSingleSignOn')
-  browser.text_field(id: 'mat-input-2').set 'navneetdr85'
-  browser.text_field(id: 'password-field').set 'Ekonk@r85'
+  browser.goto('https://www.residencyexplorer.org/')
+  browser.link(text: 'Login to Account').click
+
+  $stdout.puts 'Please enter your username:'
+  email = $stdin.gets.strip
+
+  $stdout.puts 'Please enter your password:'
+  password = $stdin.gets.strip
+
+  browser.text_field(id: 'mat-input-2').set email
+  browser.text_field(id: 'password-field').set password
   browser.button(id: 'login-btn').click
   browser.wait_until { browser.text.include? 'Logout' }
 
@@ -91,6 +100,70 @@ task scrape: :environment do
     end
   rescue StandardError
     puts 'An error occurred'
+  end
+
+  browser.close
+end
+
+task scrape_schools: :environment do
+  $stdout.puts 'Please enter your email address:'
+  email = $stdin.gets.strip
+
+  $stdout.puts 'Please enter your password:'
+  password = $stdin.gets.strip
+
+  args = %w[--headless]
+  options = { args: args }
+  browser = Watir::Browser.new :firefox, options: options
+
+  # Login
+  browser.goto('https://www.doximity.com/signin')
+  browser.text_field(id: 'login').set email
+  browser.text_field(id: 'password').set password
+  browser.button(id: 'signinbutton').click
+  browser.wait_until { browser.text.include? 'Home' }
+
+  Program.active.includes(:program_users)
+
+  # List all specialities with id
+  Speciality.active.all.each do |speciality|
+    $stdout.puts "#{speciality.id} - #{speciality.name}"
+  end
+  $stdout.puts 'Please enter a Speciality ID:'
+  speciality_id = $stdin.gets.strip
+
+  # Prompt for doximity URL for programs sorted by IMG Friendliness
+  Speciality.find(speciality_id).programs.active.order(:name).each do |program|
+    next unless program.feeder_schools.nil?
+
+    $stdout.puts program.name
+    $stdout.puts program.address
+    $stdout.puts program.program_director
+    $stdout.puts program.program_coordinator
+    $stdout.puts 'Please enter a corresponding Doximity URL:'
+    doximity_url = $stdin.gets.strip
+    next unless doximity_url.present?
+
+    program.update(doximity_url: doximity_url)
+
+    browser.goto(doximity_url)
+    browser.wait_until { browser.text.include? 'Read more about' }
+
+    feeder_list_elements = browser.lis(class: 'residency-program-top-feeder-list-item')
+
+    program.update(feeder_schools: feeder_list_elements.count.positive?)
+
+    feeder_list_elements.each do |li|
+      next if li.text == 'Other'
+
+      medical_school = MedicalSchool.find_or_create_by(name: li.text)
+      MedicalSchoolProgram.find_or_create_by(medical_school: medical_school, program: program)
+    end
+
+    $stdout.puts program.reload.feeder_schools.to_s
+    $stdout.puts program.medical_schools.map(&:name).to_s
+    $stdout.puts
+    $stdout.puts
   end
 
   browser.close

@@ -114,6 +114,37 @@
         </div>
       </div>
     </div>
+    <% if @program.medical_schools.present? %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card ">
+            <div class="card-header ">
+              <h5 class="card-title text-uppercase font-weight-bold"><%= t(:top_feeder_medical_schools) %></h5>
+            </div>
+            <div class="card-body ">
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table">
+                    <tbody>
+                    <tr>
+                      <td>
+                        <% @program.medical_schools.each do |medical_school| %>
+                          <li>
+                            <%= medical_school.name %>
+                          </li>
+                        <% end %>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
     <% unless current_user.nil? %>
       <div class="row">
         <div class="col-md-12">
@@ -167,36 +198,42 @@
       </div>
     <% end %>
 
-    <div class="card <%= 'border-success' if current_user.nil? %>">
-      <div class="card-header ">
-        <h5 class="card-title text-uppercase font-weight-bold"><%= t(:friendliness_score) %></h5>
-      </div>
-      <div class="card-body ">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="small text-muted mb-3"><%= t(:friendliness_score_help_text_html) %></div>
+    <% if @program.has_friendliness_data? %>
+      <div class="card <%= 'border-success' if current_user.nil? %>">
+        <div class="card-header ">
+          <h5 class="card-title text-uppercase font-weight-bold"><%= t(:friendliness_score) %></h5>
+        </div>
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="small text-muted mb-3"><%= t(:friendliness_score_help_text_html) %></div>
 
-            <table class="table">
-              <tbody>
-              <% %i[us_md_graduates us_do_graduates non_us_citizen_international_medical_graduates us_citizen_international_medical_graduates].each do |attribute| %>
-                <tr>
-                  <td>
-                    <%= t(attribute, scope: :img_types) %>
-                  </td>
-                  <td class="font-weight-bold">
-                    <%= @program.send("#{attribute}_friendliness_score") %>
-                  </td>
-                </tr>
+              <table class="table">
+                <tbody>
+                <% %i[us_md_graduates us_do_graduates non_us_citizen_international_medical_graduates us_citizen_international_medical_graduates].each do |attribute| %>
+                  <tr>
+                    <td>
+                      <%= t(attribute, scope: :img_types) %>
+                    </td>
+                    <td class="font-weight-bold">
+                      <%= @program.send("#{attribute}_friendliness_score") %>
+                    </td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+              <% if current_user.nil? %>
+                <%= link_to 'View Programs Matching My Profile', root_path, class: 'btn btn-lg btn-success text-white'  %>
               <% end %>
-              </tbody>
-            </table>
-            <% if current_user.nil? %>
-              <%= link_to 'View Programs Matching My Profile', root_path, class: 'w-100 btn btn-lg btn-success text-white'  %>
-            <% end %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <% else %>
+      <% if current_user.nil? %>
+        <%= link_to 'View Programs Matching My Profile', root_path, class: 'btn btn-lg btn-success text-white'  %>
+      <% end %>
+    <% end %>
 
     <div class="card">
       <div class="card-header ">

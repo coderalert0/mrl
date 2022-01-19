@@ -6,7 +6,8 @@ class Program < ApplicationRecord
 
   belongs_to :speciality
   has_many :program_users
-
+  has_many :medical_school_programs
+  has_many :medical_schools, through: :medical_school_programs
   scope :active, -> { where(active: 1) }
 
   validates_presence_of :acgme_program_code, :name

@@ -4,5 +4,7 @@ class Speciality < ApplicationRecord
 
   has_many :programs, dependent: :destroy
 
+  scope :active, -> { where(active: 1) }
+
   validates_presence_of :name
 end
