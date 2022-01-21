@@ -17,7 +17,8 @@ class ProgramDecorator < Draper::Decorator
      us_citizen_international_medical_graduates].each do |attribute|
     define_method :"#{attribute}_friendliness_score" do
       h.content_tag :div do
-        h.concat h.content_tag :span, "#{send(attribute)}/100", class: friendliness_score_class(attribute)
+        h.concat h.content_tag :span, "#{friendliness_score(attribute)}/100",
+                               class: friendliness_score_class(attribute)
       end
     end
   end
@@ -28,11 +29,22 @@ class ProgramDecorator < Draper::Decorator
 
   private
 
+  def friendliness_score(attribute)
+    if send(attribute).zero?
+      other_applicant_types = User.img_types.keys.map(&:to_sym) - [attribute]
+      other_applicant_type_sum = other_applicant_types.reduce(0) { |sum, attribute| sum + send(attribute).to_i }
+
+      other_applicant_type_sum == 100 ? 0 : 100 - other_applicant_type_sum
+    else
+      send(attribute)
+    end
+  end
+
   def friendliness_score_class(img_type)
-    percentage = send(img_type)
+    percentage = friendliness_score(img_type)
 
     if percentage.zero?
-      'text-danger'
+      'text-muted'
     elsif percentage.positive? && percentage <= 25
       'text-warning'
     elsif percentage > 25 && percentage <= 50

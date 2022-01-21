@@ -168,3 +168,71 @@ task scrape_schools: :environment do
 
   browser.close
 end
+
+task scrape_schoolz: :environment do
+  # This number will change every year
+  total_program = 5122
+
+  program_hash = {}
+
+  args = %w[--headless]
+  options = { args: args }
+  browser = Watir::Browser.new :firefox, options: options
+
+  # Login
+  browser.goto('https://www.residencyexplorer.org/')
+  browser.wait_until { browser.text.include? 'Login to Account' }
+
+  browser.link(text: 'Login to Account').click
+
+  $stdout.puts 'Please enter your username:'
+  email = $stdin.gets.strip
+
+  $stdout.puts 'Please enter your password:'
+  password = $stdin.gets.strip
+
+  browser.text_field(id: 'mat-input-2').set email
+  browser.text_field(id: 'password-field').set password
+  browser.button(id: 'login-btn').click
+  browser.wait_until { browser.text.include? 'Logout' }
+
+  (798..total_program).each do |index|
+    puts "#{index} of #{total_program}"
+
+    # Visit program details page
+    browser.goto("https://www.residencyexplorer.org/Program/GetById/#{index}")
+    browser.wait_until { browser.text.include? 'Program Quick Facts' }
+
+    # Extract program name
+    program_hash['name'] = browser.h1(class: 'program-detail-name').text
+
+    label_element = browser.label(text: 'ACGME Program Code')
+    program_hash['ACGME Program Code'.snakify] = label_element.siblings[1].text if label_element.siblings[1].exists?
+
+    puts program_hash
+
+    # Extract feeder medical schools
+    feeder_medical_schools_element = browser.element(xpath: '//*[@id="top5body"]/div/script[1]')
+    if feeder_medical_schools_element.exists?
+      feeder_medical_schools_element = feeder_medical_schools_element.html.gsub(/\{(.*?)\}/).first
+      feeder_medical_schools_element = JSON.parse(feeder_medical_schools_element)
+
+      program = Program.find_by(acgme_program_code: program_hash['acgme_program_code'])
+      unless program.medical_schools.present?
+        feeder_medical_schools_element.each do |key, value|
+          next if key == 'More than 1 school has this rank*' || value < 10
+
+          puts "#{key}: #{value}"
+          medical_school = MedicalSchool.find_or_create_by(name: key)
+          MedicalSchoolProgram.find_or_create_by(medical_school: medical_school, program: program)
+        end
+      end
+    end
+
+    puts
+  rescue StandardError
+    puts 'An error occurred'
+  end
+
+  browser.close
+end
