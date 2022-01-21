@@ -196,7 +196,7 @@ task scrape_schoolz: :environment do
   browser.button(id: 'login-btn').click
   browser.wait_until { browser.text.include? 'Logout' }
 
-  (798..total_program).each do |index|
+  (1..total_program).each do |index|
     puts "#{index} of #{total_program}"
 
     # Visit program details page

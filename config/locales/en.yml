@@ -45,7 +45,7 @@ en:
   eras_application_fees: 'ERAS Application Fees:'
   email: 'Email'
   email_help_text: 'We will not send you any marketing or unsolicited emails'
-  friendliness_score: 'Program Friendliness Score'
+  friendliness_score: 'Friendliness Score'
   full_name: 'Full Name'
   invalid_score_error: 'Invalid score (Valid score is between 1 and 300)'
   last_sign_in_at: 'Last Sign In At'

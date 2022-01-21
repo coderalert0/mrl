@@ -24,7 +24,7 @@ class ProgramsController < ApplicationController
                          end
 
     @matching_program_count = @matching_programs.count
-    @matching_programs = @matching_programs.limit(5) unless current_user.paid?
+    @matching_programs = @matching_programs.first(5) unless current_user.paid?
 
     bookmark_count = ProgramUser.where(program: @matching_programs, user: current_user, bookmark: true).count
     @fee = calculate_fee(bookmark_count)
