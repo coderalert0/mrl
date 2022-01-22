@@ -17,21 +17,21 @@
               <tr>
                 <th><%= t(:full_name) %></th>
                 <th><%= t(:email) %></th>
-                <th><%= t(:sign_in_count) %></th>
+                <th><%= t(:visitor_count, scope: :admin) %></th>
+                <th><%= t(:attempts_to_upgrade, scope: :admin) %></th>
                 <th><%= t(:created_at) %></th>
                 <th><%= t(:last_sign_in_at) %></th>
-                <th><%= t(:paid) %></th>
               </tr>
               </thead>
               <tbody>
                 <% @users.each do |user| %>
-                  <tr>
-                    <td><%= user.full_name_display %></td>
+                  <tr class="<%= 'table-success' if user.paid? %>">
+                    <td><%= link_to(user.full_name_display, user_path(user)) %></td>
                     <td><%= user.email %></td>
-                    <td><%= user.sign_in_count %></td>
+                    <td><%= user.visits.size %></td>
+                    <td><%= user.attempts_to_upgrade %></td>
                     <td><%= user.created_at_display %></td>
                     <td><%= user.last_sign_in_at_display %></td>
-                    <td><%= user.paid_display %></td>
                   </tr>
                 <% end %>
               </tbody>

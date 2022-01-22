@@ -15,9 +15,8 @@ module ProgramConcern
   end
 
   def sort_query
-    @programs.select do |program|
-      program.percentage(current_user.img_type) > 10
-    end.sort_by { |program| program.percentage(@current_user.img_type) }.reverse
+    @programs = @programs.select { |program| program.percentage(current_user.img_type) > 10 }
+    @programs.sort_by { |program| program.percentage(@current_user.img_type) }.reverse
   end
 
   def visa_query

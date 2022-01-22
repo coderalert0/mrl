@@ -196,7 +196,7 @@
       </div>
     <% end %>
 
-    <% if @program.has_friendliness_data? %>
+    <% if @program.friendliness_data? %>
       <div class="card <%= 'border-success' if current_user.nil? %>">
         <div class="card-header ">
           <h5 class="card-title text-uppercase font-weight-bold"><%= t(:friendliness_score) %></h5>

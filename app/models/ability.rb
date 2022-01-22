@@ -13,5 +13,6 @@ class Ability
 
     can :crud, Program
     can :crud, Speciality
+    can :crud, User
   end
 end

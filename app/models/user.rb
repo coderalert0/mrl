@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :visits, class_name: 'Ahoy::Visit'
+  has_many :events, through: :visits
 
   validates_presence_of :step_1_score, :img_type, :years_since_graduation, :visa
   validates_inclusion_of :step_1_score, in: 1..300, message: I18n.t(:invalid_score_error)
@@ -26,6 +27,10 @@ class User < ApplicationRecord
 
   def non_caribbean_img?
     img_type == 'non_us_citizen_international_medical_graduates'
+  end
+
+  def attempts_to_upgrade
+    events.select { |event| event.name == 'User attempted to upgrade' }.size
   end
 
   protected

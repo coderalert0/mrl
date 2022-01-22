@@ -42,7 +42,7 @@
           </li>
           <li>
             <% unless current_user.paid? %>
-              <%= link_to edit_user_path do %>
+              <%= link_to edit_user_path(current_user) do %>
                 <i class="nc-icon nc-single-02"></i>
                 <p><%= t(:edit_profile, scope: :sidebar) %></p>
               <% end %>

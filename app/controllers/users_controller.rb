@@ -1,8 +1,17 @@
 class UsersController < ApplicationController
-  before_action :redirect_paid_user, except: :index
+  before_action :redirect_paid_user, except: %i[index show]
+  load_and_authorize_resource :user, only: :show
+
+  def show
+    @user = @user.decorate
+  end
 
   def index
-    @users = User.where.not(email: '').decorate.order(created_at: :desc)
+    @users = User.includes(:visits, :events)
+                 .where.not(email: '')
+                 .order(created_at: :desc)
+
+    @users = @users.decorate
   end
 
   def edit

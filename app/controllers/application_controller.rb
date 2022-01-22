@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   private
 
   def redirect_from_heroku
-    return unless request.host === 'myresidencylist.herokuapp.com'
+    return unless request.host == 'myresidencylist.herokuapp.com'
 
     redirect_to("#{request.protocol}www.myresidencylist.com#{request.fullpath}", status: 301)
   end

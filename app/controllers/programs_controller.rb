@@ -20,9 +20,7 @@ class ProgramsController < ApplicationController
     ahoy.track("Viewing speciality list: #{@speciality.name}")
 
     @programs = @programs.decorate.includes(:program_users, :users, :medical_schools)
-    @matching_programs = if params['all'] == 'true'
-                           @programs.order(:name)
-                         elsif params['img'] == 'true'
+    @matching_programs = if params['all'] == 'true' || params['img'] == 'true'
                            @programs.order(:name)
                          else
                            matching_programs

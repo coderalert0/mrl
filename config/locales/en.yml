@@ -71,7 +71,6 @@ en:
   requires_step_2_ck_completion: 'Requires Step 2 CK Completion?'
   require_step_2_cs_pass: 'Requires Step 2 CS Pass on First Attempt?'
   save: 'Save'
-  sign_in_count: 'Sign In Count'
   submit: 'Submit'
   speciality: 'Speciality'
   step_2_ck_score: 'Step 2 CK Score'
@@ -88,6 +87,19 @@ en:
   your_step_1_score: 'Your Step 1 Score'
   your_step_2_ck_score: 'Your Step 2 CK Score'
 
+  admin:
+    applicant_type: 'Applicant Type'
+    attempts_to_upgrade: 'Attempts To Upgrade'
+    event: 'Event'
+    paid: 'Paid'
+    time: 'Time'
+    step_1_score: 'Step 1 Score'
+    step_2ck_score: 'Step 2 CK Score'
+    step_2_cs_pass_first_attempt: 'Step 2 CS Passed First Attempt?'
+    us_clinical_experience: 'US Clinical Experience'
+    visa_required: 'Visa Required'
+    visitor_count: 'Visitor Count'
+    years_since_graduation: 'Years Since Graduation'
   header:
     welcome: 'Welcome Dr %{name}'
   sidebar:
@@ -104,7 +116,7 @@ en:
     non_us_citizen_international_medical_graduates: 'Non-Caribbean IMG'
     us_do_graduates: 'US DO Graduate'
   visa_types:
-    no: 'Not required'
+    'no': 'Not Required'
     j_1_sponsorship_through_ecfmg: 'J1'
     h1_b: 'H1'
     j1_or_h1: 'J1 or H1'

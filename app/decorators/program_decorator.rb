@@ -24,7 +24,7 @@ class ProgramDecorator < Draper::Decorator
     end
   end
 
-  def has_friendliness_data?
+  def friendliness_data?
     medical_schools.present? || (us_md_graduates + non_us_citizen_international_medical_graduates + us_citizen_international_medical_graduates + us_do_graduates).positive?
   end
 
