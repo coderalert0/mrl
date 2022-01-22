@@ -7,6 +7,8 @@ class BookmarksController < ApplicationController
     program_user.bookmark = program_user.bookmark.nil? ? true : !program_user.bookmark
 
     if program_user.save
+      ahoy.track("Added/removed bookmark: #{@program.name} (#{@speciality.name})")
+
       flash.notice = "Bookmark #{program_user.bookmark? ? ' added' : 'removed'}"
     end
 

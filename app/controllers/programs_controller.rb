@@ -8,12 +8,17 @@ class ProgramsController < ApplicationController
   skip_before_action :authenticate_user, only: :show
 
   def show
+    ahoy.track("Viewing program: #{@program.name} (#{@program.speciality.name})")
+
     @form = CreateProgramNoteForm.new program_user: @program_user
     @program = @program.decorate
+
     render layout: current_user.nil? ? 'program' : 'application'
   end
 
   def index
+    ahoy.track("Viewing speciality list: #{@speciality.name}")
+
     @programs = @programs.decorate.includes(:program_users, :users, :medical_schools)
     @matching_programs = if params['all'] == 'true'
                            @programs.order(:name)

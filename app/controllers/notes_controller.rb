@@ -6,6 +6,8 @@ class NotesController < ApplicationController
     @form = create_form
 
     if @form.submit
+      ahoy.track("User added/edited a note: #{@program.name}")
+
       flash.notice = 'Program Note edited successfully'
       redirect_to speciality_program_path(@speciality, @program)
     else

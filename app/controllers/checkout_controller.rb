@@ -1,5 +1,7 @@
 class CheckoutController < ApplicationController
   def create
+    ahoy.track('User attempted to upgrade')
+
     @session = Stripe::Checkout::Session.create(
       customer_email: current_user.email,
       payment_method_types: ['card'],
@@ -33,9 +35,13 @@ class CheckoutController < ApplicationController
 
   def success
     if current_user.update(paid: true)
+      ahoy.track('User upgraded')
+
       flash[:notice] = 'Thank You for upgrading! All lists have been unlocked'
       redirect_to root_path
     else
+      ahoy.track('Error upgrading')
+
       flash[:notice] = 'An error occurred'
     end
   end

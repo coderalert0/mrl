@@ -4,16 +4,24 @@ class RegistrationController < ApplicationController
 
   def show
     if @step == 'wicked_finish'
+      ahoy.track('Visitor signed up')
+
       sign_in_user
     else
       @form = send("show_#{step}_form")
+      ahoy.track("Visitor viewed registration step: #{step}")
+
       render_wizard
     end
   end
 
   def update
     @form = send("update_#{step}_form")
-    session[:user_id] = @form.user.id if @form.submit
+    if @form.submit
+      ahoy.track("Visitor submitted registration step: #{step}")
+
+      session[:user_id] = @form.user.id
+    end
     render_wizard @form
   end
 

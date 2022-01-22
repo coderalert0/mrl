@@ -13,9 +13,13 @@ class UsersController < ApplicationController
     @form = edit_form(current_user)
 
     if @form.submit
+      ahoy.track('User updated profile')
+
       flash.notice = 'User profile edited successfully'
       redirect_to root_path
     else
+      ahoy.track('User failed to update profile')
+
       flash.alert = @form.display_errors
       redirect_to edit_user_path
     end
