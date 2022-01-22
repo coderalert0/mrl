@@ -20,18 +20,20 @@ class Program < ApplicationRecord
     program_users.select { |pu| pu.program == self && pu.user == user && pu.bookmark == true }.present?
   end
 
-  def self.to_csv(user)
+  def self.to_csv(programs, user)
     attributes = %w[acgme_program_code name minimum_step_1_score step_2_required minimum_step_2_score
                     must_pass_step_2_cs_first_attempt j_1_sponsorship_through_ecfmg h1_b address
                     website program_director email program_coordinator program_coordinator_email phone]
 
     CSV.generate(headers: true) do |csv|
-      csv << ['Match Score'].concat(attributes.map { |attribute| attribute.humanize.titleize }).concat(['Bookmarked'])
+      csv << ['Friendliness Score'].concat(attributes.map do |attribute|
+                                             attribute.humanize.titleize
+                                           end).concat(['Bookmarked'])
 
-      all.each do |program|
+      programs.each do |program|
         bookmarked = ProgramUser.where(program: program, user: user, bookmark: true).present?
 
-        csv << [program.send(user.img_type)]
+        csv << [program.percentage(user.img_type)]
                .concat(attributes.map { |attr| program.send(attr) })
                .concat([bookmarked ? 'Yes' : 'No'])
       end
