@@ -128,10 +128,8 @@
                     <tbody>
                     <tr>
                       <td>
-                        <% @program.medical_schools.each do |medical_school| %>
-                          <li>
-                            <%= medical_school.name %>
-                          </li>
+                        <% @program.medical_schools.order(percentage: :desc).limit(5).each.with_index(1) do |medical_school| %>
+                          <li><%= medical_school.name %></li>
                         <% end %>
                       </td>
                     </tr>

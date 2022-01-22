@@ -4,14 +4,20 @@ module ProgramConcern
   def matching_programs
     @programs = @programs.where('minimum_step_1_score <= ?', current_user.step_1_score)
                          .where('minimum_step_2_score <= ?', current_user.step_2ck_score || 300)
-                         .where("#{current_user.img_type} > ?", 0)
                          .where('years_since_graduation >= ? OR years_since_graduation IS NULL',
                                 current_user.years_since_graduation)
                          .where(us_clinical_experience: [current_user.us_clinical_experience,
                                                          nil])
 
     visa_query
-    step_2_cs_query.order("#{current_user.img_type} DESC")
+    step_2_cs_query
+    sort_query
+  end
+
+  def sort_query
+    @programs.select do |program|
+      program.percentage(current_user.img_type) > 10
+    end.sort_by { |program| program.percentage(@current_user.img_type) }.reverse
   end
 
   def visa_query

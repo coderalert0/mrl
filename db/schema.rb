@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_20_033731) do
+ActiveRecord::Schema.define(version: 2022_01_21_160807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2022_01_20_033731) do
     t.bigint "medical_school_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "percentage"
     t.index ["medical_school_id"], name: "index_medical_school_programs_on_medical_school_id"
     t.index ["program_id"], name: "index_medical_school_programs_on_program_id"
   end
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 2022_01_20_033731) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "img_type"
   end
 
   create_table "program_users", force: :cascade do |t|

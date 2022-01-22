@@ -45,7 +45,7 @@
                 <% @matching_programs.each do |program| %>
                   <tr>
                     <td>
-                      <%= program.send(current_user.img_type) %>
+                      <%= program.send("#{current_user.img_type}_friendliness_score") %>
                     </td>
                     <% if current_user.admin? %>
                       <td>

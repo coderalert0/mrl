@@ -14,11 +14,11 @@ class ProgramsController < ApplicationController
   end
 
   def index
-    @programs = @programs.active.includes(:program_users)
+    @programs = @programs.decorate.includes(:program_users, :users, :medical_schools)
     @matching_programs = if params['all'] == 'true'
                            @programs.order(:name)
                          elsif params['img'] == 'true'
-                           @programs.where("#{current_user.img_type} > ?", 0).order(:name)
+                           @programs.order(:name)
                          else
                            matching_programs
                          end

@@ -1,7 +1,7 @@
 class DownloadProgramsController < ApplicationController
   include ProgramConcern
 
-  load_and_authorize_resource :speciality
+  load_and_authorize_resource :speciality, find_by: :slug
   before_action :authorize
 
   def index

@@ -6,6 +6,7 @@ class Program < ApplicationRecord
 
   belongs_to :speciality
   has_many :program_users
+  has_many :users, through: :program_users
   has_many :medical_school_programs
   has_many :medical_schools, through: :medical_school_programs
   scope :active, -> { where(active: 1) }
@@ -35,5 +36,21 @@ class Program < ApplicationRecord
                .concat([bookmarked ? 'Yes' : 'No'])
       end
     end
+  end
+
+  def percentage(type)
+    return send(type) unless medical_schools.present?
+
+    medical_school_ids = medical_schools
+                         .select { |medical_school| medical_school.img_type == type }
+                         .pluck(:id)
+
+    type_sum = medical_school_programs
+               .select { |medical_school_program| medical_school_ids.include? medical_school_program.medical_school_id }
+               .pluck(:percentage).sum
+
+    total_sum = medical_school_programs.to_a.pluck(:percentage).sum
+
+    (type_sum.fdiv(total_sum) * 100).round
   end
 end

@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  load_and_authorize_resource :speciality
+  load_and_authorize_resource :speciality, find_by: :slug
   load_and_authorize_resource :program, find_by: :slug
 
   def create

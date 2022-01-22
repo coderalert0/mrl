@@ -105,72 +105,8 @@ task scrape: :environment do
   browser.close
 end
 
-task scrape_schools: :environment do
-  $stdout.puts 'Please enter your email address:'
-  email = $stdin.gets.strip
-
-  $stdout.puts 'Please enter your password:'
-  password = $stdin.gets.strip
-
-  args = %w[--headless]
-  options = { args: args }
-  browser = Watir::Browser.new :firefox, options: options
-
-  # Login
-  browser.goto('https://www.doximity.com/signin')
-  browser.text_field(id: 'login').set email
-  browser.text_field(id: 'password').set password
-  browser.button(id: 'signinbutton').click
-  browser.wait_until { browser.text.include? 'Home' }
-
-  Program.active.includes(:program_users)
-
-  # List all specialities with id
-  Speciality.active.all.each do |speciality|
-    $stdout.puts "#{speciality.id} - #{speciality.name}"
-  end
-  $stdout.puts 'Please enter a Speciality ID:'
-  speciality_id = $stdin.gets.strip
-
-  # Prompt for doximity URL for programs sorted by IMG Friendliness
-  Speciality.find(speciality_id).programs.active.order(:name).each do |program|
-    next unless program.feeder_schools.nil?
-
-    $stdout.puts program.name
-    $stdout.puts program.address
-    $stdout.puts program.program_director
-    $stdout.puts program.program_coordinator
-    $stdout.puts 'Please enter a corresponding Doximity URL:'
-    doximity_url = $stdin.gets.strip
-    next unless doximity_url.present?
-
-    program.update(doximity_url: doximity_url)
-
-    browser.goto(doximity_url)
-    browser.wait_until { browser.text.include? 'Read more about' }
-
-    feeder_list_elements = browser.lis(class: 'residency-program-top-feeder-list-item')
-
-    program.update(feeder_schools: feeder_list_elements.count.positive?)
-
-    feeder_list_elements.each do |li|
-      next if li.text == 'Other'
-
-      medical_school = MedicalSchool.find_or_create_by(name: li.text)
-      MedicalSchoolProgram.find_or_create_by(medical_school: medical_school, program: program)
-    end
-
-    $stdout.puts program.reload.feeder_schools.to_s
-    $stdout.puts program.medical_schools.map(&:name).to_s
-    $stdout.puts
-    $stdout.puts
-  end
-
-  browser.close
-end
-
 task scrape_schoolz: :environment do
-  # This number will change every year
+  # This number will change every year, manually need to check max value
   total_program = 5122
 
   program_hash = {}
@@ -212,20 +148,21 @@ task scrape_schoolz: :environment do
     puts program_hash
 
     # Extract feeder medical schools
-    feeder_medical_schools_element = browser.element(xpath: '//*[@id="top5body"]/div/script[1]')
+    feeder_medical_schools_element = browser.element(xpath: '//*[@id="MedSchoolModal"]//tbody')
     if feeder_medical_schools_element.exists?
-      feeder_medical_schools_element = feeder_medical_schools_element.html.gsub(/\{(.*?)\}/).first
-      feeder_medical_schools_element = JSON.parse(feeder_medical_schools_element)
+      feeder_medical_schools_element.trs.each do |tr|
+        medical_school_name = tr.tds[0].text_content
+        percentage = tr.tds[2].text_content.delete('%')
+        puts "#{medical_school_name}: #{percentage}"
 
-      program = Program.find_by(acgme_program_code: program_hash['acgme_program_code'])
-      unless program.medical_schools.present?
-        feeder_medical_schools_element.each do |key, value|
-          next if key == 'More than 1 school has this rank*' || value < 10
+        program = Program.find_by(acgme_program_code: program_hash['acgme_program_code'])
 
-          puts "#{key}: #{value}"
-          medical_school = MedicalSchool.find_or_create_by(name: key)
-          MedicalSchoolProgram.find_or_create_by(medical_school: medical_school, program: program)
-        end
+        medical_school = MedicalSchool.find_or_create_by(name: medical_school_name)
+        medical_school_program = MedicalSchoolProgram.find_or_create_by(medical_school: medical_school,
+                                                                        program: program)
+
+        # will result in bad data on re-runs
+        medical_school_program.increment!(:percentage, percentage.to_i)
       end
     end
 

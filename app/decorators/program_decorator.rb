@@ -1,4 +1,6 @@
 class ProgramDecorator < Draper::Decorator
+  include ProgramConcern
+
   delegate_all
 
   def us_clinical_experience_display
@@ -14,10 +16,10 @@ class ProgramDecorator < Draper::Decorator
   end
 
   %i[us_md_graduates us_do_graduates non_us_citizen_international_medical_graduates
-     us_citizen_international_medical_graduates].each do |attribute|
-    define_method :"#{attribute}_friendliness_score" do
+     us_citizen_international_medical_graduates].each do |type|
+    define_method :"#{type}_friendliness_score" do
       h.content_tag :div do
-        h.concat h.content_tag :span, "#{send(attribute)}/100", class: friendliness_score_class(attribute)
+        h.concat h.content_tag :span, "#{percentage(type.to_s)}%", class: friendliness_score_class(type.to_s)
       end
     end
   end
@@ -29,7 +31,7 @@ class ProgramDecorator < Draper::Decorator
   private
 
   def friendliness_score_class(img_type)
-    percentage = send(img_type)
+    percentage = percentage(img_type)
 
     if percentage.zero?
       'text-muted'
