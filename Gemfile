@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+gem 'ahoy_matey'
 gem 'bootstrap', '~> 4.0.0'
 gem 'bootstrap_form', '~> 4.5'
 gem 'bootstrap-icons-helper'
