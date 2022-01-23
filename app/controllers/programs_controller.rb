@@ -1,6 +1,7 @@
 class ProgramsController < ApplicationController
   include ProgramConcern
 
+  before_action :redirect_old_url, only: [:show]
   load_and_authorize_resource :speciality, find_by: :slug
   load_and_authorize_resource :program, through: :speciality, find_by: :slug
   layout :resolve_layout
@@ -78,5 +79,14 @@ class ProgramsController < ApplicationController
 
   def find_or_initialize_program_user
     @program_user = ProgramUser.find_or_initialize_by(program: @program, user: current_user)
+  end
+
+  def redirect_old_url
+    @speciality = Speciality.friendly.find(params[:speciality_id])
+    return if @speciality.friendly_id == params[:speciality_id]
+
+    @program = Program.find_by(slug: params[:id], speciality: @speciality)
+
+    redirect_to speciality_program_path(@speciality, @program), status: 301
   end
 end

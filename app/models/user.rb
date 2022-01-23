@@ -34,7 +34,7 @@ class User < ApplicationRecord
   end
 
   def friendliness_threshold
-    (100 - (((step_1_score + step_2ck_score)/2).fdiv(280) * 100)).floor
+    (100 - (((step_1_score + step_2ck_score) / 2).fdiv(280) * 100)).floor
   end
 
   protected

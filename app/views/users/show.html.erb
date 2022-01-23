@@ -105,10 +105,10 @@
               <h4 class="card-title font-weight-bold">
                 <%= visit.started_at.in_time_zone('Pacific Time (US & Canada)').strftime("%b %e %Y") %>
               </h4>
-              <div><%= visit.ip %></div>
-              <div><%= visit.browser %> on <%= @user.visits.last.device_type %> (<%= @user.visits.last.os %>)</div>
-              <div><%= link_to(visit.referrer, visit.referrer, target: :_blank) %></div>
-              <div><%= link_to(visit.landing_page, visit.landing_page, target: :_blank) %></div>
+              <div><label class="text-muted">IP Address:&nbsp;</label><%= visit.ip %></div>
+              <div><label class="text-muted">Platform:&nbsp;</label><%= visit.browser %> on <%= @user.visits.last.device_type %> (<%= @user.visits.last.os %>)</div>
+              <div><label class="text-muted">Referrer:&nbsp;</label><%= link_to(visit.referrer, visit.referrer, target: :_blank) %></div>
+              <div><label class="text-muted">Destination:&nbsp;</label><%= link_to(visit.landing_page, visit.landing_page, target: :_blank) %></div>
             </div>
           </div>
 
