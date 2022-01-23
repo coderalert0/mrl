@@ -7,7 +7,7 @@ class EditUserForm < BaseForm
 
   validate :disable_if_paid
 
-  attr_accessor :user
+  attr_accessor :user, :ability
 
   def _submit
     user.save!
@@ -20,6 +20,6 @@ class EditUserForm < BaseForm
   end
 
   def disable_if_paid
-    errors.add(:base, 'You cannot edit your profile') if user.paid?
+    errors.add(:base, 'You cannot edit your profile') unless ability.edit_profile?
   end
 end

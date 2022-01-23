@@ -15,7 +15,9 @@ module ProgramConcern
   end
 
   def sort_query
-    @programs = @programs.select { |program| program.percentage(current_user.img_type) > 10 }
+    @programs = @programs.select do |program|
+      program.percentage(current_user.img_type) >= current_user.friendliness_threshold
+    end
     @programs.sort_by { |program| program.percentage(@current_user.img_type) }.reverse
   end
 

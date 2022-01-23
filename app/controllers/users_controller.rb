@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @form = edit_form(current_user)
+    @form = edit_form(current_user, @current_ability)
 
     if @form.submit
       ahoy.track('User updated profile')
@@ -36,12 +36,12 @@ class UsersController < ApplicationController
 
   private
 
-  def edit_form(user)
+  def edit_form(user, ability)
     form_params = params.require(:edit_user_form).permit(EditUserForm.accessible_attributes)
-    EditUserForm.new form_params.merge(user: user)
+    EditUserForm.new form_params.merge(user: user, ability: ability)
   end
 
   def redirect_paid_user
-    redirect_to root_path if current_user.paid
+    redirect_to root_path unless current_ability.edit_profile?
   end
 end

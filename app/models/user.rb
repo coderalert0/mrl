@@ -33,6 +33,10 @@ class User < ApplicationRecord
     events.select { |event| event.name == 'User attempted to upgrade' }.size
   end
 
+  def friendliness_threshold
+    (100 - (((step_1_score + step_2ck_score)/2).fdiv(280) * 100)).floor
+  end
+
   protected
 
   def password_required?
