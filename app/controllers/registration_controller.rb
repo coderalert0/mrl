@@ -6,6 +6,8 @@ class RegistrationController < ApplicationController
     if @step == 'wicked_finish'
       ahoy.track('Visitor signed up')
 
+      send_emails
+
       sign_in_user
     else
       @form = send("show_#{step}_form")
@@ -26,6 +28,10 @@ class RegistrationController < ApplicationController
   end
 
   private
+
+  def send_emails
+    UserMailer.with(user: user).welcome.deliver_later
+  end
 
   def show_profile_form
     CreateProfileForm.new(user: user)
@@ -48,7 +54,10 @@ class RegistrationController < ApplicationController
   end
 
   def sign_in_user
-    user.update(sign_in_count: 1, last_sign_in_at: DateTime.now) if sign_in(user, bypass: true)
+    if sign_in(user, bypass: true)
+      user.update(sign_in_count: 1, last_sign_in_at: DateTime.now)
+      ahoy.authenticate(user)
+    end
     redirect_to root_path
   end
 

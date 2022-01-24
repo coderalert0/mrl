@@ -19,6 +19,9 @@ module Myapp
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    config.action_mailer.default_url_options = { host: 'www.myresidencylist.com' }
+    config.active_job.queue_adapter = :delayed_job
+
     config.autoload_paths << File.expand_path('/app/decorators', __dir__)
   end
 end

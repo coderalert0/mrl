@@ -29,7 +29,7 @@
                     <td><%= link_to(user.full_name_display, user_path(user)) %></td>
                     <td><%= user.email %></td>
                     <td><%= user.visits.size %></td>
-                    <td><%= user.attempts_to_upgrade %></td>
+                    <td><%= user.attempts_to_upgrade.size %></td>
                     <td><%= user.created_at_display %></td>
                     <td><%= user.last_sign_in_at_display %></td>
                   </tr>

@@ -25,12 +25,20 @@ class User < ApplicationRecord
                h1_b: 2,
                j1_or_h1: 3 }
 
+  def caribbean_img?
+    img_type == 'us_citizen_international_medical_graduates'
+  end
+
   def non_caribbean_img?
     img_type == 'non_us_citizen_international_medical_graduates'
   end
 
+  def img?
+    caribbean_img? || non_caribbean_img?
+  end
+
   def attempts_to_upgrade
-    events.select { |event| event.name == 'User attempted to upgrade' }.size
+    events.select { |event| event.name == 'User attempted to upgrade' }
   end
 
   def friendliness_threshold

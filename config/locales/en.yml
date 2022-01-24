@@ -100,6 +100,9 @@ en:
     visa_required: 'Visa Required'
     visitor_count: 'Visitor Count'
     years_since_graduation: 'Years Since Graduation'
+  email_subject:
+    upgrade: 'Do you have any questions or concerns regarding upgrading?'
+    welcome: 'Dont waste weeks and $5,000 on fees - like I did'
   header:
     welcome: 'Welcome Dr %{name}'
   sidebar:
