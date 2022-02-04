@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable
 
-  has_many :visits, class_name: 'Ahoy::Visit'
-  has_many :events, through: :visits
+  has_many :visits, class_name: 'Ahoy::Visit', dependent: :destroy
+  has_many :events, through: :visits, dependent: :destroy
 
   validates_presence_of :step_1_score, :img_type, :years_since_graduation, :visa
   validates_inclusion_of :step_1_score, in: 1..300, message: I18n.t(:invalid_score_error)

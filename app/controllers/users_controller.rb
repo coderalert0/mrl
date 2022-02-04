@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :redirect_paid_user, except: %i[index show]
-  load_and_authorize_resource :user, only: :show
+  load_and_authorize_resource :user, only: %i[show destroy]
 
   def show
     @user = @user.decorate
@@ -31,6 +31,15 @@ class UsersController < ApplicationController
 
       flash.alert = @form.display_errors
       redirect_to edit_user_path
+    end
+  end
+
+  def destroy
+    if @user.destroy
+      flash.notice = 'User successfully deleted'
+      redirect_to users_path
+    else
+      render 'show'
     end
   end
 

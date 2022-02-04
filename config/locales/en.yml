@@ -38,6 +38,7 @@ en:
   contact_details: 'Contact Details'
   contact_us: 'Contact Us'
   created_at: 'Created At'
+  delete: 'Delete'
   download_csv: 'Download CSV'
   edit: 'Edit'
   edit_profile: 'Edit Profile'
