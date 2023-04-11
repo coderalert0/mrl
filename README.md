@@ -30,3 +30,7 @@ The application criteria for each program varies and is listed on each residency
 == Web scraping ==
 * The database was populated using a combination of manual entry and webscraping other websites
 * Watir gem was scraping (typically used for UI test automation) using a combination of ids, text match, xpath to identify elements
+
+== UML Diagram ==
+<img width="942" alt="image" src="https://user-images.githubusercontent.com/70709697/231295382-3dd40327-25a0-4915-a89f-6ccf3434de78.png">
+
