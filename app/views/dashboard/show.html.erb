@@ -1,0 +1,212 @@
+<div class="row">
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big">
+              <i class="nc-icon nc-chart-bar-32 text-warning"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category"><%= t(:your_step_1_score) %></p>
+              <p class="card-title">
+                <%= current_user.step_1_score %>
+              <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <div class="stats">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big">
+              <i class="nc-icon nc-chart-bar-32 text-success"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category"><%= t(:your_step_2_ck_score) %></p>
+              <p class="card-title">
+                <%= current_user.step_2ck_score %>
+              <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big">
+              <i class="nc-icon nc-chart-bar-32 text-primary"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category"><%= t(:passed_step_2cs_first_attempt) %></p>
+              <p class="card-title">
+                <%= current_user.decorate.passed_step_2cs_first_attempt_display %>
+              <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-12 col-md-12">
+            <div class="numbers">
+              <p class="card-category"><%= t(:applicant_type) %></p>
+              <p class="card-title">
+                <%= t(current_user.img_type, scope: :img_types)  %>
+              <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <div class="stats">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big">
+              <i class="nc-icon nc-badge text-danger"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category"><%= t(:us_clinical_experience) %></p>
+              <p class="card-title">
+                <%= current_user.decorate.us_clinical_experience_display  %>
+              <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <div class="stats">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big">
+              <i class="nc-icon nc-hat-3 text-warning"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category">
+              <p class="card-category"><%= t(:years_since_graduation) %></p>
+              </p>
+              <p class="card-title">
+                <%= current_user.years_since_graduation  %>
+              <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <div class="stats">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big">
+              <i class="nc-icon nc-world-2 text-success"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category"><%= t(:visa_required) %></p>
+              <p class="card-title">
+                <%= t(current_user.visa, scope: :visa_types)  %>
+              <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <div class="stats">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 col-md-6 col-sm-12">
+    <div class="card">
+      <div class="card-body ">
+        <table class="table">
+          <thead>
+          <tr>
+            <th style="width: 80%"><%= t(:speciality) %></th>
+            <% if current_user.admin? %>
+              <th style="width: 10%"></th>
+              <th style="width: 10%"></th>
+            <% end %>
+          </tr>
+          </thead>
+          <tbody>
+            <% @specialities.each do |speciality| %>
+              <tr>
+                <td>
+                  <%= link_to speciality.name, speciality_programs_path(speciality) %>
+                </td>
+                <% if current_user.admin? %>
+                  <td>
+                    <%= link_to 'See all (IMG)', speciality_programs_path(speciality, img: 'true') %>
+                  </td>
+                  <td>
+                    <%= link_to 'See all', speciality_programs_path(speciality, all: 'true') %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-lg-12 col-md-6 col-sm-12">
+    <div class="card">
+      <div class="card-header d-flex">
+        <div class="float-left">
+          <h4 class="card-title font-weight-bold">
+            <%= t(:admin, scope: :sidebar) %>
+          </h4>
+        </div>
+      </div>
+
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th><%= t(:full_name) %></th>
+                <th><%= t(:email) %></th>
+                <th><%= t(:visitor_count, scope: :admin) %></th>
+                <th><%= t(:attempts_to_upgrade, scope: :admin) %></th>
+                <th><%= t(:created_at) %></th>
+                <th><%= t(:last_sign_in_at) %></th>
+              </tr>
+              </thead>
+              <tbody>
+                <% @users.each do |user| %>
+                  <tr class="<%= 'table-success' if user.paid? %>">
+                    <td><%= link_to(user.full_name_display, user_path(user)) %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.visits.size %></td>
+                    <td><%= user.attempts_to_upgrade.size %></td>
+                    <td><%= user.created_at_display %></td>
+                    <td><%= user.last_sign_in_at_display %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

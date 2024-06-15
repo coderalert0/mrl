@@ -1,0 +1,149 @@
+<div class="row">
+  <div class="col-lg-12 col-md-6 col-sm-12">
+    <div class="card">
+      <div class="card-header d-flex">
+        <div class="float-left">
+          <h4 class="card-title font-weight-bold"><%= @user.full_name_display %></h4>
+          <div class="mb-3"><%= @user.email %></div>
+        </div>
+        <div class="ml-auto align-self-center">
+          <%= link_to user_path, method: :delete, remote: true do %>
+            <button type="button" class="btn btn-sm btn-danger"><%= t(:delete) %></button>
+        <% end %>
+        </div>
+
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <tbody>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-chart-bar-32 text-success mr-2"></i>
+                  <%= t(:applicant_type, scope: :admin) %>
+                </td>
+                <td>
+                  <%= @user.applicant_type_display %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-chart-bar-32 text-success mr-2"></i>
+                  <%= t(:step_1_score, scope: :admin) %>
+                </td>
+                <td>
+                  <%= @user.step_1_score %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-chart-bar-32 text-warning mr-2"></i>
+                  <%= t(:step_2_ck_score, scope: :admin) %>
+                </td>
+                <td>
+                  <%= @user.step_2ck_score %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-chart-bar-32 text-danger mr-2"></i>
+                  <%= t(:step_2_cs_pass_first_attempt, scope: :admin) %>
+                </td>
+                <td>
+                  <%= @user.passed_step_2cs_first_attempt_display %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-world-2 text-success mr-2"></i>
+                  <%= t(:visa_required, scope: :admin) %>
+                </td>
+                <td>
+                  <%= @user.visa_display %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-badge text-primary mr-2"></i>
+                  <%= t(:us_clinical_experience, scope: :admin) %>
+                </td>
+                <td>
+                  <%= @user.us_clinical_experience_display %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-hat-3 text-warning mr-2"></i>
+                  <%= t(:years_since_graduation, scope: :admin) %>
+                </td>
+                <td>
+                  <%= @user.years_since_graduation %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="fa fa-dollar mr-2"></i>
+                  <%= t(:paid, scope: :admin) %>
+                </td>
+                <td>
+                  <%= @user.paid_display %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="fa fa-cc-stripe mr-2"></i>
+                  <%= t(:attempts_to_upgrade, scope: :admin) %>
+                </td>
+                <td>
+                  <%= @user.attempts_to_upgrade.size %>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% @user.visits.reverse.each do |visit| %>
+      <div class="card">
+          <div class="card-header d-flex pb-3">
+            <div class="float-left">
+              <h4 class="card-title font-weight-bold">
+                <%= visit.started_at.in_time_zone('Pacific Time (US & Canada)').strftime("%b %e %Y") %>
+              </h4>
+              <div><label class="text-muted">IP Address:&nbsp;</label><%= visit.ip %></div>
+              <div><label class="text-muted">Platform:&nbsp;</label><%= visit.browser %> on <%= @user.visits.last.device_type %> (<%= @user.visits.last.os %>)</div>
+              <div><label class="text-muted">Referrer:&nbsp;</label><%= link_to(visit.referrer, visit.referrer, target: :_blank) %></div>
+              <div><label class="text-muted">Destination:&nbsp;</label><%= link_to(visit.landing_page, visit.landing_page, target: :_blank) %></div>
+            </div>
+          </div>
+
+          <div class="card-body ">
+            <div class="row">
+                <div class="col-md-12">
+                  <table class="table table-hover">
+                    <thead>
+                    <tr>
+                      <th><%= t(:event, scope: :admin) %></th>
+                      <th><%= t(:time, scope: :admin) %></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                      <% visit.events.each do |event| %>
+                        <tr>
+                          <td><%= event.name %></td>
+                          <td><%= event.time.in_time_zone('Pacific Time (US & Canada)').strftime("%r") %></td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

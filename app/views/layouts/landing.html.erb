@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>MyResidencyList | IMG Friendly Residency Programs List</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <link rel="icon" type="image/png" href="/paper-dashboard-master/assets/img/favicon.png">
+
+  <!-- CSS Files -->
+  <link href="/paper-dashboard-master/assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
+
+  <%= render 'layouts/header' %>
+</head>
+
+
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-transparent">
+    <div class="container">
+      <div class="navbar-wrapper">
+        <div class="logo text-center">
+          <%= link_to root_path do %>
+            <%= image_tag('logo_header.png', width: 250) %>
+          <% end %>
+        </div>
+      </div>
+      <div class="collapse navbar-collapse justify-content-end" id="navigation">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <%= link_to 'http://blog.myresidencylist.com', class: 'nav-link', target: '_blank' do %>
+              <i class="nc-icon nc-single-copy-04"></i> Blog
+            <% end %>
+
+          </li>
+          <li class="nav-item ">
+            <a href="#faq" class="nav-link">
+              <i class="nc-icon nc-alert-circle-i"></i>
+              FAQ
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#contact" class="nav-link">
+              <i class="nc-icon nc-email-85"></i>
+              Contact Us
+            </a>
+          </li>
+
+          <li class="nav-item ">
+            <%= link_to new_user_session_path, class: 'nav-link' do %>
+              <i class="nc-icon nc-lock-circle-open"></i>
+              Log In
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End Navbar -->
+
+  <div class="text-center">
+    <h2 class="font-weight-bold">IMG Friendly Residency Programs List</h2>
+
+    <h5 class="mb-5 text-secondary">Save Time & Money By Filtering Programs Matching Your Profile</br>
+      Using our AI-Powered Match Simulation Engine
+    </h5>
+  </div>
+
+  <%= yield %>
+
+  <hr>
+
+  <div class="p-3">
+    <table>
+      <tbody class="align-top">
+      <tr align="center">
+        <td width="33%">
+          <p><%= image_tag('clock.png', width: 100)%></p>
+          <p><h5 class="text-info text-uppercase">Save Time Researching</h5></p>
+          <p>No need to spend weeks compiling information by scouring old forum posts, manually visiting outdated program websites, phoning &amp; emailing unresponsive program coordinators.<br>
+            <br/>That <b>time can be better spent strengthening your application</b></p>
+        </td>
+
+        <td width="33%">
+          <p><%= image_tag('money.png', width: 100)%></p>
+          <p><h5 class="text-info text-uppercase">Save Money on Application Fees</h5></p>
+          <p>Applications fees can run into the thousands of dollars.<br/><br/>
+            MyResidencyList will <b>filter out programs which don’t match your profile so you don’t waste money on them</b></p></td>
+
+        <td width="33%">
+          <p><%= image_tag('target.png', width: 100)%></p>
+          <p><h5 class="text-info text-uppercase">Target The Right Programs</h5></p>
+          <p>MyResidencyList will <strong>filter through the thousands of programs based on your unique profile:</strong> taking into account the type of applicant you are, USMLE Scores, Visa Status, US Clinical Experience, Years since graduation.</p></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+
+  <div align="center">
+    <h2 class="font-weight-bold">MyResidencyList Features</h2>
+  </div>
+
+  <div id="carouselExampleIndicators" class="carousel slide text-center" data-ride="carousel" data-interval="4500">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active bg-info"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1" class="active bg-info"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2" class="active bg-info"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%= image_tag('my-profile.png', class: 'w-75') %>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag('program-list.png', class: 'w-75') %>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag('program.png', class: 'w-75') %>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag('program-notes.png', class: 'w-75') %>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+
+  <div class="p-3">
+    <table>
+      <tbody class="align-top">
+      <tr align="center">
+        <td width="33%">
+          <p><h5 class="text-info text-uppercase">Program Info & Friendliness Score™</h5></p>
+          <p>We update our programs database every match season. </br>Each program will have a IMG Friendliness Score. </br><br/>IMG Friendliness Score is <strong>based on the profiles of current and past residents</strong> (the higher the score, the more friendlier the program)</p>
+        </td>
+
+        <td width="33%">
+          <p><h5 class="text-info text-uppercase">Bookmark Programs</h5></p>
+          <p>With hundreds of potential programs to apply to it can be easy to keep track of which programs you are interested in.
+            <br/><br/>That is why you can <strong>bookmark programs which you are interested in applying to</strong></p></td>
+
+        <td width="33%">
+          <p><h5 class="text-info text-uppercase">Add Program Notes</h5></p>
+          <p>We assume you are an expert note-taker by now!
+            <br/><br/>That is why we have added the ability to <strong>add notes to programs which will be helpful when finalizing your program list</strong></p></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-white bg-info row text-justify p-3">
+    <div class="col-md-4">
+      <p align="center"><%= image_tag('5-stars.png')%></p>
+
+      “Thank you so much MyResidencyList! I didn’t know the first place to start applying to with a thousand potential programs. With a couple of clicks I saved weeks of time, yielded more than anticipated number of interviews, and eventually matched!”<p></p>
+      <p><i>– Dr Zohaib Javed</i></p>
+    </div>
+
+    <div class="col-md-4">
+      <p align="center"><%= image_tag('5-stars.png')%></p>
+
+      “I am a 8 year old IMG and did not match last year as a result of randomly applying to programs. This year I came across MyResidencyList and used their custom list to target programs open to older IMGs. I ended up matching! Thanks MyResidencyList!”<p></p>
+      <p><i>– Dr Priyanka Patel</i></p>
+    </div>
+
+    <div class="col-md-4">
+      <p align="center"><%= image_tag('5-stars.png')%></p>
+
+      “When calls to programs were not returned, program coordinators responded with generic replies, scattered information online did not help in creating my program list. I downloaded my Caribbean IMG friendly residency programs list from MyResidencyList and I would highly recommend them”<p></p>
+      <p><i>– Dr John Kirby</i></p>
+    </div>
+  </div>
+
+
+  <p><a name="faq"></a></p>
+
+  <div class="p-5">
+    <a name="faq"></a>
+    <h2 class="text-center font-weight-bold">
+      <a name="faq"></a>Frequently Asked Questions
+    </h2>
+
+    <table class="table">
+      <tbody>
+      <tr>
+        <td width="50%" class="align-top">
+          <h6 class="text-info mb-4">Why do I need this service?<br>
+          </h6>
+          <p>We are a group of successful IMG applicants that matched to our dream programs in past Residency Matches.</p>
+          <p>We individually had spent several weeks manually compiling data to make an informed decision on which programs to apply to.</p>
+          <p>After having gone through the tedious and lengthy process of creating our residency program application lists, we wanted to make the process easier for others.</p>
+        </td>
+
+        <td width="50%" class="align-top">
+          <h6 class="text-info mb-4">Why is the distinction between Non-Caribbean and Caribbean IMG friendly residency programs important?<br></h6>
+          <p>Programs often favor one type of IMG over the other, so clumping the two together and reporting it as a single metric does not help you make an informed decision on whether to apply to a particular program or not.</p>
+          <p>Check <a href="http://www.blog.myresidencylist.com/data-trends-img-friendly-family-medicine-programs/" target="_blank" rel="noopener noreferrer">this post out for an example</a> on how important the distinction is.</p>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%" class="align-top">
+          <h6 class="text-info mb-4">
+            <p>What information will my custom Residency Application List contain?</p>
+          </h6>
+          <p>Our list will show all the Internal Medicine, Family Medicine, Neurology, Psychiatry, Pediatrics residency programs that your profile matches. Each will contain</p>
+          <ul>
+            <li>Program ID/Name</li>
+            <li>Location</li>
+            <li>Contact Email/Phone/Website</li>
+            <li>Visa types accepted/sponsored</li>
+            <li>Whether program is Caribbean IMG friendly</li>
+            <li>Whether program is Non-Caribbean IMG friendly,</li>
+            <li>Maximum years since graduation</li>
+            <li>If US clinical experience is required.</li>
+          </ul>
+        </td>
+        <td width="50%" class="align-top">
+          <h6 class="text-info mb-4">How upto date is your data?</h6>
+          <p>Our team uses several sources such as calling the programs, program websites, database of programs where applicants received interview invites in recent matches, database of residency match results from prior years, and more.</p>
+          <p>We update our database every year to keep it current. This includes adding newly accredited programs, updating program criteria such as US clinical experience, Visas accepted/sponsored, maximum Years Since Graduation, average Step 1 and Step 2 scores.</p>
+          <p>We also update whether the program is IMG friendly for Non-Caribbean and Caribbean graduates by factoring in new PGY-1 residents.</p></td>
+      </tr>
+      <tr>
+        <td width="50%" class="align-top">
+          <h6 class="text-info mb-4">Why should I use your services vs other services?</h6>
+          <p>We pride ourselves in having the most upto date database and use multiple information sources for this.</p>
+          <p>We are also the only service that makes the important distinction between Non-Caribbean and Caribbean IMG Friendly Residency Programs.</p>
+          <p>Lastly our service is priced reasonably at a fraction of the cost competitors charge</p>
+        </td>
+
+        <td width="50%" class="align-top">
+          <h6 class="text-info">Whats included when I upgrade my account?</h6>
+          <p>Currently our database includes Internal Medicine, Family Medicine, Neurology, Neurological Surgery, Psychiatry, Pediatrics, Internal Medicine/Pediatrics</p>
+          <p><b>You will have access to lists for all of the aforementioned specialities for all future match years for the one-time fee</b> – although we hope you match in your first attempt</p>
+          <p><b>We do not sell individual specialty lists.</b></p></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <a name="contact"></a>
+    <h2 class="text-center font-weight-bold">
+      <a name="faq"></a>Contact Us
+    </h2>
+  </div>
+
+  <div class="col-md-6 mx-auto">
+    <%= bootstrap_form_tag :url => 'https://formspree.io/f/xknkgnwe', layout: 'horizontal', :method => :post do |f| %>
+      <div class="field">
+        <%= f.email_field :your_email_address, required: true %>
+        <%= f.text_area :message, rows: 5, required: true  %>
+
+        <div class="actions text-center">
+          <%= f.submit t(:submit), class: 'btn btn-info' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <footer class="footer">
+    <div class="text-center">
+      © 2021 MyResidencyList<br/>
+      311 W 43rd St, New York City, NY 10036<br/>
+      Phone: (914) 257-3566
+    </div>
+  </footer>
+
+  <!--   Core JS Files   -->
+  <script src="/paper-dashboard-master/assets/js/core/bootstrap.min.js"></script>
+
+  </body>
+</html>

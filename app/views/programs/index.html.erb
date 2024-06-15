@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col-lg-12 col-md-6 col-sm-12">
+    <div class="card">
+      <div class="card-header d-flex">
+        <div class="float-left">
+          <h4 class="card-title font-weight-bold">
+            <%= @speciality.name %> (<%= @matching_program_count %> Matches)
+          </h4>
+          <p>
+            <i class="nc-icon nc-money-coins text-success mr-2"></i>
+            <%= t(:eras_application_fees) %> <%= number_to_currency @fee %>
+          </p>
+        </div>
+
+        <div class="ml-auto align-self-center">
+          <% if current_user.paid? %>
+            <%= link_to speciality_download_programs_path(@speciality, format: 'csv') do %>
+              <button type="button" class="btn btn-success"><%= t(:download_csv) %></button>
+            <% end %>
+          <% else %>
+            <%= link_to checkout_create_path, method: :post, remote: true do %>
+              <button type="button" class="btn btn-success"><%= t(:download_csv) %></button>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th><%= t(:friendliness_score) %></th>
+                  <% if current_user.admin? %>
+                    <th><%= t(:actions) %></th>
+                  <% end %>
+                  <th><%= t(:program_name) %></th>
+                  <th><%= t(:location) %></th>
+                  <th><%= t(:program_code) %></th>
+                  <th><%= t(:bookmark) %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @matching_programs.each do |program| %>
+                  <tr>
+                    <td>
+                      <%= program.send("#{current_user.img_type}_friendliness_score") %>
+                    </td>
+                    <% if current_user.admin? %>
+                      <td>
+                        <%= link_to t(:edit), edit_speciality_program_path(@speciality, program) %>
+                      </td>
+                    <% end %>
+                    <td><%= link_to program.name, speciality_program_path(@speciality, program) %></td>
+                    <td><%= program.address.split[-3..-2].join(' ') %></td>
+                    <td><%= program.acgme_program_code %></td>
+                    <td class="text-center">
+                      <span class="icon-holder">
+                        <%= link_to speciality_program_bookmark_url(@speciality, program), method: :post do %>
+                          <% if program.bookmarked?(current_user) %>
+                            <%= bootstrap_icon "bookmark-check-fill", fill: "#17a2b8" %>
+                          <% else %>
+                            <%= bootstrap_icon "bookmark", fill: "gray" %>
+                          <% end %>
+                        <% end %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+
+                <% unless current_user.paid? %>
+                    <tr>
+                      <td colspan="6" class="text-center">
+                        <%= link_to checkout_create_path, class: 'text-decoration-none', method: :post, remote: true do %>
+                          <h4 class="text-danger"><%= t(:upgrade_message) %></h4>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% (@matching_program_count - 5).times do %>
+                    <tr>
+                      <td class="blurry-text">
+                        50
+                      </td>
+                      <td class="blurry-text"><%= link_to 'The Program Name Has Been Hidden', checkout_create_path, method: :post, remote: true %></td>
+                      <td class="blurry-text">Hidden Location</td>
+                      <td class="blurry-text">HIDDEN</td>
+                      <td class="text-center">
+                        <span class="icon-holder">
+                          <%= bootstrap_icon "bookmark", fill: "gray" %>
+                        </span>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

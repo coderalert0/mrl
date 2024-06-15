@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-lg-12 col-md-6 col-sm-12">
+    <div class="card">
+      <div class="card-header d-flex">
+        <div class="float-left">
+          <h4 class="card-title font-weight-bold">
+            <%= t(:contact_us) %>
+          </h4>
+          <p>
+            311 W 43rd St, New York City, NY 10036
+            <br/>Phone: (914) 257-3566
+          </p>
+        </div>
+      </div>
+
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-md-12">
+            <%= bootstrap_form_tag :url => 'https://formspree.io/f/xknkgnwe', control_col: 'col-md-6', :method => :post do |f| %>
+              <div class="field">
+                <%= f.email_field :your_email_address, value: current_user.email, required: true %>
+                <%= f.text_area :message, rows: 5, required: true %>
+                <%= f.submit t(:submit), class: 'btn btn-info' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

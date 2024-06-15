@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>MyResidencyList</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <link rel="icon" type="image/png" href="/paper-dashboard-master/assets/img/favicon.png">
+
+  <!--     Fonts and icons     -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <!-- CSS Files -->
+  <link href="/paper-dashboard-master/assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/paper-dashboard-master/assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
+
+  <%= render 'layouts/header' %>
+</head>
+
+<body>
+  <div class="wrapper ">
+    <div class="sidebar" data-background-color="brown" data-active-color="info">
+
+      <div class="logo text-center">
+        <%= link_to root_path do %>
+          <%= image_tag('logo.png', width: 220) %>
+        <% end %>
+      </div>
+
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li>
+            <%= link_to root_path do %>
+              <i class="nc-icon nc-bank"></i>
+              <p><%= t(:dashboard, scope: :sidebar) %></p>
+            <% end %>
+          </li>
+          <li>
+            <% if current_ability.edit_profile? %>
+              <%= link_to edit_user_path(current_user) do %>
+                <i class="nc-icon nc-single-02"></i>
+                <p><%= t(:edit_profile, scope: :sidebar) %></p>
+              <% end %>
+            <% end %>
+          </li>
+          <% if current_user.admin? %>
+            <li>
+              <%= link_to users_path do %>
+                <i class="nc-icon nc-settings-gear-65"></i>
+                <p><%= t(:admin, scope: :sidebar) %></p>
+              <% end %>
+            </li>
+          <% end %>
+          <li>
+            <%= link_to contact_path do %>
+              <i class="nc-icon nc-email-85"></i>
+              <p><%= t(:contact_us, scope: :sidebar) %></p>
+            <% end %>
+          </li>
+          <li class="active-pro">
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="nc-icon nc-button-power"></i>
+              <p><%= t(:logout, scope: :sidebar) %></p>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <div class="content">
+        <div class="text-right mb-4 font-weight-bold">
+          <%= t(:welcome, scope: :header, name: current_user.last_name) %>
+        </div>
+
+        <% unless current_user.paid? %>
+          <p class="alert alert-danger">
+            <%= link_to t(:upgrade_message), checkout_create_path, method: :post, remote: true %>
+          </p>
+        <% end %>
+
+        <% if notice %>
+          <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+
+        <%= yield %>
+
+      </div>
+      <footer class="footer footer-black  footer-white ">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="credits ml-auto">
+                <span class="copyright">
+                  <%= t(:copyright, year: Date.today.year, scope: :footer) %>
+                </span>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+<!--   Core JS Files   -->
+<script src="/paper-dashboard-master/assets/js/core/jquery.min.js"></script>
+<script src="/paper-dashboard-master/assets/js/core/popper.min.js"></script>
+<script src="/paper-dashboard-master/assets/js/core/bootstrap.min.js"></script>
+<script src="/paper-dashboard-master/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<script src="/paper-dashboard-master/assets/js/copy_text.js"></script>
+<script src="/paper-dashboard-master/assets/js/program.js"></script>
+<script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+
+
+<!--  Notifications Plugin    -->
+<script src="/paper-dashboard-master/assets/js/plugins/bootstrap-notify.js"></script>
+</body>
+
+</html>

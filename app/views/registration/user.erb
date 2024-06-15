@@ -1,0 +1,19 @@
+<div class="col-md-5 mx-auto">
+
+  <h5 class="text-info mb-4 text-capitalize text-center">Please enter the following to view the list<br/> custom-tailored to your profile</h5>
+
+  <%= bootstrap_form_for(@form, url: wizard_path, :method => :put, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-8') do |f| %>
+
+    <%= f.text_field :first_name, autofocus: true %>
+
+    <%= f.text_field :last_name, autofocus: true %>
+
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", help: t(:email_help_text) %>
+
+    <%= f.password_field :password, autocomplete: "new-password", help: t(:minimum_password_length_help_text, length: User.password_length.min) %>
+
+    <div class="actions text-center">
+      <%= wizard_show_matches_button %>
+    </div>
+  <% end %>
+</div>

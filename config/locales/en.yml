@@ -1,0 +1,126 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+en:
+  actions: 'Actions'
+  applicant_type: 'Applicant Type'
+  back: 'Back'
+  bookmark: 'Bookmark'
+  bookmark_program: 'Bookmark Program'
+  contact_details: 'Contact Details'
+  contact_us: 'Contact Us'
+  created_at: 'Created At'
+  delete: 'Delete'
+  download_csv: 'Download CSV'
+  edit: 'Edit'
+  edit_profile: 'Edit Profile'
+  edit_program: 'Edit Program'
+  eras_application_fees: 'ERAS Application Fees (based on your bookmarks):'
+  email: 'Email'
+  email_help_text: 'We will not send you any marketing or unsolicited emails'
+  friendliness_score: 'Friendliness Score'
+  full_name: 'Full Name'
+  invalid_score_error: 'Invalid score (Valid score is between 1 and 300)'
+  last_sign_in_at: 'Last Sign In At'
+  location: 'Location'
+  friendliness_score_help_text_html: |
+    Based on the profiles of current and past residents</br>
+    (the higher the score, the more friendlier the program)
+  maximum_years_since_graduation: 'Maximum Years Since Graduation'
+  minimum_password_length_help_text: 'The minimum password length is %{length}'
+  minimum_step_1: 'Minimum Step 1'
+  minimum_step_2_ck: 'Minimum Step 2 CK'
+  notes: 'Notes'
+  paid: 'Paid'
+  phone: 'Phone'
+  program_code: 'Program Code'
+  program_id: 'ACGME Program ID'
+  program_coordinator: 'Program Coordinator'
+  program_coordinator_email: 'Program Coordinator Email'
+  program_director: 'Program Director'
+  program_name: 'Program Name'
+  remove_program: 'Remove Program'
+  requires_us_clinical_experience: 'Requires US Clinical Experience?'
+  requires_step_2_ck_completion: 'Requires Step 2 CK Completion?'
+  require_step_2_cs_pass: 'Requires Step 2 CS Pass on First Attempt?'
+  save: 'Save'
+  submit: 'Submit'
+  speciality: 'Speciality'
+  step_2_ck_score: 'Step 2 CK Score'
+  top_feeder_medical_schools: 'Top Feeder Medical Schools'
+  passed_step_2cs_first_attempt: 'Passed Step 2 CS on First Attempt'
+  passed_step_2cs_first_attempt_help_text: 'Please select Yes if you have not attempted Step 2CS'
+  website: 'Website'
+  upgrade_message: 'To see all matching programs click here to upgrade your account'
+  us_clinical_experience: 'US Clinical Experience'
+  valid_score_help_text: 'Valid score is between 1 and 300'
+  visa_required: 'Visa Required'
+  visa_types_sponsored: 'Visa Types Sponsored'
+  years_since_graduation: 'Years Since Graduation'
+  your_step_1_score: 'Your Step 1 Score'
+  your_step_2_ck_score: 'Your Step 2 CK Score'
+
+  admin:
+    applicant_type: 'Applicant Type'
+    attempts_to_upgrade: 'Attempts To Upgrade'
+    event: 'Event'
+    paid: 'Paid'
+    time: 'Time'
+    step_1_score: 'Step 1 Score'
+    step_2_ck_score: 'Step 2 CK Score'
+    step_2_cs_pass_first_attempt: 'Step 2 CS Passed First Attempt?'
+    us_clinical_experience: 'US Clinical Experience'
+    visa_required: 'Visa Required'
+    visitor_count: 'Visitor Count'
+    years_since_graduation: 'Years Since Graduation'
+  email_subject:
+    upgrade: 'Do you have any questions or concerns regarding upgrading?'
+    welcome: 'Dont waste weeks and $5,000 on fees - like I did'
+  header:
+    welcome: 'Welcome Dr %{name}'
+  sidebar:
+    contact_us: 'Contact Us'
+    dashboard: 'Dashboard'
+    edit_profile: 'Edit Profile'
+    logout: 'Logout'
+    admin: 'Admin'
+  footer:
+    copyright: © %{year} MyResidencyList
+  img_types:
+    us_md_graduates: 'US Medical Graduate'
+    us_citizen_international_medical_graduates: 'Caribbean IMG'
+    non_us_citizen_international_medical_graduates: 'Non-Caribbean IMG'
+    us_do_graduates: 'US DO Graduate'
+  visa_types:
+    'no': 'Not Required'
+    j_1_sponsorship_through_ecfmg: 'J1'
+    h1_b: 'H1'
+    j1_or_h1: 'J1 or H1'

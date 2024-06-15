@@ -1,0 +1,269 @@
+<div id="js-placeholder"></div>
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="card ">
+      <div class="card-header ">
+        <h4 class="card-title font-weight-bold"><%= @program.name %></h4>
+        <%= link_to "https://www.google.com/maps?q=#{@program.address.gsub("\n", ' ')}", class: 'text-decoration-none', target: '_blank' do %>
+          <%= image_tag('google_maps.png', width: 20) %>
+        <% end %>
+        <%= simple_format(@program.address.split("\n", 2)[1], { class: 'd-inline-flex ml-2' }) %>
+      </div>
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table">
+              <tbody>
+              <tr>
+                <td class="font-weight-bold">
+                  <%= t(:program_id) %>:
+                </td>
+                <td>
+                  <div id="textToCopy" class="d-inline-block">
+                    <%= @program.acgme_program_code %>
+                  </div>
+                  <div onclick="copyClipboard()" class="text-primary d-inline-block">[Copy]</div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-sound-wave text-danger mr-2"></i>
+                  <%= t(:speciality) %>
+                </td>
+                <td>
+                  <%= @program.speciality.name %>
+                </td>
+              </tr>
+              <tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-chart-bar-32 text-success mr-2"></i>
+                  <%= t(:minimum_step_1) %>
+                </td>
+                <td>
+                  <%= @program.minimum_step_1_score %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-chart-bar-32 text-info mr-2"></i>
+                  <%= t(:requires_step_2_ck_completion) %>
+                </td>
+                <td>
+                  <%= @program.step_2_required %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-chart-bar-32 text-warning mr-2"></i>
+                  <%= t(:minimum_step_2_ck) %>
+                </td>
+                <td>
+                  <%= @program.minimum_step_2_score %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-chart-bar-32 text-danger mr-2"></i>
+                  <%= t(:require_step_2_cs_pass) %>
+                </td>
+                <td>
+                  <%= @program.must_pass_step_2_cs_first_attempt %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i class="nc-icon nc-world-2 text-success mr-2"></i>
+                  <%= t(:visa_types_sponsored) %>
+                </td>
+                <td>
+                  <%= @program.visa_types_sponsored_display %>
+                </td>
+              </tr>
+              <% unless @program.us_clinical_experience.nil? %>
+                <tr>
+                  <td>
+                    <i class="nc-icon nc-badge text-primary mr-2"></i>
+                    <%= t(:requires_us_clinical_experience) %>
+                  </td>
+                  <td>
+                    <%= @program.us_clinical_experience ? 'Yes' : 'No' %>
+                  </td>
+                </tr>
+              <% end %>
+              <% unless @program.years_since_graduation.nil? %>
+                <tr>
+                  <td>
+                    <i class="nc-icon nc-hat-3 text-warning mr-2"></i>
+                    <%= t(:maximum_years_since_graduation) %>
+                  </td>
+                  <td>
+                    <%= @program.years_since_graduation %>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <div class="stats text-right">
+          <i class="fa fa-history"></i> Updated <%= @program.updated_at.strftime("%B %d, %Y") %>
+        </div>
+      </div>
+    </div>
+    <% if @program.medical_schools.present? %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card ">
+            <div class="card-header ">
+              <h5 class="card-title text-uppercase font-weight-bold"><%= t(:top_feeder_medical_schools) %></h5>
+            </div>
+            <div class="card-body ">
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table">
+                    <tbody>
+                    <tr>
+                      <td>
+                        <% @program.medical_schools.order(percentage: :desc).limit(5).each.with_index(1) do |medical_school| %>
+                          <li><%= medical_school.name %></li>
+                        <% end %>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <% unless current_user.nil? %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card ">
+            <div class="card-header ">
+              <h5 class="card-title"><%= t(:notes) %></h5>
+            </div>
+            <div class="card-body ">
+              <div class="row">
+                <div class="col-md-12">
+                  <% if can? :edit, @program %>
+                    <%= link_to '', class: 'btn btn-light border' do %>
+                      <i class="ti-pencil"> </i><%= t(:edit) %>
+                    <% end %>
+                  <% end %>
+
+                  <%= bootstrap_form_for @form, :url => speciality_program_note_url(@speciality, @program), control_col: 'col-md-12', :method => :post do |f| %>
+                    <div class="field">
+                      <%= f.text_area :note, hide_label: true, rows: 5 %>
+                    </div>
+
+                    <div class="actions text-right">
+                      <%= f.submit t(:save), class: 'btn btn-info' %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-4">
+    <% unless current_user.nil? %>
+      <div class="text-center mb-4">
+        <% if current_user.admin? %>
+          <%= link_to edit_speciality_program_url(@speciality, @program), class: 'text-decoration-none' do %>
+            <button type="button" class="btn btn-lg btn-block"><%= t(:edit_program) %></button>
+          <% end %>
+        <% end %>
+
+        <%= link_to speciality_program_bookmark_url(@speciality, @program), class: 'text-decoration-none', method: :post do %>
+          <% if @program.bookmarked?(current_user) %>
+            <button type="button" class="btn btn-lg btn-danger btn-block"><%= t(:remove_program) %></button>
+          <% else %>
+            <button type="button" class="btn btn-lg btn-info btn-block"><%= t(:bookmark_program) %></button>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if @program.friendliness_data? %>
+      <div class="card <%= 'border-success' if current_user.nil? %>">
+        <div class="card-header ">
+          <h5 class="card-title text-uppercase font-weight-bold"><%= t(:friendliness_score) %></h5>
+        </div>
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="small text-muted mb-3"><%= t(:friendliness_score_help_text_html) %></div>
+
+              <table class="table">
+                <tbody>
+                <% %i[us_md_graduates us_do_graduates non_us_citizen_international_medical_graduates us_citizen_international_medical_graduates].each do |attribute| %>
+                  <tr>
+                    <td>
+                      <%= t(attribute, scope: :img_types) %>
+                    </td>
+                    <td class="font-weight-bold">
+                      <%= @program.send("#{attribute}_friendliness_score") %>
+                    </td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+              <% if current_user.nil? %>
+                <%= link_to 'View Programs Matching My Profile', root_path, class: 'btn btn-lg btn-success text-white'  %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <% if current_user.nil? %>
+        <%= link_to 'View Programs Matching My Profile', root_path, class: 'btn btn-lg btn-success text-white'  %>
+      <% end %>
+    <% end %>
+
+    <div class="card">
+      <div class="card-header ">
+        <h5 class="card-title text-uppercase font-weight-bold"><%= t(:contact_details) %></h5>
+      </div>
+      <div class="card-body ">
+        <% unless current_user.nil? %>
+          <label><%= t(:email) %>: </label>
+          <span><%= mail_to @program.email %></span><br/>
+        <% end %>
+
+        <label><%= t(:program_coordinator) %>: </label>
+        <span><%= @program.program_coordinator %></span><br/>
+
+        <% unless current_user.nil? %>
+          <label><%= t(:program_coordinator_email) %>: </label>
+          <span><%= mail_to @program.program_coordinator_email %></span><br/>
+        <% end %>
+
+        <label><%= t(:program_director) %>: </label>
+        <span><%= @program.program_director %></span><br/>
+
+        <% unless current_user.nil? %>
+          <label><%= t(:phone) %>: </label>
+          <span><%= @program.phone %></span><br/><br/>
+        <% end %>
+
+        <% unless current_user.nil? %>
+          <label><%= t(:website) %>:</label>
+          <%= link_to(@program.website, @program.website, target: :_blank) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

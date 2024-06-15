@@ -1,0 +1,160 @@
+<div class="header">
+  <h4 class="card-title font-weight-bold">
+    <%= @program.name %>
+  </h4>
+
+  Program ID:
+  <div id="textToCopy" class="d-inline-block">
+    <%= @program.acgme_program_code %>
+  </div>
+  <div onclick="copyClipboard()" class="text-primary d-inline-block">[Copy]</div><br/>
+
+  Website: <%= link_to(@program.website, @program.website, target: :_blank) %>
+</div>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" onclick="showTab(this.id)" id="js-program-tab">Details</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onclick="showTab(this.id)" id="js-program-visa-tab">Visa</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onclick="showTab(this.id)" id="js-program-contact-tab">Contact</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onclick="showTab(this.id)" id="js-program-statistics-tab">Statistics</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" onclick="showTab(this.id)" id="js-program-misc-tab">Misc</a>
+  </li>
+</ul>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-body mt-3">
+        <div class="row">
+          <div class="col-md-12">
+
+            <%= bootstrap_form_for @form, :url => speciality_program_url(@speciality, @program), label_col: 'col-sm-3', method: :put do |f| %>
+
+              <div id="js-program">
+                <div class="field">
+                  <%= f.text_field :minimum_step_1_score %>
+                </div>
+
+                <div class="field">
+                  <%= f.select :step_2_required, [['Yes'], ['No']], include_blank: true %>
+                </div>
+
+                <div class="field">
+                  <%= f.text_field :minimum_step_2_score %>
+                </div>
+
+                <div class="field">
+                  <%= f.text_field :must_pass_step_2_cs_first_attempt %>
+                </div>
+
+                <div class="field">
+                  <%= f.select :us_clinical_experience, [['Yes', true], ['No', false]], include_blank: true %>
+                </div>
+
+                <div class="field">
+                  <%= f.select :years_since_graduation, options_for_select(0..10, :selected => @form.years_since_graduation), include_blank: true %>
+                </div>
+              </div>
+
+              <div id="js-program-visa" class="d-none">
+                <div class="field">
+                  <%= f.select :j_1_sponsorship_through_ecfmg, [['Yes'], ['No']], include_blank: true %>
+                </div>
+
+                <div class="field">
+                  <%= f.select :h1_b, [['Yes'], ['No']], include_blank: true %>
+                </div>
+              </div>
+
+              <div id="js-program-contact" class="d-none">
+                <div class="field">
+                  <%= f.text_field :website %>
+                </div>
+
+                <div class="field">
+                  <%= f.text_field :phone %>
+                </div>
+
+                <div class="field">
+                  <%= f.text_field :email %>
+                </div>
+
+                <div class="field">
+                  <%= f.text_field :program_coordinator %>
+                </div>
+
+                <div class="field">
+                  <%= f.text_field :program_coordinator_email %>
+                </div>
+
+                <div class="field">
+                  <%= f.text_field :program_director %>
+                </div>
+              </div>
+
+              <div id="js-program-statistics" class="d-none">
+                <div class="field">
+                  <%= f.text_field :us_md_graduates %>
+                </div>
+
+                <div class="field">
+                  <%= f.text_field :us_do_graduates %>
+                </div>
+
+                <div class="field">
+                  <%= f.text_field :non_us_citizen_international_medical_graduates %>
+                </div>
+
+                <div class="field">
+                  <%= f.text_field :us_citizen_international_medical_graduates %>
+                </div>
+              </div>
+
+              <div id="js-program-misc" class="d-none">
+                <div class="field">
+                  <%= f.text_field :name %>
+                </div>
+
+                <div class="field">
+                  <%= f.text_field :acgme_program_code %>
+                </div>
+
+                <div class="field">
+                  <%= f.text_area :notes %>
+                </div>
+
+                <div class="field">
+                  <%= f.text_field :speciality_id %>
+                </div>
+
+                <div class="field">
+                  <%= f.text_field :active %>
+                </div>
+              </div>
+
+              <div class="actions">
+                <%= f.submit t(:save), class: 'btn btn-success' %>
+                <%= link_to t(:back), speciality_programs_path(@speciality, all: true), class: 'btn btn-info' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <div class="stats text-right">
+          <i class="fa fa-history"></i> Updated <%= @program.updated_at.strftime("%B %d, %Y") %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

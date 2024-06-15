@@ -1,0 +1,39 @@
+version: '3'
+services:
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  web:
+    build:
+      context: .
+      args:
+        image: web
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/mrl
+      - /mrl/tmp
+      - node_modules:/mrl/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_HOST=db
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=password
+      - DATABASE_NAME=mrl_development
+      - STRIPE_PUBLISHABLE_KEY=pk_test_51IQ028FJAisLx1OyxXeo2ABc7CrY4W5Ut6o11ltGdBcE5E50v5xPJemKRiLfcYdRqaC6vQIkH2ijP46UcjNsyvIN00t8hbka5L
+      - STRIPE_SECRET_KEY=sk_test_51IQ028FJAisLx1OyCWdKDIejr6YPJrn4T3TCanhDgMSGPl9LBMiQCkwbkQJ9lzIxZmQmjevtNyMctCIJdvvvXEF0002L9arxGC
+    depends_on:
+      - db
+    tty: true
+    stdin_open: true
+volumes:
+  node_modules:

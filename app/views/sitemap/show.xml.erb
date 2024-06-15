@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://myresidencylist.com</loc>
+  </url>
+  <% @programs.each do |program| %>
+    <url>
+      <loc><%= "https://www.myresidencylist.com/specialities/#{program.speciality.friendly_id}/programs/#{program.friendly_id}" %></loc>
+      <lastmod><%= program.updated_at.strftime("%Y-%m-%d") %></lastmod>
+    </url>
+  <% end %>
+</urlset>

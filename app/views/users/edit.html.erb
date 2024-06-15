@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+        <h4 class="card-title font-weight-bold"><%= t(:edit_profile) %></h4>
+      </div>
+
+      <div class="card-body mt-3">
+        <div class="row">
+          <div class="col-md-12">
+            <%= bootstrap_form_for @form, :url => user_url, label_col: 'col-sm-3', control_col: 'col-sm-5', method: :put do |f| %>
+              <div class="field">
+                <%= f.select :img_type,
+                             options_for_select(User.img_types.keys.map { |p| [t(p, scope: :img_types), p] },
+                                                selected: @form.img_type),
+                             label_class: 'required',
+                             label: t(:applicant_type) %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :step_1_score, help: t(:valid_score_help_text), label_class: 'required' %>
+              </div>
+
+              <div class="field">
+                <%= f.text_field :step_2ck_score, label: t(:step_2_ck_score), help: t(:valid_score_help_text) %>
+              </div>
+
+              <div class="field">
+                <%= f.select :passed_step_2cs_first_attempt, [['Yes', true], ['No', false]], label: t(:passed_step_2cs_first_attempt), :label_class => 'required' %>
+              </div>
+
+              <div class="field">
+                <%= f.select :us_clinical_experience, [['Yes', true], ['No', false]], label_class: 'required', label: t(:us_clinical_experience) %>
+              </div>
+
+              <div class="field">
+                <%= f.select :visa, options_for_select(User.visas.keys.map { |p| [t(p, scope: :visa_types), p] }, selected: @form.visa), label: t(:visa_required), label_class: 'required' %>
+              </div>
+
+              <div class="field">
+                <%= f.select :years_since_graduation, options_for_select(0..10, :selected => @form.years_since_graduation), label_class: 'required' %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit t(:save), class: 'btn btn-success' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

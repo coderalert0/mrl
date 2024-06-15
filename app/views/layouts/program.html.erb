@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Is <%= @program.name.truncate(40, separator: ' ') %> IMG Friendly?</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="icon" type="image/png" href="/paper-dashboard-master/assets/img/favicon.png">
+
+    <!-- CSS Files -->
+    <link href="/paper-dashboard-master/assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
+
+    <%= render 'layouts/header' %>
+  </head>
+
+  <body>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent">
+        <div class="container mw-100">
+          <div class="navbar-wrapper">
+            <div class="logo">
+              <%= link_to root_path do %>
+                <%= image_tag('logo_header.png', width: 250) %></br>
+                IMG Friendly Residency Programs List
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="col-md-4 mx-auto">
+        <% if notice %>
+          <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+      </div>
+
+      <%= yield %>
+
+      <footer class="footer footer-black  footer-white ">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="credits ml-auto">
+                <span class="copyright">
+                  © <%= Time.zone.now.year %> MyResidencyList
+                </span>
+            </div>
+          </div>
+        </div>
+      </footer>
+  </body>
+
+  <script src="/paper-dashboard-master/assets/js/copy_text.js"></script>
+
+</html>

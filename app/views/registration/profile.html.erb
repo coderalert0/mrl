@@ -1,0 +1,41 @@
+<div class="col-md-6 mx-auto">
+  <%= bootstrap_form_for @form, :url => wizard_path(:profile), label_col: 'col-sm-5', :method => :put do |f| %>
+
+    <div class="field">
+      <%= f.select :img_type,
+                   options_for_select(User.img_types.keys.map { |p| [t(p, scope: :img_types), p] },
+                                      selected: @form.img_type),
+                   include_blank: true,
+                   label_class: 'required',
+                   label: 'Applicant Type' %>
+    </div>
+
+    <div class="field">
+      <%= f.text_field :step_1_score, help: t(:valid_score_help_text), label_class: 'required' %>
+    </div>
+
+    <div class="field">
+      <%= f.text_field :step_2ck_score, help: t(:valid_score_help_text), label: 'Step 2 CK Score' %>
+    </div>
+
+    <div class="field">
+      <%= f.select :passed_step_2cs_first_attempt, [['Yes', true], ['No', false]], :include_blank => true, help: t(:passed_step_2cs_first_attempt_help_text), label: t(:passed_step_2cs_first_attempt), :label_class => 'required' %>
+    </div>
+
+    <div class="field">
+      <%= f.select :us_clinical_experience, [['Yes', true], ['No', false]], :include_blank => true, :label_class => 'required' %>
+    </div>
+
+    <div class="field">
+      <%= f.select :visa, options_for_select(User.visas.keys.map { |p| [t(p, scope: :visa_types), p] }, selected: @form.visa), include_blank: true, label: t(:visa_required), label_class: 'required' %>
+    </div>
+
+    <div class="field">
+      <%= f.select :years_since_graduation, options_for_select(0..10, :selected => @form.years_since_graduation), :include_blank => true, :label_class => 'required' %>
+    </div>
+
+    <div class="actions text-center">
+      <%= wizard_next_button %>
+    </div>
+  <% end %>
+</div>
